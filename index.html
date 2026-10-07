@@ -8,7 +8,9 @@
   <meta property="og:title" content="THE CAMPEÃO — Simulador de Carreira na F1">
   <meta property="og:description" content="Roube dos craques. Viva uma carreira. Chegue à F1.">
   <title>THE CAMPEÃO — Simulador de Carreira na F1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Importando IBM Plex Mono e Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -22,7 +24,8 @@
       --r: #e10600;
       --g: #ffd24a;
       --gr: #1faa4b;
-      --f: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+      --f: 'IBM Plex Mono', monospace;
+      --f-mont: 'Montserrat', sans-serif;
       box-sizing: border-box;
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -35,7 +38,7 @@
     body {
       margin: 0;
       color: var(--tx);
-      font-family: Inter, system-ui, Arial, sans-serif;
+      font-family: var(--f);
       font-size: 14px;
       background: radial-gradient(900px 420px at 85% -8%, #e1060026, transparent),
                   radial-gradient(700px 400px at 0 0, #ffd24a12, transparent), 
@@ -49,7 +52,7 @@
       top: env(safe-area-inset-top, 0px);
       z-index: 5;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 12px 20px;
       background: #08090acc;
@@ -59,7 +62,7 @@
 
     .hd b { font: 900 24px var(--f); letter-spacing: .5px; }
     .hd span { color: var(--g); }
-    .hd i { font: 600 12px Inter; color: var(--m); font-style: normal; letter-spacing: 2px; }
+    .hd i { font: 600 12px var(--f); color: var(--m); font-style: normal; letter-spacing: 2px; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
 
     main {
       max-width: 1120px;
@@ -72,7 +75,7 @@
     .gd { color: var(--g); }
 
     h1 {
-      font: 900 clamp(56px, 13vw, 128px)/.84 var(--f);
+      font: 900 clamp(56px, 13vw, 128px)/.84 var(--f-mont);
       text-transform: uppercase;
       margin: 10px 0 16px;
       letter-spacing: -1px;
@@ -157,9 +160,11 @@
       padding: 18px;
       position: relative;
       overflow: hidden;
+      font-family: var(--f-mont);
     }
     
-    .sc b { position: absolute; right: 12px; top: -6px; font: 900 78px var(--f); color: #ffffff0d; }
+    .sc h4 { font-family: var(--f-mont); }
+    .sc b { position: absolute; right: 12px; top: -6px; font: 900 78px var(--f-mont); color: #ffffff0d; }
     .sc p { margin: 6px 0 0; color: var(--m); }
 
     .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
@@ -272,7 +277,7 @@
     .ring:before { content: ""; position: absolute; inset: 8px; background: var(--c); border-radius: 50%; }
     .ring b, .ring small { position: relative; grid-area: 1/1; }
     .ring b { font: 900 46px var(--f); margin-top: -8px; }
-    .ring small { margin-top: 46px; font: 700 9px Inter; letter-spacing: 1px; color: var(--m); }
+    .ring small { margin-top: 46px; font: 700 9px var(--f); letter-spacing: 1px; color: var(--m); }
 
     .chips { display: flex; gap: 6px; flex-wrap: wrap; }
     .chips span { background: #1d1f23; border: 1px solid var(--l); border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 600; }
@@ -303,7 +308,7 @@
     }
     
     .op:hover { border-color: var(--g); }
-    .op small { display: block; color: var(--m); font: 400 13px Inter; text-transform: none; margin-top: 4px; }
+    .op small { display: block; color: var(--m); font: 400 13px var(--f); text-transform: none; margin-top: 4px; }
 
     .ph { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .nw { border-top: 1px solid #1f2125; cursor: pointer; }
@@ -343,15 +348,14 @@
 
     /* v5 */
     button { border-radius: 8px; }
-    button.cta { background: #e03227; color: #fff; font-size: 22px; padding: 18px 34px; border-radius: 4px; border-left: 5px solid var(--g); box-shadow: 0 0 30px #e0322744; }
+    button.cta { font-family: var(--f-mont); background: #e03227; color: #fff; font-size: 22px; padding: 18px 34px; border-radius: 4px; border-left: 5px solid var(--g); box-shadow: 0 0 30px #e0322744; }
     button.g { border-radius: 8px; }
     .tabs button, button.sm, .chips span { border-radius: 999px; }
     
     .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; align-items: center; padding: 34px 0 10px; }
-    .eye { display: flex; align-items: center; gap: 12px; color: var(--g); font: 700 13px Inter; letter-spacing: 4px; }
-    .eye i { width: 34px; height: 1px; background: var(--g); }
+    .eye { display: flex; align-items: center; gap: 12px; color: var(--g); font: 700 13px var(--f-mont); letter-spacing: 4px; }
     
-    h1 { color: #fff; font-size: clamp(64px, 11vw, 132px); }
+    h1 { color: #fff; font-size: clamp(64px, 11vw, 132px); font-family: var(--f-mont); }
     h1 em {
       background: linear-gradient(180deg, #ffe58a, #e0a817 55%, #8a6410);
       -webkit-background-clip: text;
@@ -372,11 +376,12 @@
       background: linear-gradient(160deg, #1c1c1f, #0b0b0c);
       border: 1px solid #33353a;
       top: 70px;
+      font-family: var(--f-mont);
     }
     
-    .cd small { font: 700 11px Inter; letter-spacing: 3px; color: var(--m); }
-    .cd .big { display: block; font: 900 70px/1 var(--f); }
-    .cd h4 { font-size: 26px; }
+    .cd small { font: 700 11px var(--f-mont); letter-spacing: 3px; color: var(--m); }
+    .cd .big { display: block; font: 900 70px/1 var(--f-mont); }
+    .cd h4 { font-size: 26px; font-family: var(--f-mont); }
     .cd p { font-size: 12px; margin: 4px 0 0; }
     
     .c2 {
@@ -395,8 +400,8 @@
     .c3 { right: 0; transform: rotate(8deg); opacity: .85; }
     
     .cs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-    .cs div { border: 1px solid #3a3320; border-radius: 10px; padding: 8px 2px; text-align: center; font: 700 9px Inter; letter-spacing: 1px; color: var(--m); }
-    .cs b { display: block; font: 900 22px var(--f); color: var(--tx); letter-spacing: 0; }
+    .cs div { border: 1px solid #3a3320; border-radius: 10px; padding: 8px 2px; text-align: center; font: 700 9px var(--f-mont); letter-spacing: 1px; color: var(--m); }
+    .cs b { display: block; font: 900 22px var(--f-mont); color: var(--tx); letter-spacing: 0; }
     
     .mq {
       overflow: hidden;
@@ -461,7 +466,7 @@
     
     .rg b { color: var(--g); font: 900 24px var(--f); margin-left: 8px; }
     .nl { font: 800 13px var(--f); letter-spacing: 3px; color: var(--m); margin: 16px 0 6px; }
-    .nl small { letter-spacing: 0; font: 400 12px Inter; }
+    .nl small { letter-spacing: 0; font: 400 12px var(--f); }
     
     .bx label {
       display: block;
@@ -510,7 +515,7 @@
     <section id="home">
       <div class="hero">
         <div>
-          <div class="eye"><i></i>SIMULADOR DE CARREIRA · FÓRMULA 1</div>
+          <div class="eye">SIMULADOR DE CARREIRA · FÓRMULA 1</div>
           <h1>VOCÊ É O<br><em>CAMPEÃO?</em></h1>
           <p class="sub">Roube atributos dos pilotos do grid 2026 e das lendas. Saia do kart, negocie contratos, passe por F4, F3 e F2 e descubra onde você fica entre os maiores de todos os tempos.</p>
           <div class="pn form">
