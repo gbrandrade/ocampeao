@@ -298,11 +298,12 @@
       <h2>NOTAS DA ATUALIZAÇÃO</h2>
       <div class="pn log">
         <div class="ph" style="justify-content: flex-start; gap: 10px;">
-          <span class="bdg" style="margin:0">PATCH v8.0</span>
-          <small class="mut" style="font-weight: 700; font-family: var(--f-mont);">A Era de Ouro & Momentos Decisivos</small>
+          <span class="bdg" style="margin:0">PATCH v8.1</span>
+          <small class="mut" style="font-weight: 700; font-family: var(--f-mont);">Hotfix & Momentos Decisivos</small>
         </div>
-        <p class="mut" style="margin: 12px 0 16px; line-height: 1.6;">Nesta versão, reformulamos o motor de simulação para trazer a verdadeira emoção da pista, ajustamos a lógica do regulamento oficial e introduzimos um novo nível de colecionismo no Draft.</p>
+        <p class="mut" style="margin: 12px 0 16px; line-height: 1.6;">Nesta versão, corrigimos falhas críticas no mercado de entrada, reformulamos a simulação para focar nos momentos reais e criamos o novo nível máximo de colecionismo.</p>
         <ul style="margin:0; padding-left:20px; line-height:1.7; color:#b9bcc2;">
+          <li><b class="gd">Correção (Hotfix):</b> Resolvido o erro crítico (tela branca/quebra) ao tentar ler as propostas iniciais do Kart devido a equipes inexistentes na simulação pré-campeonato. O mercado agora flui perfeitamente desde o início.</li>
           <li><b style="color:#4ade80">Novo:</b> Cartas <b style="color:#ff0055">PRIME</b> ultra-raras (apenas 3.5% de chance) trazendo os 5 maiores da história em seus anos de pico absolutos (ex: Senna '88, Schumacher '04) com layout especial.</li>
           <li><b style="color:#4ade80">Novo:</b> OVR e Ranking das equipes agora são totalmente visíveis. O mercado agora avalia de forma inteligente o seu Potencial e o OVR real do carro para enviar propostas justas.</li>
           <li><b style="color:#4ade80">Novo:</b> Salve sua jornada! No fim da carreira, baixe seu <b>Cartão de Piloto</b> diretamente em imagem (PNG) para compartilhar.</li>
@@ -531,21 +532,32 @@
     const ovr = () => Math.round(pot() * gF(S.age));
     const nw = (t, d) => S.news.unshift({ y: S.year, t, d: d || '', i: S.nid++ });
 
+    // CORREÇÃO CRÍTICA (HOTFIX)
+    // Se a temporada não iniciou e as equipes de base (S.T) estiverem vazias, usamos o SR puro de forma segura.
     function getCarRankInfo(ser, tIdx) {
       let list = [];
-      if (ser === 4) list = (S && S.f1t ? S.f1t : F1T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
-      else list = (S && S.T && S.ser === ser ? S.T : SR[ser].T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
+      const useF1 = ser === 4;
+      const liveF1 = S && S.f1t && S.f1t.length > 0;
+      const liveBase = S && S.T && S.T.length > 0 && S.ser === ser;
+      
+      if (useF1) {
+        list = (liveF1 ? S.f1t : F1T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
+      } else {
+        list = (liveBase ? S.T : SR[ser].T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
+      }
+      
       list.sort((a, b) => b.c - a.c);
       const rank = list.findIndex(x => x.idx === tIdx) + 1;
       const total = list.length;
       let label = 'Intermediário';
       if (rank === 1) label = 'Melhor carro'; else if (rank <= 3) label = 'Top 3 (Ponta)'; else if (rank === total) label = 'Pior carro'; else if (rank >= total - 2) label = 'Fundo do grid';
-      const ovrVal = (ser === 4 ? (S && S.f1t ? S.f1t[tIdx].c : F1T[tIdx][1]) : (S && S.T && S.ser === ser ? S.T[tIdx].c : SR[ser].T[tIdx][1]));
+      
+      const ovrVal = useF1 ? (liveF1 ? S.f1t[tIdx].c : F1T[tIdx][1]) : (liveBase ? S.T[tIdx].c : SR[ser].T[tIdx][1]);
       return { rank, total, label, ovr: Math.round(ovrVal) };
     }
 
     const carOf = o => getCarRankInfo(o.ser, o.t).ovr;
-    const tnOf = o => o.ser === 4 ? (S && S.f1t ? S.f1t[o.t].n : F1T[o.t][0]) : SR[o.ser].T[o.t][0];
+    const tnOf = o => o.ser === 4 ? (S && S.f1t && S.f1t.length ? S.f1t[o.t].n : F1T[o.t][0]) : SR[o.ser].T[o.t][0];
 
     $('#st').onclick = () => {
       S = { seed: G.seed, mode: G.mode, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null };
