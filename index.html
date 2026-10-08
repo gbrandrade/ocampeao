@@ -191,8 +191,14 @@
     .mq .o { background: none; -webkit-text-stroke: 1.5px #8a6410; color: transparent; }
     @keyframes mq { to { transform: translateX(-50%); } }
 
+    /* Carta Dourada (Lenda) */
     .gcard { border: 1.5px solid var(--g) !important; background: linear-gradient(160deg, #2b2208, #101012 60%) !important; box-shadow: 0 0 50px #ffd24a2a, inset 0 0 30px #ffd24a10; }
     .gcard .rtg { background: linear-gradient(180deg, #fff2b0, #e0a817); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* Nova Carta PRIME (Vermelha Especial) */
+    .pcard { border: 1.5px solid #ff0055 !important; background: linear-gradient(160deg, #330011, #101012 60%) !important; box-shadow: 0 0 50px #ff00552a, inset 0 0 30px #ff005510; animation: pl2 3s ease-in-out infinite; }
+    @keyframes pl2 { 50% { box-shadow: 0 0 80px #ff005544, inset 0 0 40px #ff005518; } }
+    .pcard .rtg { background: linear-gradient(180deg, #ffb3cc, #ff0055); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
     .rg { background: #0b0c0e; border: 1px dashed #5a4a1a; border-radius: 12px; padding: 12px; margin: 8px 0; color: var(--m); }
     .rg b { color: var(--g); font: 900 24px var(--f); margin-left: 8px; }
@@ -233,7 +239,7 @@
         <div>
           <div class="eye">SIMULADOR DE CARREIRA · FÓRMULA 1</div>
           <h1>VOCÊ É O<br><em>CAMPEÃO?</em></h1>
-          <p class="sub">Roube atributos dos pilotos do grid 2026 e das lendas. Comece no kart, suba de categoria e busque a glória na F1.</p>
+          <p class="sub">Roube atributos dos pilotos do grid 2026, das Lendas, ou tente a sorte de encontrar as raríssimas cartas PRIME. Comece no kart, suba de categoria e busque a glória na F1.</p>
           <div class="pn form">
             <input id="nm" maxlength="18" placeholder="Nome do piloto">
             <input id="nu" type="number" min="1" max="99" placeholder="Nº" style="width:90px">
@@ -279,13 +285,33 @@
         </div>
       </div>
       <div class="st3">
-        <div class="sc"><b>01</b><h4>Role</h4><p>Sorteia um piloto do grid ou uma lenda</p></div>
+        <div class="sc"><b>01</b><h4>Role</h4><p>Encontre Pilotos, Lendas ou Cartas PRIME raras</p></div>
         <div class="sc"><b>02</b><h4>Roube</h4><p>Cada atributo tem função específica na pista</p></div>
         <div class="sc"><b>03</b><h4>Corra</h4><p>Veja os OVRs reais de todos os carros do grid</p></div>
         <div class="sc"><b>04</b><h4>Suba</h4><p>Campeão da base é obrigado pela FIA a subir</p></div>
       </div>
+      
       <h2>MELHORES CARREIRAS (NESTE APARELHO)</h2>
       <div id="lb" class="tw pn"></div>
+
+      <!-- SEÇÃO DO CHANGELOG -->
+      <h2>NOTAS DA ATUALIZAÇÃO</h2>
+      <div class="pn log">
+        <div class="ph" style="justify-content: flex-start; gap: 10px;">
+          <span class="bdg" style="margin:0">PATCH v8.0</span>
+          <small class="mut" style="font-weight: 700; font-family: var(--f-mont);">A Era de Ouro & Momentos Decisivos</small>
+        </div>
+        <p class="mut" style="margin: 12px 0 16px; line-height: 1.6;">Nesta versão, reformulamos o motor de simulação para trazer a verdadeira emoção da pista, ajustamos a lógica do regulamento oficial e introduzimos um novo nível de colecionismo no Draft.</p>
+        <ul style="margin:0; padding-left:20px; line-height:1.7; color:#b9bcc2;">
+          <li><b style="color:#4ade80">Novo:</b> Cartas <b style="color:#ff0055">PRIME</b> ultra-raras (apenas 3.5% de chance) trazendo os 5 maiores da história em seus anos de pico absolutos (ex: Senna '88, Schumacher '04) com layout especial.</li>
+          <li><b style="color:#4ade80">Novo:</b> OVR e Ranking das equipes agora são totalmente visíveis. O mercado agora avalia de forma inteligente o seu Potencial e o OVR real do carro para enviar propostas justas.</li>
+          <li><b style="color:#4ade80">Novo:</b> Salve sua jornada! No fim da carreira, baixe seu <b>Cartão de Piloto</b> diretamente em imagem (PNG) para compartilhar.</li>
+          <li><b class="gd">Ajuste:</b> Regulamento FIA ativado: pilotos que forem campeões no Kart, F4, F3 ou F2 agora são <b>proibidos</b> de renovar na mesma categoria e obrigados a subir de divisão.</li>
+          <li><b class="gd">Ajuste:</b> Todos os 8 atributos agora afetam a corrida em tempo real (Ex: Ultrapassagem alta te salva se largar atrás; Consistência alta te protege contra o azar (RNG) do motor).</li>
+          <li><b style="color:#ff7b72">Removido:</b> A simulação "fantasma". Agora a temporada para nos <b>Momentos Dramáticos</b> (Abertura, Metade e Decisão do Campeonato) para você acompanhar e viver as provas cruciais.</li>
+        </ul>
+      </div>
+
     </section>
 
     <section id="draft" class="hide">
@@ -360,17 +386,6 @@
     
     $('#na').innerHTML = NA.map(n => `<option>${n}</option>`).join('');
     
-    const L = [
-      ['Ayrton Senna', '🇧🇷', [99, 94, 92, 93, 99, 80, 84, 97]],
-      ['Michael Schumacher', '🇩🇪', [94, 98, 92, 92, 95, 94, 96, 99]],
-      ['Lewis Hamilton (auge)', '🇬🇧', [97, 97, 90, 95, 96, 95, 92, 94]],
-      ['Alain Prost', '🇫🇷', [90, 96, 86, 90, 90, 99, 97, 95]],
-      ['Sebastian Vettel', '🇩🇪', [96, 93, 95, 88, 86, 90, 90, 90]],
-      ['Niki Lauda', '🇦🇹', [88, 93, 84, 86, 90, 93, 96, 96]],
-      ['Juan Manuel Fangio', '🇦🇷', [93, 94, 86, 92, 92, 90, 92, 95]],
-      ['Jim Clark', '🇬🇧', [96, 96, 95, 92, 97, 88, 86, 92]]
-    ];
-
     const CUR = [
       ['Max Verstappen', '🇳🇱', 95, 88, 96, 82, 97, 28, 0],
       ['Isack Hadjar', '🇫🇷', 83, 71, 81, 82, 85, 21, 0],
@@ -384,60 +399,53 @@
       ['Carlos Sainz', '🇪🇸', 86, 88, 88, 80, 86, 31, 7]
     ];
 
+    const L = [
+      ['Sebastian Vettel', '🇩🇪', [96, 93, 95, 88, 86, 90, 90, 90]],
+      ['Niki Lauda', '🇦🇹', [88, 93, 84, 86, 90, 93, 96, 96]],
+      ['Jim Clark', '🇬🇧', [96, 96, 95, 92, 97, 88, 86, 92]],
+      ['Jackie Stewart', '🇬🇧', [92, 94, 90, 91, 99, 90, 90, 93]],
+      ['Mika Häkkinen', '🇫🇮', [95, 93, 90, 92, 93, 86, 88, 90]],
+      ['Nelson Piquet', '🇧🇷', [92, 92, 86, 88, 91, 95, 92, 92]],
+      ['Emerson Fittipaldi', '🇧🇷', [86, 88, 84, 86, 88, 90, 88, 86]],
+      ['Nigel Mansell', '🇬🇧', [92, 90, 90, 96, 96, 82, 82, 90]],
+      ['Felipe Massa', '🇧🇷', [93, 88, 90, 84, 86, 86, 82, 84]]
+    ];
+
+    const PRIME = [
+      ['Senna (1988)', '🇧🇷', [99, 97, 92, 96, 99, 86, 90, 97]],
+      ['Senna (1991)', '🇧🇷', [98, 97, 93, 95, 99, 89, 94, 98]],
+      ['Schumacher (2002)', '🇩🇪', [95, 98, 95, 93, 97, 92, 99, 99]],
+      ['Schumacher (2004)', '🇩🇪', [97, 99, 94, 95, 95, 94, 98, 99]],
+      ['Hamilton (2018)', '🇬🇧', [98, 97, 92, 95, 98, 96, 97, 98]],
+      ['Hamilton (2020)', '🇬🇧', [97, 98, 94, 94, 99, 99, 98, 99]],
+      ['Prost (1986)', '🇫🇷', [92, 98, 90, 92, 88, 99, 99, 98]],
+      ['Prost (1989)', '🇫🇷', [93, 97, 89, 91, 89, 98, 98, 97]],
+      ['Fangio (1955)', '🇦🇷', [94, 96, 90, 93, 92, 95, 96, 97]],
+      ['Fangio (1957)', '🇦🇷', [95, 97, 88, 98, 94, 92, 95, 99]]
+    ];
+
     const F1T = [
       ['Mercedes', 90], ['Ferrari', 87], ['McLaren', 86], ['Red Bull', 85], 
       ['Aston Martin', 74], ['Williams', 70], ['Racing Bulls', 68], ['Alpine', 66], 
       ['Audi', 64], ['Haas', 62], ['Cadillac', 58]
     ];
 
-    // DEFINIÇÃO EXATA DOS CARROS COM SEUS OVRS EM TODAS AS CATEGORIAS
     const SR = [
-      { 
-        n: 'Kart', R: 10, lv: [48, 66], 
-        T: [
-          ['Tony Kart', 65], ['CRG', 63], ['KR Motorsport', 62], ['Birel ART', 60], 
-          ['Parolin', 58], ['Kosmic Racing', 56], ['Ward Racing', 55], ['Energy Corse', 53], 
-          ['Sodi Racing', 51], ['Lenzokart', 49]
-        ] 
-      },
-      { 
-        n: 'F4', R: 16, lv: [56, 74], 
-        T: [
-          ['Prema', 75], ['Van Amersfoort', 73], ['MP Motorsport', 72], ['ART Grand Prix', 70], 
-          ['Campos', 68], ['US Racing', 67], ['R-ace GP', 65], ['Mücke Motorsport', 64], 
-          ['Rodin Motorsport', 62], ['Iron Lynx', 60]
-        ] 
-      },
-      { 
-        n: 'F3', R: 16, lv: [64, 80], 
-        T: [
-          ['Prema', 83], ['Trident', 82], ['ART Grand Prix', 80], ['Hitech', 78], 
-          ['MP Motorsport', 77], ['Campos', 75], ['Van Amersfoort', 74], ['DAMS', 72], 
-          ['Rodin Motorsport', 70], ['Jenzer', 68]
-        ] 
-      },
-      { 
-        n: 'F2', R: 14, lv: [70, 86], 
-        T: [
-          ['Prema', 89], ['Invicta', 88], ['ART Grand Prix', 86], ['Campos', 85], 
-          ['MP Motorsport', 84], ['Hitech', 83], ['DAMS', 81], ['Trident', 80], 
-          ['Van Amersfoort', 78], ['Rodin', 76]
-        ] 
-      },
+      { n: 'Kart', R: 10, lv: [48, 66], T: [['Tony Kart', 65], ['CRG', 63], ['KR Motorsport', 62], ['Birel ART', 60], ['Parolin', 58], ['Kosmic Racing', 56], ['Ward Racing', 55], ['Energy Corse', 53], ['Sodi Racing', 51], ['Lenzokart', 49]] },
+      { n: 'F4', R: 16, lv: [56, 74], T: [['Prema', 75], ['Van Amersfoort', 73], ['MP Motorsport', 72], ['ART Grand Prix', 70], ['Campos', 68], ['US Racing', 67], ['R-ace GP', 65], ['Mücke Motorsport', 64], ['Rodin Motorsport', 62], ['Iron Lynx', 60]] },
+      { n: 'F3', R: 16, lv: [64, 80], T: [['Prema', 83], ['Trident', 82], ['ART Grand Prix', 80], ['Hitech', 78], ['MP Motorsport', 77], ['Campos', 75], ['Van Amersfoort', 74], ['DAMS', 72], ['Rodin Motorsport', 70], ['Jenzer', 68]] },
+      { n: 'F2', R: 14, lv: [70, 86], T: [['Prema', 89], ['Invicta', 88], ['ART Grand Prix', 86], ['Campos', 85], ['MP Motorsport', 84], ['Hitech', 83], ['DAMS', 81], ['Trident', 80], ['Van Amersfoort', 78], ['Rodin', 76]] },
       { n: 'F1' }
     ];
 
-    const att = d => {
-      const [e, r, a, p] = [d[3], d[4], d[5], d[6]];
-      return [p, (r + p) / 2, (r + a) / 2, r, a, e, (a + e) / 2, (e * 2 + a) / 3].map(Math.round);
-    };
+    const att = d => { const [e, r, a, p] = [d[3], d[4], d[5], d[6]]; return [p, (r + p) / 2, (r + a) / 2, r, a, e, (a + e) / 2, (e * 2 + a) / 3].map(Math.round); };
 
     const POOL = CUR.map(d => ({ n: d[0], f: d[1], rtg: d[2], a: att(d), leg: 0 }))
-      .concat(L.map(l => ({ n: l[0], f: l[1], rtg: Math.round(l[2].reduce((a, b) => a + b) / 8), a: l[2], leg: 1 })));
+      .concat(L.map(l => ({ n: l[0], f: l[1], rtg: Math.round(l[2].reduce((a, b) => a + b) / 8), a: l[2], leg: 1 })))
+      .concat(PRIME.map(l => ({ n: l[0], f: l[1], rtg: Math.round(l[2].reduce((a, b) => a + b) / 8), a: l[2], leg: 2 })));
 
     const PTS = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
     const SPT = [8, 7, 6, 5, 4, 3, 2, 1];
-
     const EV = [
       ['Chuva forte na pista. Hora de decidir a ultrapassagem.', ['Ultrapassagem arriscada no molhado', .3, 'Manobra perfeita! Chuva +4', 4, 4, 3, 'Rodou e perdeu posições. Mentalidade -1', 7, -1, -3], ['Segurar a posição', .75, 'Pontos garantidos. Consistência +1', 6, 1, 1, 'Foi passado nas retas.', 6, 0, -1]],
       ['A equipe pede sua opinião sobre a estratégia de pneus.', ['Parar cedo (undercut)', .4, 'Funcionou! Gestão de pneus +3', 5, 3, 2, 'Perdeu tempo no tráfego.', 5, -1, -2], ['Esticar o stint', .65, 'Ritmo mantido. Gestão de pneus +1', 5, 1, 1, 'Pneus acabaram. Gestão -1', 5, -1, -2]],
@@ -455,43 +463,34 @@
     const rf = r => NA[Math.floor(r() * 16)].split(' ')[0];
     const seed = () => Math.random().toString(36).slice(2, 8).toUpperCase();
 
-    // Recupera autosave se existir
     let saved = localStorage.getItem('tc_save');
     if (saved) {
       $('#load_btn').classList.remove('hide');
       $('#load_btn').onclick = () => {
         let d = JSON.parse(saved);
         G = d.G; S = d.S;
-        if(S) { show('car'); draw(); }
-        else { show('draft'); dr(); }
+        if(S) { show('car'); draw(); } else { show('draft'); dr(); }
       }
     }
 
-    function save() {
-      if(G) localStorage.setItem('tc_save', JSON.stringify({G, S}));
-    }
+    function save() { if(G) localStorage.setItem('tc_save', JSON.stringify({G, S})); }
 
     $('#go').onclick = () => start(seed());
     $('#re').onclick = () => { show('home'); lb(); };
 
     function start(sd) {
       const n = NA[$('#na').selectedIndex];
-      G = { 
-        seed: sd, mode, name: ($('#nm').value.trim() || 'SEU PILOTO').toUpperCase(), 
-        num: Math.max(1, Math.min(99, +$('#nu').value || 7)), flag: n.split(' ')[0], 
-        v: Array(8).fill(null), used: [], spin: 0, k: 0, rr: 3, cur: null 
-      };
-      S = null;
-      show('draft');
-      $('#sd').textContent = 'SEED ' + sd;
-      spin();
+      G = { seed: sd, mode, name: ($('#nm').value.trim() || 'SEU PILOTO').toUpperCase(), num: Math.max(1, Math.min(99, +$('#nu').value || 7)), flag: n.split(' ')[0], v: Array(8).fill(null), used: [], spin: 0, k: 0, rr: 3, cur: null };
+      S = null; show('draft'); $('#sd').textContent = 'SEED ' + sd; spin();
     }
 
     function spin() {
       if (G.spin >= 8) return dr();
       const r = R(G.seed + 'd' + G.spin + '_' + G.k);
-      const leg = r() < .16 ? 1 : 0;
-      const p = POOL.filter(x => x.leg === leg && !G.used.includes(x.n));
+      const roll = r();
+      let leg = roll < 0.035 ? 2 : roll < 0.12 ? 1 : 0;
+      let p = POOL.filter(x => x.leg === leg && !G.used.includes(x.n));
+      if (!p.length) p = POOL.filter(x => !G.used.includes(x.n));
       G.cur = p[Math.floor(r() * p.length)];
       dr();
     }
@@ -507,7 +506,14 @@
         $('#lgd').innerHTML = `<p class="mut">Perfil completo! Potencial calculado: ${Math.round(G.v.reduce((a, b) => a + b) / 8)}. As propostas para o Kart dependerão do seu nível!</p>`;
       } else {
         const c = G.cur;
-        $('#lgd').innerHTML = `<div class="pn ${c.leg || c.rtg >= 90 ? 'gcard' : ''}" style="margin-top:14px"><div class="row" style="margin:0"><span class="rtg ${c.leg ? 'l' : ''}">${c.rtg}</span><div><h3>${c.f} ${c.n}</h3>${c.leg ? '<span class="lg">LENDA</span>' : '<span class="mut">F1 25 · 2026</span>'}</div></div><div class="at">${AT.map((a, i) => `<button data-i="${i}" ${G.v[i] !== null ? 'disabled' : ''}><span>${a}</span><span>${c.a[i]}</span><u style="width:${c.a[i]}%"></u></button>`).join('')}</div><div class="row"><button class="g" id="rrl" ${G.rr ? '' : 'disabled'}>🔄 TROCAR PILOTO (${G.rr})</button></div></div>`;
+        let bage = '';
+        if (c.leg === 2) bage = '<span class="lg" style="background:linear-gradient(90deg,#ff0055,#990033);color:#fff;box-shadow:0 0 16px #ff005599">PRIME</span>';
+        else if (c.leg === 1) bage = '<span class="lg">LENDA</span>';
+        else bage = '<span class="mut">F1 25 · 2026</span>';
+
+        const cardCls = c.leg === 2 ? 'pcard' : (c.leg === 1 || c.rtg >= 90) ? 'gcard' : '';
+
+        $('#lgd').innerHTML = `<div class="pn ${cardCls}" style="margin-top:14px"><div class="row" style="margin:0"><span class="rtg ${c.leg ? 'l' : ''}">${c.rtg}</span><div><h3>${c.f} ${c.n}</h3>${bage}</div></div><div class="at">${AT.map((a, i) => `<button data-i="${i}" ${G.v[i] !== null ? 'disabled' : ''}><span>${a}</span><span>${c.a[i]}</span><u style="width:${c.a[i]}%"></u></button>`).join('')}</div><div class="row"><button class="g" id="rrl" ${G.rr ? '' : 'disabled'}>🔄 TROCAR PILOTO (${G.rr})</button></div></div>`;
         
         $('#rrl').onclick = () => { G.rr--; G.k++; spin(); };
         $('#lgd').querySelectorAll('.at button').forEach(b => b.onclick = () => {
@@ -525,23 +531,15 @@
     const ovr = () => Math.round(pot() * gF(S.age));
     const nw = (t, d) => S.news.unshift({ y: S.year, t, d: d || '', i: S.nid++ });
 
-    // Informação de Rank de Carro para qualquer categoria
     function getCarRankInfo(ser, tIdx) {
       let list = [];
-      if (ser === 4) {
-        list = (S && S.f1t ? S.f1t : F1T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
-      } else {
-        list = (S && S.T && S.ser === ser ? S.T : SR[ser].T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
-      }
+      if (ser === 4) list = (S && S.f1t ? S.f1t : F1T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
+      else list = (S && S.T && S.ser === ser ? S.T : SR[ser].T).map((t, idx) => ({ idx, c: Math.round(t.c || t[1]) }));
       list.sort((a, b) => b.c - a.c);
       const rank = list.findIndex(x => x.idx === tIdx) + 1;
       const total = list.length;
       let label = 'Intermediário';
-      if (rank === 1) label = 'Melhor carro';
-      else if (rank <= 3) label = 'Top 3 (Ponta)';
-      else if (rank === total) label = 'Pior carro';
-      else if (rank >= total - 2) label = 'Fundo do grid';
-
+      if (rank === 1) label = 'Melhor carro'; else if (rank <= 3) label = 'Top 3 (Ponta)'; else if (rank === total) label = 'Pior carro'; else if (rank >= total - 2) label = 'Fundo do grid';
       const ovrVal = (ser === 4 ? (S && S.f1t ? S.f1t[tIdx].c : F1T[tIdx][1]) : (S && S.T && S.ser === ser ? S.T[tIdx].c : SR[ser].T[tIdx][1]));
       return { rank, total, label, ovr: Math.round(ovrVal) };
     }
@@ -550,28 +548,20 @@
     const tnOf = o => o.ser === 4 ? (S && S.f1t ? S.f1t[o.t].n : F1T[o.t][0]) : SR[o.ser].T[o.t][0];
 
     $('#st').onclick = () => {
-      S = { 
-        seed: G.seed, mode: G.mode, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), 
-        ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], 
-        tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], 
-        me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, 
-        rep: 0, cash: 0, con: null, neg: null 
-      };
+      S = { seed: G.seed, mode: G.mode, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null };
       nw('Um novo talento no kartismo: ' + S.name, 'O caminho até a F1 começa agora.');
       
-      // Propostas de Kart calibradas pelo nível do Draft
       const startVal = pot() * 0.7 + ovr() * 0.3;
       let eligible = [];
-      if (startVal >= 82) eligible = [0, 1, 2, 3]; // Tony Kart, CRG, KR (Melhores)
-      else if (startVal >= 72) eligible = [1, 2, 3, 4, 5]; // Birel, Parolin
-      else if (startVal >= 62) eligible = [3, 4, 5, 6, 7]; // Kosmic, Ward, Energy
-      else eligible = [5, 6, 7, 8, 9]; // Sodi, Lenzokart
+      if (startVal >= 82) eligible = [0, 1, 2, 3];
+      else if (startVal >= 72) eligible = [1, 2, 3, 4, 5];
+      else if (startVal >= 62) eligible = [3, 4, 5, 6, 7];
+      else eligible = [5, 6, 7, 8, 9];
 
       const r = R(S.seed + 'k');
       const o = eligible.sort(() => r() - 0.5).slice(0, 3).sort((a,b) => a - b);
       S.offs = o.map(t => ({ ser: 0, t }));
-      S.ph = 'offer';
-      show('car'); draw();
+      S.ph = 'offer'; show('car'); draw();
     };
 
     const rank = () => [...S.F].sort((a, b) => b.pts - a.pts || b.w - a.w || (b.r || 0) - (a.r || 0));
@@ -579,49 +569,26 @@
     function init() {
       const y = S.year, sr = SR[S.ser], r = R(S.seed + 'i' + y + S.ser);
       S.me.pts = S.me.w = S.me.pd = 0; S.me.p = 1; S.me.n = S.name; S.me.f = S.flag; S.me.t = S.team;
-      
       const fm = d => { d.form = d.p ? 0 : (r() - .5) * 8 + (r() < .12 ? 5 : 0) + Math.min(5, (S.streak || 0) * 1.5); };
       
       if (S.ser < 4) {
-        // Carros com seus ratings oficiais ajustados com leve variação de temporada
-        S.T = sr.T.map(([nome, baseC], i) => ({ 
-          n: nome, 
-          c: Math.max(45, Math.min(95, Math.round(baseC + (r() - .5) * 4))), 
-          pts: 0 
-        }));
+        S.T = sr.T.map(([nome, baseC], i) => ({ n: nome, c: Math.max(45, Math.min(95, Math.round(baseC + (r() - .5) * 4))), pts: 0 }));
         S.F = [];
-        sr.T.forEach((_, i) => {
-          for (let k = 0; k < 2; k++) {
-            S.F.push({ n: rn(r), f: rf(r), t: i, r: sr.lv[0] + r() * (sr.lv[1] - sr.lv[0]) + (5 - i) * .7, pts: 0, w: 0, pd: 0, out: 0 });
-          }
-        });
-        S.F[2 * S.team + 1] = S.me;
-        S.F.forEach(fm);
-        S.tn = S.T[S.team].n;
-        S.sess = Array(sr.R).fill('gp');
+        sr.T.forEach((_, i) => { for (let k = 0; k < 2; k++) { S.F.push({ n: rn(r), f: rf(r), t: i, r: sr.lv[0] + r() * (sr.lv[1] - sr.lv[0]) + (5 - i) * .7, pts: 0, w: 0, pd: 0, out: 0 }); } });
+        S.F[2 * S.team + 1] = S.me; S.F.forEach(fm); S.tn = S.T[S.team].n; S.sess = Array(sr.R).fill('gp');
       } else {
-        S.F = S.grid; S.T = S.f1t;
-        S.F.forEach(d => { d.pts = d.w = d.pd = d.out = 0; fm(d); });
-        S.T.forEach(t => t.pts = 0);
-        S.tn = S.T[S.team].n;
-        S.sess = [];
-        for (let i = 0; i < 24; i++) {
-          if ([1, 4, 8, 12, 16, 20].includes(i)) S.sess.push('sp');
-          S.sess.push('gp');
-        }
+        S.F = S.grid; S.T = S.f1t; S.F.forEach(d => { d.pts = d.w = d.pd = d.out = 0; fm(d); });
+        S.T.forEach(t => t.pts = 0); S.tn = S.T[S.team].n; S.sess = [];
+        for (let i = 0; i < 24; i++) { if ([1, 4, 8, 12, 16, 20].includes(i)) S.sess.push('sp'); S.sess.push('gp'); }
       }
-      
-      S.mod = 0; S.ph = 'start'; S.msg = '';
-      S.ev = EV[Math.floor(R(S.seed + 'ev' + y + S.ser)() * EV.length)];
+      S.mod = 0; S.ph = 'start'; S.msg = ''; S.ev = EV[Math.floor(R(S.seed + 'ev' + y + S.ser)() * EV.length)];
     }
 
     function sim_races(a, b) {
       let res = null;
       for (let i = a; i < b; i++) {
         const rr = R(S.seed + 'r' + S.year + S.ser + i);
-        const sp = S.sess[i] === 'sp';
-        const wet = rr() < .18;
-        const P = sp ? SPT : PTS;
+        const sp = S.sess[i] === 'sp', wet = rr() < .18, P = sp ? SPT : PTS;
 
         let qs = S.F.map(d => {
           if (d.out > 0) return {d, q: -999};
@@ -634,13 +601,11 @@
           if (item.q === -999) return {d: item.d, s: -999};
           let d = item.d;
           let r_sk = d.p ? S.v[1]*gF(S.age) : d.r + (d.form||0);
-          
           let start_bonus = d.p ? (S.v[2]-70)*0.1 : 0;
           let overt_bonus = (d.p && item.grid > 6) ? (S.v[3]-70)*0.22 : 0;
           let rain_bonus  = (wet && d.p) ? (S.v[4]-70)*0.35 : 0;
           let tire_bonus  = (!sp && d.p) ? (S.v[5]-70)*0.15 : 0;
           let ment_bonus  = (d.p && i >= S.sess.length - 2) ? (S.v[7]-70)*0.25 : 0;
-          
           let rng_spread = d.p ? Math.max(4, 15 - (S.v[6]-70)*0.15) : 14;
           let roll = (rr() + rr() + rr() - 1.5) * rng_spread;
 
@@ -651,8 +616,7 @@
 
         rs.forEach((item, j) => {
           if (item.s < -50) return;
-          let d = item.d;
-          let pts = P[j] || 0;
+          let d = item.d, pts = P[j] || 0;
           d.pts += pts; S.T[d.t].pts += pts;
           if (!sp) { if (j === 0) d.w++; if (j < 3) d.pd++; }
           if (d.p) res = { grid: item.grid, pos: j+1, pts, wet, sp };
@@ -661,11 +625,7 @@
       return res;
     }
 
-    function rookie(t) {
-      S.nid++;
-      const r = R(S.seed + 'rk' + S.year + t + S.nid);
-      return { n: rn(r), f: rf(r), t, r: 70 + r() * 8, age: 19 + Math.floor(r() * 3), pts: 0, w: 0, pd: 0, out: 0 };
-    }
+    function rookie(t) { S.nid++; const r = R(S.seed + 'rk' + S.year + t + S.nid); return { n: rn(r), f: rf(r), t, r: 70 + r() * 8, age: 19 + Math.floor(r() * 3), pts: 0, w: 0, pd: 0, out: 0 }; }
 
     function market() {
       const g = S.grid, r = R(S.seed + 'm' + S.year);
@@ -678,9 +638,7 @@
         S.nx = null;
       }
       g.forEach(d => { if (!d.p) { d.age++; d.r = Math.max(60, Math.min(97, Math.round(d.r + (d.age < 26 ? r() * 3 - .6 : d.age > 34 ? -r() * 2.2 : (r() - .5) * 2)))); } });
-      g.forEach((d, i) => {
-        if (!d.p && d.age >= 39 && r() < .4) { const n = rookie(d.t); g[i] = n; nw('APOSENTADORIA: ' + n.n + ' assume vaga', d.n + ' encerra a carreira.'); }
-      });
+      g.forEach((d, i) => { if (!d.p && d.age >= 39 && r() < .4) { const n = rookie(d.t); g[i] = n; nw('APOSENTADORIA: ' + n.n + ' assume vaga', d.n + ' encerra a carreira.'); } });
       for (let k = 0, x = 0; k < 60 && x < 2; k++) {
         const a = g[Math.floor(r() * g.length)], b = g[Math.floor(r() * g.length)];
         if (a.p || b.p || a.t === b.t || a.r <= b.r || S.f1t[b.t].c <= S.f1t[a.t].c + 3) continue;
@@ -692,131 +650,69 @@
     function place(t) {
       const g = S.grid;
       if (g.includes(S.me) && S.me.t !== t) g[g.indexOf(S.me)] = rookie(S.me.t);
-      if (!g.includes(S.me)) {
-        const c = g.filter(d => d.t === t && !d.p).sort((a, b) => a.r - b.r)[0];
-        g[g.indexOf(c)] = S.me;
-      }
+      if (!g.includes(S.me)) { const c = g.filter(d => d.t === t && !d.p).sort((a, b) => a.r - b.r)[0]; g[g.indexOf(c)] = S.me; }
       S.me.t = t;
     }
 
-    function eg() {
-      if (!S.grid) {
-        S.grid = CUR.map(d => ({ n: d[0], f: d[1], r: d[2], age: d[7], t: d[8], pts: 0, w: 0, pd: 0, out: 0 }));
-        S.f1t = F1T.map(([n, c]) => ({ n, c, pts: 0 }));
-      }
-    }
+    function eg() { if (!S.grid) { S.grid = CUR.map(d => ({ n: d[0], f: d[1], r: d[2], age: d[7], t: d[8], pts: 0, w: 0, pd: 0, out: 0 })); S.f1t = F1T.map(([n, c]) => ({ n, c, pts: 0 })); } }
 
-    // PROPOSTAS CALIBRADAS COM REGULAMENTO FIA DE CAMPEÃO
     function offers() {
       eg();
       const P = Math.max(1, S.last ? S.last.pos - (S.rep >= 2 ? 2 : S.rep <= -2 ? -2 : 0) : 5);
       const r = R(S.seed + 'o' + S.year), o = [];
       const pk = (a, n) => { a = [...a]; const x = []; while (x.length < n && a.length) x.push(a.splice(Math.floor(r() * a.length), 1)[0]); return x; };
-      const ser = S.ser;
-
-      // REGRA FIA: Se foi campeão de categoria de base, é OBRIGADO a subir!
-      const wonBaseChampionship = (S.last && S.last.pos === 1 && ser < 4);
-
+      const ser = S.ser, wonBaseChampionship = (S.last && S.last.pos === 1 && ser < 4);
       let pro = ser < 4 && (P <= 3 || (S.sy >= 2 && ser < 3 && P <= 8) || S.sy >= 3);
-      if (ser === 3 && pro && ovr() < 70 && S.sy < 4 && !wonBaseChampionship) { 
-        pro = false; 
-        S.msg += ' As equipes de F1 acham você cru: mais um ano de F2.'; 
-      }
-      
+      if (ser === 3 && pro && ovr() < 70 && S.sy < 4 && !wonBaseChampionship) { pro = false; S.msg += ' As equipes de F1 acham você cru: mais um ano de F2.'; }
       const jump = !wonBaseChampionship && (ser === 1 || ser === 2) && P <= 2 && (S.brk || S.spons > 0) && r() < .6;
       if (jump) S.msg += ' 🎟️ Convite para pular de categoria!';
 
       let tgt;
-      if (ser === 4) {
-        tgt = 4;
-      } else if (wonBaseChampionship) {
-        tgt = ser + 1; // FORÇADO A SUBIR!
-      } else {
-        tgt = jump ? ser + 2 : pro ? ser + 1 : ser;
-      }
+      if (ser === 4) tgt = 4;
+      else if (wonBaseChampionship) tgt = ser + 1;
+      else tgt = jump ? ser + 2 : pro ? ser + 1 : ser;
 
-      // Pontuação de mercado baseada no Potencial, OVR Atual, Reputação e Posição
       const driverVal = (ovr() * 0.55) + (pot() * 0.45) + (S.rep * 2) + (S.last ? (S.last.pos === 1 ? 10 : S.last.pos <= 3 ? 5 : S.last.pos <= 6 ? 1 : -4) : 0);
 
       if (tgt === 4) {
         const cap = (ser === 4 ? ovr() + (P == 1 ? 10 : P <= 3 ? 6 : P <= 6 ? 3 : P <= 10 ? 0 : -6) : ovr() * .98 + (P == 1 ? 12 : P <= 3 ? 6 : 0)) + (S.spons > 0 ? 5 : 0) + S.rep * 2;
         let el = S.f1t.map((t, i) => i).filter(i => S.f1t[i].c <= cap && (ser !== 4 || i !== S.team));
-        if (!el.length) el = [8, 9, 10]; // Equipes de fundo da F1
-        
+        if (!el.length) el = [8, 9, 10];
         pk(el, ser === 4 ? 2 : 3).forEach(t => o.push({ ser: 4, t }));
         if (ser === 4 && !(P > 14 && r() < .5)) o.unshift({ ser: 4, t: S.team, re: 1 });
       } else {
-        // Categorias de Base (Kart, F4, F3, F2)
         let band;
-        if (wonBaseChampionship) {
-          // Campeão é cobiçado pelas melhores da divisão acima
-          band = driverVal >= 78 ? [0, 1, 2, 3] : [1, 2, 3, 4, 5];
-        } else if (S.paid) {
-          band = [6, 7, 8, 9];
-        } else if (tgt > ser) {
-          // Subindo normalmente
-          if (driverVal >= 82) band = [0, 1, 2, 3];
-          else if (driverVal >= 74) band = [1, 2, 3, 4, 5];
-          else if (driverVal >= 66) band = [3, 4, 5, 6, 7];
-          else band = [5, 6, 7, 8, 9];
+        if (wonBaseChampionship) band = driverVal >= 78 ? [0, 1, 2, 3] : [1, 2, 3, 4, 5];
+        else if (S.paid) band = [6, 7, 8, 9];
+        else if (tgt > ser) {
+          if (driverVal >= 82) band = [0, 1, 2, 3]; else if (driverVal >= 74) band = [1, 2, 3, 4, 5]; else if (driverVal >= 66) band = [3, 4, 5, 6, 7]; else band = [5, 6, 7, 8, 9];
         } else {
-          // Continuando na categoria
-          if (P <= 2) band = [0, 1, 2, 3];
-          else if (P <= 5) band = [1, 2, 3, 4, 5, 6];
-          else band = [4, 5, 6, 7, 8, 9];
+          if (P <= 2) band = [0, 1, 2, 3]; else if (P <= 5) band = [1, 2, 3, 4, 5, 6]; else band = [4, 5, 6, 7, 8, 9];
         }
         pk(band, 3).sort((a, b) => a - b).forEach(t => o.push({ ser: tgt, t }));
       }
-      
       S.paid = 0; S.brk = 0; return o;
     }
 
     function seasonEnd() {
       const rk = rank(), pos = rk.indexOf(S.me) + 1, me = S.me, F1 = S.ser === 4, N = SR[S.ser].n, r = R(S.seed + 'se' + S.year + S.ser);
-      S.last = { pos, pts: me.pts };
-      S.rows.push({ y: S.year, age: S.age, s: N, tm: S.tn, pos, ovr: ovr() });
-      S.peak = Math.max(S.peak, ovr());
-      
+      S.last = { pos, pts: me.pts }; S.rows.push({ y: S.year, age: S.age, s: N, tm: S.tn, pos, ovr: ovr() }); S.peak = Math.max(S.peak, ovr());
       nw((F1 ? 'F1' : N) + ' ' + S.year + ': ' + rk[0].n + ' é campeão', 'Campeonato finalizado.');
       S.streak = pos === 1 ? (S.streak || 0) + 1 : 0;
       
       if (pos === 1 && !F1) {
-        // REGRA FIA: Contrato cancelado para subir!
         if (S.con) S.con = null;
         S.msg = `🏆 CAMPEÃO DA ${N}! Pelo regulamento oficial da FIA, o campeão é proibido de continuar na categoria e deve subir!`;
         nw('REGULAMENTO FIA: Promoção Mandatória', 'Por ter sido campeão da ' + N + ', você é obrigado a subir de divisão.');
-      } else {
-        S.msg = `Terminou em ${pos}º na ${N} com ${me.pts} pontos${pos === 1 ? ' 🏆' : ''}.`;
-      }
+      } else { S.msg = `Terminou em ${pos}º na ${N} com ${me.pts} pontos${pos === 1 ? ' 🏆' : ''}.`; }
       
-      if (S.con) {
-        S.cash += S.con.sal; S.con.gw += me.w; S.con.gp += me.pd;
-        if (pos === 1) S.con.gt = 1;
-        S.con.left--; if (S.con.left <= 0) evalCon();
-      }
-      
-      if (F1) {
-        S.tot.w += me.w; S.tot.pd += me.pd; S.tot.pts += me.pts; if (pos === 1) S.tot.t++;
-        S.bad = pos > 14 ? S.bad + 1 : 0;
-        S.f1n = (S.f1n || 0) + 1;
-        if (S.f1n % 4 === 3) { S.nx = S.f1t.map(() => 50 + r() * 42); S.msg += ' ⚠️ Novo regulamento em ' + (S.year + 2) + '.'; }
-      }
-      
-      if (!F1 && r() < .15) {
-        const a = Math.floor(r() * 8), b = (a + 1 + Math.floor(r() * 7)) % 8;
-        S.v[a] = Math.min(99, S.v[a] + 4); S.v[b] = Math.min(99, S.v[b] + 3);
-        S.msg += ` 🚀 BREAKOUT: ${AT[a]} +4, ${AT[b]} +3!`;
-      }
-      if (pos <= 8 && !S.spons && r() < .28) { S.spons = 2; S.msg += ' 💼 Patrocínio obtido.'; }
-      else if (!F1 && S.ser >= 1 && pos > 3 && !S.spons && r() < .25) { S.paid = 1; S.msg += ' 💸 Pagante assumiu sua vaga!'; }
-      
+      if (S.con) { S.cash += S.con.sal; S.con.gw += me.w; S.con.gp += me.pd; if (pos === 1) S.con.gt = 1; S.con.left--; if (S.con.left <= 0) evalCon(); }
+      if (F1) { S.tot.w += me.w; S.tot.pd += me.pd; S.tot.pts += me.pts; if (pos === 1) S.tot.t++; S.bad = pos > 14 ? S.bad + 1 : 0; S.f1n = (S.f1n || 0) + 1; if (S.f1n % 4 === 3) { S.nx = S.f1t.map(() => 50 + r() * 42); S.msg += ' ⚠️ Novo regulamento em ' + (S.year + 2) + '.'; } }
+      if (!F1 && r() < .15) { const a = Math.floor(r() * 8), b = (a + 1 + Math.floor(r() * 7)) % 8; S.v[a] = Math.min(99, S.v[a] + 4); S.v[b] = Math.min(99, S.v[b] + 3); S.msg += ` 🚀 BREAKOUT: ${AT[a]} +4, ${AT[b]} +3!`; }
+      if (pos <= 8 && !S.spons && r() < .28) { S.spons = 2; S.msg += ' 💼 Patrocínio obtido.'; } else if (!F1 && S.ser >= 1 && pos > 3 && !S.spons && r() < .25) { S.paid = 1; S.msg += ' 💸 Pagante assumiu sua vaga!'; }
       if ((!F1 && S.age >= 23) || (F1 && (S.age >= 41 || S.bad >= 2))) { S.ph = 'end'; return; }
-      
       let of = offers();
-      if (S.con && S.con.left > 0) {
-        const P = S.last.pos;
-        of = [{ ser: S.ser, t: S.team, cont: 1 }].concat(of.filter(x => !x.re && !(x.ser === S.ser && x.t === S.team) && (P <= 3 || S.rep >= 3)).slice(0, 1).map(x => ({ ...x, poach: 1 })));
-      }
+      if (S.con && S.con.left > 0) { const P = S.last.pos; of = [{ ser: S.ser, t: S.team, cont: 1 }].concat(of.filter(x => !x.re && !(x.ser === S.ser && x.t === S.team) && (P <= 3 || S.rep >= 3)).slice(0, 1).map(x => ({ ...x, poach: 1 }))); }
       S.offs = of; if (S.spons > 0) S.spons--; S.ph = 'offer';
     }
 
@@ -832,102 +728,31 @@
       if (!b) return;
       const a = b.dataset.a;
       
-      if (a === 'go') {
-        S.stops = [0, Math.floor(S.sess.length / 2), S.sess.length - 1];
-        S.next_race = 0;
-        S.ph = 'mom_pre'; S.mom_idx = 0;
-      } else if (a === 'race_mom') {
-        S.last_res = sim_races(S.stops[S.mom_idx], S.stops[S.mom_idx] + 1);
-        S.next_race = S.stops[S.mom_idx] + 1;
-        S.ph = 'mom_pos';
-      } else if (a === 'cont_mom') {
-        if (S.mom_idx === 0) {
-          sim_races(S.next_race, S.stops[1]);
-          S.ph = 'event';
-          S.pp = [1, 2].map(i => {
-            const o = S.ev[i];
-            const p = o[1] + (ovr() - 72) * .006 + (S.v[o[3]] - pot()) * .004 + (R(S.seed + 'pj' + S.year + S.ser + i)() - .5) * .18;
-            return Math.round(Math.max(.12, Math.min(.9, p)) * 100) / 100;
-          });
-        } else if (S.mom_idx === 1) {
-          sim_races(S.next_race, S.stops[2]);
-          S.ph = 'mom_pre'; S.mom_idx = 2;
-        } else if (S.mom_idx === 2) {
-          sim_races(S.next_race, S.sess.length);
-          seasonEnd();
-        }
-      } else if (a === 'ch') {
-        const k = +b.dataset.k;
-        const o = S.ev[1 + k];
-        const roll = R(S.seed + 'x' + S.year + S.ser + k)();
-        const ok = roll < S.pp[k];
-        const evnt = ok ? o.slice(2, 6) : o.slice(6, 10);
-        S.v[evnt[1]] = Math.max(40, Math.min(99, S.v[evnt[1]] + evnt[2]));
-        S.mod += evnt[3];
-        S.out = { roll, p: S.pp[k], ok };
-        S.ph = 'spin';
-        setTimeout(() => { S.ph = 'res'; draw(); }, 3500);
-      } else if (a === 'co') {
-        S.ph = 'mom_pre'; S.mom_idx = 1;
-      } else if (a === 'of') {
-        const o = S.offs[+b.dataset.k];
-        if (o.cont) pick(o);
-        else { S.neg = { o, yrs: o.ser === 4 ? 2 : 1, w: 0, p: 0, ti: 0, sal: null }; fixNeg(); S.ph = 'neg'; }
-      } else if (a === 'nb') { S.neg = null; S.ph = 'offer'; } 
-      else if (a === 'ns') { signC(); } 
-      else if (a === 'ny') { S.neg.yrs = +b.dataset.k; fixNeg(); } 
-      else if (a === 'fin') { finish(); }
-      
+      if (a === 'go') { S.stops = [0, Math.floor(S.sess.length / 2), S.sess.length - 1]; S.next_race = 0; S.ph = 'mom_pre'; S.mom_idx = 0; } 
+      else if (a === 'race_mom') { S.last_res = sim_races(S.stops[S.mom_idx], S.stops[S.mom_idx] + 1); S.next_race = S.stops[S.mom_idx] + 1; S.ph = 'mom_pos'; } 
+      else if (a === 'cont_mom') {
+        if (S.mom_idx === 0) { sim_races(S.next_race, S.stops[1]); S.ph = 'event'; S.pp = [1, 2].map(i => { const o = S.ev[i]; const p = o[1] + (ovr() - 72) * .006 + (S.v[o[3]] - pot()) * .004 + (R(S.seed + 'pj' + S.year + S.ser + i)() - .5) * .18; return Math.round(Math.max(.12, Math.min(.9, p)) * 100) / 100; }); } 
+        else if (S.mom_idx === 1) { sim_races(S.next_race, S.stops[2]); S.ph = 'mom_pre'; S.mom_idx = 2; } 
+        else if (S.mom_idx === 2) { sim_races(S.next_race, S.sess.length); seasonEnd(); }
+      } 
+      else if (a === 'ch') { const k = +b.dataset.k; const o = S.ev[1 + k]; const roll = R(S.seed + 'x' + S.year + S.ser + k)(); const ok = roll < S.pp[k]; const evnt = ok ? o.slice(2, 6) : o.slice(6, 10); S.v[evnt[1]] = Math.max(40, Math.min(99, S.v[evnt[1]] + evnt[2])); S.mod += evnt[3]; S.out = { roll, p: S.pp[k], ok }; S.ph = 'spin'; setTimeout(() => { S.ph = 'res'; draw(); }, 3500); } 
+      else if (a === 'co') { S.ph = 'mom_pre'; S.mom_idx = 1; } 
+      else if (a === 'of') { const o = S.offs[+b.dataset.k]; if (o.cont) pick(o); else { S.neg = { o, yrs: o.ser === 4 ? 2 : 1, w: 0, p: 0, ti: 0, sal: null }; fixNeg(); S.ph = 'neg'; } } 
+      else if (a === 'nb') { S.neg = null; S.ph = 'offer'; } else if (a === 'ns') { signC(); } else if (a === 'ny') { S.neg.yrs = +b.dataset.k; fixNeg(); } else if (a === 'fin') { finish(); }
       draw();
     };
 
-    $('#bx').addEventListener('input', e => {
-      const t = e.target, n = S.neg; if (!n) return;
-      if (t.id === 'rs') { n.sal = +t.value; $('#nsv').textContent = fmt(n.sal); }
-      else if (t.id === 'rw') $('#nwv').textContent = t.value;
-      else if (t.id === 'rp') $('#npv').textContent = t.value;
-    });
-
-    $('#bx').addEventListener('change', e => {
-      const t = e.target, n = S.neg; if (!n || t.id === 'rs') return;
-      if (t.id === 'rw') n.w = +t.value;
-      if (t.id === 'rp') n.p = +t.value;
-      if (t.id === 'rt') n.ti = t.checked ? 1 : 0;
-      fixNeg(); draw();
-    });
-
-    $('#t0').onclick = () => { S.tab = 0; draw(); };
-    $('#t1').onclick = () => { S.tab = 1; draw(); };
+    $('#bx').addEventListener('input', e => { const t = e.target, n = S.neg; if (!n) return; if (t.id === 'rs') { n.sal = +t.value; $('#nsv').textContent = fmt(n.sal); } else if (t.id === 'rw') $('#nwv').textContent = t.value; else if (t.id === 'rp') $('#npv').textContent = t.value; });
+    $('#bx').addEventListener('change', e => { const t = e.target, n = S.neg; if (!n || t.id === 'rs') return; if (t.id === 'rw') n.w = +t.value; if (t.id === 'rp') n.p = +t.value; if (t.id === 'rt') n.ti = t.checked ? 1 : 0; fixNeg(); draw(); });
+    $('#t0').onclick = () => { S.tab = 0; draw(); }; $('#t1').onclick = () => { S.tab = 1; draw(); };
 
     const fmt = m => m >= 1 ? '€' + (m >= 10 ? Math.round(m) : m.toFixed(1)) + 'M' : '€' + Math.round(m * 1000) + ' mil';
-    function sbase(o) {
-      const O = ovr(), P = pot(), c = carOf(o);
-      if (o.ser === 4) return Math.min(60, .5 * Math.exp((O - 62) / 7) * Math.max(.55, Math.min(1.25, .55 + (c - 50) / 40 * .6)) * (1 + Math.max(0, P - O) * .008));
-      const k = [[.001, 40], [.004, 48], [.01, 55], [.02, 60]][o.ser];
-      return Math.min(60, k[0] * Math.exp((O - k[1]) / 9) * (1.2 - o.t * .07) * (1 + Math.max(0, P - O) * .008));
-    }
-    function est(o) {
-      const sr = o.ser === 4 ? 24 : SR[o.ser].R, pf = .5 * ovr() + .5 * carOf(o), w = Math.max(0, (pf - 74) * .7) * sr / 24;
-      return { w, p: Math.min(sr, w * 2.2 + Math.max(0, (pf - 68) * .2) * sr / 24) };
-    }
+    function sbase(o) { const O = ovr(), P = pot(), c = carOf(o); if (o.ser === 4) return Math.min(60, .5 * Math.exp((O - 62) / 7) * Math.max(.55, Math.min(1.25, .55 + (c - 50) / 40 * .6)) * (1 + Math.max(0, P - O) * .008)); const k = [[.001, 40], [.004, 48], [.01, 55], [.02, 60]][o.ser]; return Math.min(60, k[0] * Math.exp((O - k[1]) / 9) * (1.2 - o.t * .07) * (1 + Math.max(0, P - O) * .008)); }
+    function est(o) { const sr = o.ser === 4 ? 24 : SR[o.ser].R, pf = .5 * ovr() + .5 * carOf(o), w = Math.max(0, (pf - 74) * .7) * sr / 24; return { w, p: Math.min(sr, w * 2.2 + Math.max(0, (pf - 68) * .2) * sr / 24) }; }
     const nb = n => (n.w ? .08 : 0) + (n.p ? .08 : 0) + (n.ti ? .14 : 0);
-    function fixNeg() {
-      const n = S.neg, b = sbase(n.o), e = est(n.o);
-      n.w = Math.min(n.w, Math.max(3, Math.round(e.w * n.yrs * 2) + 3));
-      n.p = Math.min(n.p, Math.max(4, Math.round(e.p * n.yrs * 1.8) + 3));
-      const mx = b * 1.2 * (1 + nb(n));
-      if (n.sal == null) n.sal = b;
-      n.sal = Math.min(mx, Math.max(b * .5, n.sal));
-    }
+    function fixNeg() { const n = S.neg, b = sbase(n.o), e = est(n.o); n.w = Math.min(n.w, Math.max(3, Math.round(e.w * n.yrs * 2) + 3)); n.p = Math.min(n.p, Math.max(4, Math.round(e.p * n.yrs * 1.8) + 3)); const mx = b * 1.2 * (1 + nb(n)); if (n.sal == null) n.sal = b; n.sal = Math.min(mx, Math.max(b * .5, n.sal)); }
     function signC() { fixNeg(); S.con = { yrs: S.neg.yrs, left: S.neg.yrs, sal: S.neg.sal, w: S.neg.w, p: S.neg.p, ti: S.neg.ti, gw: 0, gp: 0, gt: 0 }; if (S.neg.o.poach) { S.rep -= 2; } const o = S.neg.o; S.neg = null; pick(o); }
-    function evalCon() {
-      const c = S.con, g = [];
-      if (c.w) g.push(c.gw >= c.w); if (c.p) g.push(c.gp >= c.p); if (c.ti) g.push(c.gt > 0);
-      S.con = null; if (!g.length) return;
-      const r = g.filter(x => x).length / g.length, cl = () => S.rep = Math.max(-6, Math.min(8, S.rep));
-      if (r >= 1) { S.rep += 3; S.msg += ' 👀 Metas batidas!'; } else if (r >= .5) { S.rep += 1; } else { S.rep -= 2; S.msg += ' ⚠️ Falhou nas metas.'; }
-      cl();
-    }
+    function evalCon() { const c = S.con, g = []; if (c.w) g.push(c.gw >= c.w); if (c.p) g.push(c.gp >= c.p); if (c.ti) g.push(c.gt > 0); S.con = null; if (!g.length) return; const r = g.filter(x => x).length / g.length, cl = () => S.rep = Math.max(-6, Math.min(8, S.rep)); if (r >= 1) { S.rep += 3; S.msg += ' 👀 Metas batidas!'; } else if (r >= .5) { S.rep += 1; } else { S.rep -= 2; S.msg += ' ⚠️ Falhou nas metas.'; } cl(); }
     const F1C = ['#27f4d2', '#e8002d', '#ff8000', '#1e41ff', '#229971', '#64c4ff', '#6692ff', '#ff87bc', '#c0c0c0', '#b6babd', '#f50537'];
     const oc = v => v >= 88 ? 'g' : v >= 78 ? 'h' : v >= 68 ? 'm' : 'l';
     function tcl(t) { return S.ser === 4 ? F1C[t % F1C.length] : `hsl(${t * 36} 60% 55%)`; }
@@ -936,38 +761,19 @@
       const sr = SR[S.ser], rk = rank(), pos = rk.indexOf(S.me) + 1, me = S.me;
       $('#t0').className = S.tab ? '' : 'on'; $('#t1').className = S.tab ? 'on' : '';
       let t = '';
-      if (!S.F.length) { 
-        t = '<p class="mut">Escolha sua primeira equipe de kart.</p>'; 
-      } 
+      if (!S.F.length) { t = '<p class="mut">Escolha sua primeira equipe de kart.</p>'; } 
       else if (!S.tab) { 
-        // TABELA DE PILOTOS (Com OVR do Piloto e OVR do Carro)
-        const rows = S.ser === 4 ? rk : rk.slice(0, 10); 
-        if (pos > 10 && S.ser < 4) rows.push(me); 
+        const rows = S.ser === 4 ? rk : rk.slice(0, 10); if (pos > 10 && S.ser < 4) rows.push(me); 
         t = '<table><thead><tr><th>#</th><th>PILOTO</th><th>OVR</th><th>CARRO</th><th>PTS</th></tr></thead>' + rows.map(d => {
           const o = d.p ? ovr() : Math.round(d.r);
           const cInfo = getCarRankInfo(S.ser, d.t);
-          return `<tr class="${d.p ? 'me' : ''}">
-            <td><span class="ps">${rk.indexOf(d) + 1}</span></td>
-            <td><i class="dt" style="background:${tcl(d.t)}"></i><b>${d.n}</b><br><small class="mut">${S.T[d.t].n} (${cInfo.rank}º)</small></td>
-            <td><span class="ov ${oc(o)}">${o}</span></td>
-            <td><span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:2px 5px">${cInfo.ovr}</span></td>
-            <td class="pp">${d.pts}</td>
-          </tr>`;
+          return `<tr class="${d.p ? 'me' : ''}"><td><span class="ps">${rk.indexOf(d) + 1}</span></td><td><i class="dt" style="background:${tcl(d.t)}"></i><b>${d.n}</b><br><small class="mut">${S.T[d.t].n} (${cInfo.rank}º)</small></td><td><span class="ov ${oc(o)}">${o}</span></td><td><span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:2px 5px">${cInfo.ovr}</span></td><td class="pp">${d.pts}</td></tr>`;
         }).join('') + '</table>'; 
-      } 
-      else { 
-        // TABELA DE EQUIPES (Com OVR e Ranking de performance)
+      } else { 
         const sortedTeams = [...S.T].sort((a, b) => b.pts - a.pts);
         t = '<table><thead><tr><th>#</th><th>EQUIPE</th><th>CARRO</th><th>STATUS</th><th>PTS</th></tr></thead>' + sortedTeams.map((x, i) => {
-          const tIdx = S.T.indexOf(x);
-          const info = getCarRankInfo(S.ser, tIdx);
-          return `<tr class="${x.n === S.tn ? 'me' : ''}">
-            <td><span class="ps">${i + 1}</span></td>
-            <td><i class="dt" style="background:${tcl(tIdx)}"></i><b>${x.n}</b><br><small class="mut">${S.F.filter(d => d.t === tIdx).map(d => d.n.split(' ').pop()).join(' / ')}</small></td>
-            <td><span class="ov ${oc(info.ovr)}">${info.ovr}</span></td>
-            <td><small class="mut"><b>${info.rank}º</b> / ${info.total}<br>${info.label}</small></td>
-            <td class="pp">${x.pts}</td>
-          </tr>`;
+          const tIdx = S.T.indexOf(x), info = getCarRankInfo(S.ser, tIdx);
+          return `<tr class="${x.n === S.tn ? 'me' : ''}"><td><span class="ps">${i + 1}</span></td><td><i class="dt" style="background:${tcl(tIdx)}"></i><b>${x.n}</b><br><small class="mut">${S.F.filter(d => d.t === tIdx).map(d => d.n.split(' ').pop()).join(' / ')}</small></td><td><span class="ov ${oc(info.ovr)}">${info.ovr}</span></td><td><small class="mut"><b>${info.rank}º</b> / ${info.total}<br>${info.label}</small></td><td class="pp">${x.pts}</td></tr>`;
         }).join('') + '</table>'; 
       }
       
@@ -978,99 +784,57 @@
       
       let b = ''; const ph = S.ph;
       if (ph === 'start') { b = `<h3>${S.year} · ${sr.n} · ${S.tn}</h3><p class="mut">${S.sess.length} corridas na temporada. Seu carro é o ${myCar ? myCar.rank + 'º' : ''} do grid.</p><button data-a="go">LARGAR TEMPORADA</button>`; }
-      if (ph === 'mom_pre') {
-        const m = S.mom_idx, tit = m === 0 ? 'ABERTURA DA TEMPORADA' : m === 1 ? 'METADE DO CAMPEONATO' : 'DECISÃO DO TÍTULO';
-        const sub = m === 0 ? 'Sua estreia no ano. Concentração total.' : m === 1 ? `Etapa ${S.stops[1]+1}. Você está em ${pos}º com ${S.me.pts} pts.` : `Última corrida! Você tem ${S.me.pts} pts e está em ${pos}º.`;
-        b = `<span class="bdg">CORRIDA EM DESTAQUE</span><h3 class="big">${tit}</h3><p class="mut">${sub}</p><div class="row"><button data-a="race_mom" class="cta">IR PARA A PISTA</button></div>`;
-      }
-      if (ph === 'mom_pos') {
-        const r = S.last_res;
-        b = `<span class="bdg">RESULTADO DO GP</span><h3 class="big ${r.pos===1?'gd':''}">${r.pos}º LUGAR</h3><p class="mut" style="font-size:16px;">Largou em P${r.grid} e cruzou a linha em P${r.pos}. ${r.wet ? '⛈️ Pista molhada!' : ''} <b>(+${r.pts} pts)</b></p><div class="row"><button data-a="cont_mom">CONTINUAR</button></div>`;
-      }
+      if (ph === 'mom_pre') { const m = S.mom_idx, tit = m === 0 ? 'ABERTURA DA TEMPORADA' : m === 1 ? 'METADE DO CAMPEONATO' : 'DECISÃO DO TÍTULO', sub = m === 0 ? 'Sua estreia no ano. Concentração total.' : m === 1 ? `Etapa ${S.stops[1]+1}. Você está em ${pos}º com ${S.me.pts} pts.` : `Última corrida! Você tem ${S.me.pts} pts e está em ${pos}º.`; b = `<span class="bdg">CORRIDA EM DESTAQUE</span><h3 class="big">${tit}</h3><p class="mut">${sub}</p><div class="row"><button data-a="race_mom" class="cta">IR PARA A PISTA</button></div>`; }
+      if (ph === 'mom_pos') { const r = S.last_res; b = `<span class="bdg">RESULTADO DO GP</span><h3 class="big ${r.pos===1?'gd':''}">${r.pos}º LUGAR</h3><p class="mut" style="font-size:16px;">Largou em P${r.grid} e cruzou a linha em P${r.pos}. ${r.wet ? '⛈️ Pista molhada!' : ''} <b>(+${r.pts} pts)</b></p><div class="row"><button data-a="cont_mom">CONTINUAR</button></div>`; }
       if (ph === 'event') { b = `<span class="bdg">DECISÃO</span><h3 class="big">${S.ev[0]}</h3>` + [1, 2].map((i, k) => `<button class="op" data-a="ch" data-k="${k}"><b>${S.ev[i][0]}</b><small>${Math.round(S.pp[k] * 100)}% de chance de dar certo</small></button>`).join(''); }
       if (ph === 'spin') { const o = S.out; b = `<div class="tag" style="text-align:center">SORTEIO</div><div class="wh"><div class="pt">▼</div><div class="wl" id="wl" style="background:conic-gradient(#1faa4b 0 ${o.p * 100}%,#d6261c 0)"></div></div>`; setTimeout(() => { const w = $('#wl'); if (w) w.style.transform = `rotate(${1800 - o.roll * 360}deg)`; }, 80); }
       if (ph === 'res') { const o = S.out; b = `<h3 class="${o.ok ? 'ok' : 'ko'}" style="font-size:30px;text-align:center">${o.ok ? 'DEU CERTO!' : 'DEU ERRADO!'}</h3><div class="row" style="justify-content:center"><button data-a="co">CONTINUAR TEMPORADA</button></div>`; }
-      
-      // EXIBIÇÃO DE PROPOSTAS COM OVR E RANKING DO CARRO
       if (ph === 'offer') { 
         b = `<p><b>${S.msg}</b></p><div class="tag">${S.first ? 'ESCOLHA SUA EQUIPE INICIAL' : 'MERCADO DE PILOTOS'}</div>` + S.offs.map((o, k) => {
-          const cInfo = getCarRankInfo(o.ser, o.t);
-          const tName = tnOf(o);
+          const cInfo = getCarRankInfo(o.ser, o.t), tName = tnOf(o);
           return `<button class="op" data-a="of" data-k="${k}" style="border-left:6px solid ${o.ser === 4 ? F1C[o.t % F1C.length] : 'hsl(' + o.t * 36 + ' 60% 55%)'}">
             <b>${o.cont ? 'Cumprir contrato · ' : o.poach ? '💥 Quebrar contrato · ' : o.re ? 'Renovar com ' : ''}${SR[o.ser].n} · ${tName}</b>
             <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
               <span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:2px 8px">🏎️ CARRO OVR ${cInfo.ovr}</span>
               <span style="color:var(--g);font-weight:700;font-size:13px">${cInfo.rank}º melhor da ${SR[o.ser].n} (${cInfo.label})</span>
-              ${o.cont ? ' · ' + S.con.left + ' ano(s) restante(s)' : ''}
-              ${o.poach ? ' · multa: -2 reputação' : ''}
-              ${o.ser > S.ser + 1 ? ' · 🚀 PULA UMA CATEGORIA' : o.ser > S.ser && !S.first ? ' · ⬆️ PROMOÇÃO' : ''}
+              ${o.cont ? ' · ' + S.con.left + ' ano(s)' : ''}${o.poach ? ' · multa: -2 reputação' : ''}${o.ser > S.ser + 1 ? ' · 🚀 PULA UMA CATEGORIA' : o.ser > S.ser && !S.first ? ' · ⬆️ PROMOÇÃO' : ''}
             </div>
           </button>`;
         }).join(''); 
       }
-      
       if (ph === 'neg') { 
         const cInfo = getCarRankInfo(S.neg.o.ser, S.neg.o.t);
-        b = `<span class="bdg">CONTRATO</span><h3 class="big">${SR[S.neg.o.ser].n} · ${tnOf(S.neg.o)}</h3>
-        <p class="mut">Força do Carro: <b style="color:var(--tx)">OVR ${cInfo.ovr}</b> (${cInfo.rank}º do grid · ${cInfo.label})</p>
-        <div class="rg">SALÁRIO ESTIMADO<b>${fmt(sbase(S.neg.o) * .85)} – ${fmt(sbase(S.neg.o) * 1.2)}</b></div>
-        <div class="nl">ANOS DE CONTRATO</div><div class="yb">${[...Array(S.neg.o.ser === 4 ? 4 : 2)].map((_, i) => `<button data-a="ny" data-k="${i + 1}" class="${S.neg.yrs === i + 1 ? 'on' : ''}">${i + 1}${i ? 'ANOS' : 'ANO'}</button>`).join('')}</div><div class="nl">OBJETIVOS</div><label>Vitórias: <b id="nwv">${S.neg.w}</b><input type="range" id="rw" min="0" max="25" value="${S.neg.w}"></label><label>Pódios: <b id="npv">${S.neg.p}</b><input type="range" id="rp" min="0" max="25" value="${S.neg.p}"></label><label><input type="checkbox" id="rt" ${S.neg.ti ? 'checked' : ''}>Ser campeão no contrato</label><div class="nl">SEU SALÁRIO: <b class="gd" id="nsv" style="font-size:22px">${fmt(S.neg.sal)}</b></div><input type="range" id="rs" min="${sbase(S.neg.o) * .5}" max="${sbase(S.neg.o) * 1.2 * (1 + nb(S.neg))}" step="${sbase(S.neg.o) * 1.2 * (1 + nb(S.neg)) / 300}" value="${S.neg.sal}"><div class="row"><button data-a="ns" class="cta">ASSINAR</button><button class="g" data-a="nb">VOLTAR</button></div>`; 
+        b = `<span class="bdg">CONTRATO</span><h3 class="big">${SR[S.neg.o.ser].n} · ${tnOf(S.neg.o)}</h3><p class="mut">Força do Carro: <b style="color:var(--tx)">OVR ${cInfo.ovr}</b> (${cInfo.rank}º do grid · ${cInfo.label})</p><div class="rg">SALÁRIO ESTIMADO<b>${fmt(sbase(S.neg.o) * .85)} – ${fmt(sbase(S.neg.o) * 1.2)}</b></div><div class="nl">ANOS DE CONTRATO</div><div class="yb">${[...Array(S.neg.o.ser === 4 ? 4 : 2)].map((_, i) => `<button data-a="ny" data-k="${i + 1}" class="${S.neg.yrs === i + 1 ? 'on' : ''}">${i + 1}${i ? 'ANOS' : 'ANO'}</button>`).join('')}</div><div class="nl">OBJETIVOS</div><label>Vitórias: <b id="nwv">${S.neg.w}</b><input type="range" id="rw" min="0" max="25" value="${S.neg.w}"></label><label>Pódios: <b id="npv">${S.neg.p}</b><input type="range" id="rp" min="0" max="25" value="${S.neg.p}"></label><label><input type="checkbox" id="rt" ${S.neg.ti ? 'checked' : ''}>Ser campeão no contrato</label><div class="nl">SEU SALÁRIO: <b class="gd" id="nsv" style="font-size:22px">${fmt(S.neg.sal)}</b></div><input type="range" id="rs" min="${sbase(S.neg.o) * .5}" max="${sbase(S.neg.o) * 1.2 * (1 + nb(S.neg))}" step="${sbase(S.neg.o) * 1.2 * (1 + nb(S.neg)) / 300}" value="${S.neg.sal}"><div class="row"><button data-a="ns" class="cta">ASSINAR</button><button class="g" data-a="nb">VOLTAR</button></div>`; 
       }
-      
       if (ph === 'end') { b = `<p><b>${S.msg}</b></p><h3>Fim da carreira.</h3><button data-a="fin">VER RESULTADO FINAL</button>`; }
-      
-      $('#bx').innerHTML = b; $('#pe').textContent = S.pe ? 'RECOLHER' : 'VER TUDO';
-      $('#pr').innerHTML = S.news.slice(0, S.pe ? 30 : 6).map(n => `<div class="nw ${S.op[n.i] ? 'o' : ''}" data-i="${n.i}"><div class="nh"><span>${n.y}</span><b>${n.t}</b><em>›</em></div><p>${n.d || ''}</p></div>`).join('');
-      save();
+      $('#bx').innerHTML = b; $('#pe').textContent = S.pe ? 'RECOLHER' : 'VER TUDO'; $('#pr').innerHTML = S.news.slice(0, S.pe ? 30 : 6).map(n => `<div class="nw ${S.op[n.i] ? 'o' : ''}" data-i="${n.i}"><div class="nh"><span>${n.y}</span><b>${n.t}</b><em>›</em></div><p>${n.d || ''}</p></div>`).join(''); save();
     }
 
-    $('#pr').onclick = e => { const n = e.target.closest('.nw'); if (!n) return; S.op[n.dataset.i] = !S.op[n.dataset.i]; draw(); };
-    $('#pe').onclick = () => { S.pe = !S.pe; draw(); };
+    $('#pr').onclick = e => { const n = e.target.closest('.nw'); if (!n) return; S.op[n.dataset.i] = !S.op[n.dataset.i]; draw(); }; $('#pe').onclick = () => { S.pe = !S.pe; draw(); };
     const tier = () => { const { t, w, pd } = S.tot, b = S.rows.some(r => r.s === 'F1' && r.pos <= 5); return t >= 8 && w >= 100 ? 11 : t >= 7 ? 10 : t >= 5 ? 9 : t >= 4 ? 8 : t >= 3 ? 7 : t >= 2 ? 6 : t >= 1 ? 5 : w >= 10 ? 4 : (w >= 3 || pd >= 10) ? 3 : (pd >= 1 || b) ? 2 : 1; };
 
     function finish() {
       const ti = tier(), T = S.tot; show('res');
       $('#fc').innerHTML = `<div class="o">${S.peak}</div><b>${S.flag} #${S.num}</b><div class="n">${S.name}</div><div class="gr"><span>🏆 ${T.t} títulos F1</span><span>🏁 ${T.w} vit.</span><span>🥇 ${T.pd} pódios</span><span>⭐ ${T.pts} pontos</span><span>💰 ${fmt(S.cash)}</span></div><p style="font-weight:800;margin:12px 0 0">NÍVEL ${ti} · ${TN[ti - 1].toUpperCase()}</p>`;
       $('#ld').innerHTML = TN.map((n, i) => `<div class="${i + 1 === ti ? 'on' : i + 1 < ti ? 'p' : ''}">${i + 1}. ${n}</div>`).join('');
-      try {
-        const a = JSON.parse(localStorage.getItem('tc_best') || '[]');
-        a.push({ n: S.name, s: T.t * 100 + T.w * 2 + T.pd, t: ti, ti: T.t, w: T.w, o: S.peak, m: S.mode });
-        a.sort((x, y) => y.s - x.s); localStorage.setItem('tc_best', JSON.stringify(a.slice(0, 10)));
-      } catch (e) {}
+      try { const a = JSON.parse(localStorage.getItem('tc_best') || '[]'); a.push({ n: S.name, s: T.t * 100 + T.w * 2 + T.pd, t: ti, ti: T.t, w: T.w, o: S.peak, m: S.mode }); a.sort((x, y) => y.s - x.s); localStorage.setItem('tc_best', JSON.stringify(a.slice(0, 10))); } catch (e) {}
     }
 
     $('#sh').onclick = () => {
       document.fonts.ready.then(() => {
-        const c = document.createElement('canvas'); c.width = 600; c.height = 800;
-        const ctx = c.getContext('2d');
-        
-        let grd = ctx.createLinearGradient(0, 0, 600, 800);
-        grd.addColorStop(0, "#2b2208"); grd.addColorStop(1, "#0b0b0c");
-        ctx.fillStyle = grd; ctx.fillRect(0,0,600,800);
-        
+        const c = document.createElement('canvas'); c.width = 600; c.height = 800; const ctx = c.getContext('2d');
+        let grd = ctx.createLinearGradient(0, 0, 600, 800); grd.addColorStop(0, "#2b2208"); grd.addColorStop(1, "#0b0b0c"); ctx.fillStyle = grd; ctx.fillRect(0,0,600,800);
         ctx.strokeStyle = '#ffd24a'; ctx.lineWidth = 12; ctx.strokeRect(6,6,588,788);
         ctx.fillStyle = '#ffd24a'; ctx.font = '900 120px "IBM Plex Mono"'; ctx.fillText(S.peak, 40, 160);
         ctx.fillStyle = '#fff'; ctx.font = '800 40px "IBM Plex Mono"'; ctx.fillText(S.flag + ' ' + S.name.toUpperCase(), 40, 240);
         const ti = tier(); ctx.fillStyle = '#ffd24a'; ctx.font = '900 30px Montserrat'; ctx.fillText('NÍVEL ' + ti + ' · ' + TN[ti-1].toUpperCase(), 40, 300);
-        
-        ctx.fillStyle = '#8a8d94'; ctx.font = '700 24px "IBM Plex Mono"';
-        ctx.fillText(S.tot.t + ' TÍTULOS F1', 40, 400);
-        ctx.fillText(S.tot.w + ' VITÓRIAS', 40, 460);
-        ctx.fillText(S.tot.pd + ' PÓDIOS', 40, 520);
-        ctx.fillText(S.tot.pts + ' PONTOS', 40, 580);
-        
+        ctx.fillStyle = '#8a8d94'; ctx.font = '700 24px "IBM Plex Mono"'; ctx.fillText(S.tot.t + ' TÍTULOS F1', 40, 400); ctx.fillText(S.tot.w + ' VITÓRIAS', 40, 460); ctx.fillText(S.tot.pd + ' PÓDIOS', 40, 520); ctx.fillText(S.tot.pts + ' PONTOS', 40, 580);
         ctx.fillStyle = '#fff'; ctx.font = '700 20px "IBM Plex Mono"'; ctx.fillText('Jogue THE CAMPEÃO', 40, 740);
-
-        const img = c.toDataURL('image/png');
-        const a = document.createElement('a'); a.href = img; a.download = 'THE_CAMPEAO_' + S.name.replace(/\s/g,'_') + '.png'; a.click();
+        const img = c.toDataURL('image/png'); const a = document.createElement('a'); a.href = img; a.download = 'THE_CAMPEAO_' + S.name.replace(/\s/g,'_') + '.png'; a.click();
       });
     };
 
-    function lb() {
-      let a = []; try { a = JSON.parse(localStorage.getItem('tc_best') || '[]'); } catch (e) {}
-      $('#lb').innerHTML = a.length ? '<table><thead><tr><th>#</th><th>PILOTO</th><th>NÍVEL</th><th>TÍTULOS</th><th>VIT</th><th>OVR</th></tr></thead>' + a.map((r, i) => `<tr><td>${i + 1}</td><td>${r.n}</td><td>${r.t}</td><td>${r.ti}</td><td>${r.w}</td><td>${r.o}</td></tr>`).join('') + '</table>' : '<p class="mut">Nenhuma carreira ainda.</p>';
-    }
-    lb();
+    function lb() { let a = []; try { a = JSON.parse(localStorage.getItem('tc_best') || '[]'); } catch (e) {} $('#lb').innerHTML = a.length ? '<table><thead><tr><th>#</th><th>PILOTO</th><th>NÍVEL</th><th>TÍTULOS</th><th>VIT</th><th>OVR</th></tr></thead>' + a.map((r, i) => `<tr><td>${i + 1}</td><td>${r.n}</td><td>${r.t}</td><td>${r.ti}</td><td>${r.w}</td><td>${r.o}</td></tr>`).join('') + '</table>' : '<p class="mut">Nenhuma carreira ainda.</p>'; } lb();
   </script>
 </body>
 </html>
