@@ -250,7 +250,8 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
           <p class="sub">Roube atributos dos pilotos do grid atual ou de Lendas históricas. Prove seu valor nas categorias de base e descubra se você consegue chegar ao topo da Fórmula 1.</p>
           <div class="pn form" style="box-shadow: 4px 4px 0 #000; border-radius: 8px;">
             <input id="nm" maxlength="18" placeholder="Nome do piloto" style="flex: 1 1 180px;">
-            <input id="nu" type="number" min="1" max="99" placeholder="Nº" style="width:80px; flex: 0 0 80px;">
+            <!-- Permitimos digitar números longos para não mostrar o contorno vermelho nativo -->
+            <input id="nu" type="number" min="1" max="99999999" placeholder="Nº" style="width:80px; flex: 0 0 80px;">
             <select id="na" style="flex: 1 1 150px;"></select>
           </div>
           <div class="row">
@@ -494,7 +495,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     function save() { if(G) localStorage.setItem('tc_save', JSON.stringify({G, S})); }
 
-    // Modal Logic
+    // Modal Logic & Input Validation
     const warn = (msg, el) => { 
       $('#mdp').textContent = msg; 
       $('#md').classList.remove('hide'); 
@@ -513,10 +514,13 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     ['#nm', '#nu'].forEach(s => $(s).addEventListener('input', () => $(s).classList.remove('err'))); 
     
     $('#go').onclick = () => { 
-      const n = $('#nm').value.trim(), u = $('#nu').value.trim(); 
-      const badNum = !u || +u < 1 || +u > 99; 
+      const n = $('#nm').value.trim(), uStr = $('#nu').value.trim(), u = +uStr; 
+      const isEgg = uStr === '19022006';
+      const badNum = !uStr || (!isEgg && (u < 1 || u > 99)); 
+      
       $('#nm').classList.toggle('err', !n); 
       $('#nu').classList.toggle('err', badNum); 
+      
       if (!n && badNum) return warn('Dê um nome ao seu piloto e escolha um número entre 1 e 99 para largar.', '#nm'); 
       if (!n) return warn('Dê um nome ao seu piloto para largar.', '#nm'); 
       if (badNum) return warn('Escolha um número entre 1 e 99 para o seu carro.', '#nu'); 
@@ -527,8 +531,28 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     function start(sd) {
       const n = NA[$('#na').selectedIndex];
-      G = { seed: sd, mode, name: ($('#nm').value.trim() || 'SEU PILOTO').toUpperCase(), num: Math.max(1, Math.min(99, +$('#nu').value || 7)), flag: n.split(' ')[0], v: Array(8).fill(null), used: [], spin: 0, k: 0, rr: 2, cur: null };
-      S = null; show('draft'); $('#sd').textContent = 'SEED ' + sd; spin();
+      const uStr = $('#nu').value.trim();
+      const isEgg = uStr === '19022006';
+      
+      G = { 
+        seed: sd, 
+        mode: G ? G.mode : mode, 
+        name: isEgg ? 'MAX VERSTAPPEN' : ($('#nm').value.trim() || 'SEU PILOTO').toUpperCase(), 
+        num: isEgg ? 1 : Math.max(1, Math.min(99, +uStr || 7)), 
+        flag: isEgg ? '🇳🇱' : n.split(' ')[0], 
+        v: isEgg ? Array(8).fill(100) : Array(8).fill(null), 
+        used: [], 
+        spin: isEgg ? 8 : 0, 
+        k: 0, 
+        rr: 2, 
+        cur: isEgg ? { n: 'Verstappen (Prime)', f: '🇳🇱', rtg: 100, a: Array(8).fill(100), leg: 2 } : null,
+        god: isEgg ? 1 : 0
+      };
+      
+      S = null; show('draft'); $('#sd').textContent = 'SEED ' + sd; 
+      
+      if (isEgg) dr(); 
+      else spin();
     }
 
     function spin() {
@@ -551,7 +575,13 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       $('#st').classList.toggle('hide', !done);
       
       if (done) {
-        $('#lgd').innerHTML = `<p class="mut" style="font-weight:600; background: #fff; padding: 16px; border: 2px solid var(--tx); border-radius: 8px;">Perfil completo! Potencial calculado: ${Math.round(G.v.reduce((a, b) => a + b) / 8)}. As propostas para o Kart dependerão do seu nível!</p>`;
+        if (G.god) {
+          const c = G.cur;
+          const bage = '<span class="lg lg-red">CARTA PRIME</span>';
+          $('#lgd').innerHTML = `<div class="pn pcard" style="margin-top:24px"><div class="row" style="margin:0"><span class="rtg l">${c.rtg}</span><div><h3>${c.f} ${c.n}</h3>${bage}</div></div><div class="at">${AT.map((a, i) => `<button disabled><span>${a}</span><span>100</span><u style="width:100%"></u></button>`).join('')}</div><p style="margin-top:20px; font-weight:800; color:var(--g); border-top: 1px solid #4A3A3A; padding-top: 16px; margin-bottom: 0; text-align: center;">EASTER EGG ATIVADO: Feliz aniversário, Gabriel! 🎂<br>Modo Deus habilitado (OVR 100 absoluto).</p></div>`;
+        } else {
+          $('#lgd').innerHTML = `<p class="mut" style="font-weight:600; background: #fff; padding: 16px; border: 2px solid var(--tx); border-radius: 8px;">Perfil completo! Potencial calculado: ${Math.round(G.v.reduce((a, b) => a + b) / 8)}. As propostas para o Kart dependerão do seu nível!</p>`;
+        }
       } else {
         const c = G.cur;
         let bage = '';
@@ -576,7 +606,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     const gF = a => a <= 24 ? .7 + (a - 12) * .025 : a <= 33 ? 1 : 1 - (a - 33) * .02;
     const pot = () => S.v.reduce((a, b) => a + b) / 8;
-    const ovr = () => Math.round(pot() * gF(S.age));
+    const ovr = () => S.god ? 100 : Math.round(pot() * gF(S.age));
     const nw = (t, d) => S.news.unshift({ y: S.year, t, d: d || '', i: S.nid++ });
 
     function getCarRankInfo(ser, tIdx, fut) {
@@ -597,7 +627,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     const tnOf = o => o.ser === 4 ? (S && S.f1t && S.f1t.length ? S.f1t[o.t].n : F1T[o.t][0]) : SR[o.ser].T[o.t][0];
 
     $('#st').onclick = () => {
-      S = { seed: G.seed, mode: G.mode, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null };
+      S = { seed: G.seed, mode: G.mode, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null, god: G.god };
       
       eg();
       nw('Um novo talento no kartismo: ' + S.name, 'O caminho até a F1 começa agora. Os scouts das grandes equipes já estão de olho nas categorias de base.');
@@ -838,7 +868,12 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       
       if (S.con) { S.cash += S.con.sal; S.con.gw += me.w; S.con.gp += me.pd; if (pos === 1) S.con.gt = 1; S.con.left--; if (S.con.left <= 0) evalCon(); }
       if (F1) { S.tot.w += me.w; S.tot.pd += me.pd; S.tot.pts += me.pts; if (pos === 1) S.tot.t++; S.bad = pos > 14 ? S.bad + 1 : 0; }
-      if (!F1 && r() < .15) { const a = Math.floor(r() * 8), b = (a + 1 + Math.floor(r() * 7)) % 8; S.v[a] = Math.min(99, S.v[a] + 4); S.v[b] = Math.min(99, S.v[b] + 3); S.msg += ` 🚀 BREAKOUT: ${AT[a]} +4, ${AT[b]} +3!`; }
+      if (!F1 && r() < .15) { 
+        const a = Math.floor(r() * 8), b = (a + 1 + Math.floor(r() * 7)) % 8; 
+        S.v[a] = Math.min(S.god ? 100 : 99, S.v[a] + 4); 
+        S.v[b] = Math.min(S.god ? 100 : 99, S.v[b] + 3); 
+        S.msg += ` 🚀 BREAKOUT: ${AT[a]} +4, ${AT[b]} +3!`; 
+      }
       if (pos <= 8 && !S.spons && r() < .28) { S.spons = 2; S.msg += ' 💼 Você conseguiu um novo patrocínio.'; } else if (!F1 && S.ser >= 1 && pos > 3 && !S.spons && r() < .25) { S.paid = 1; S.msg += ' 💸 Um piloto pagante assumiu sua vaga! Fique esperto.'; }
       
       if ((!F1 && S.age >= 23) || (F1 && (S.age >= 41 || S.bad >= 2 || (S.age >= 36 && pos > 3 && r() < (S.age - 35) * .12)))) { S.ph = 'end'; return; }
@@ -960,7 +995,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         else if (S.mom_idx === 1) { sim_races(S.next_race, S.stops[2]); S.ph = 'mom_pre'; S.mom_idx = 2; } 
         else if (S.mom_idx === 2) { sim_races(S.next_race, S.sess.length); seasonEnd(); }
       } 
-      else if (a === 'ch') { const k = +b.dataset.k; const o = S.ev[1 + k]; const roll = R(S.seed + 'x' + S.year + S.ser + k)(); const ok = roll < S.pp[k]; const evnt = ok ? o.slice(2, 6) : o.slice(6, 10); S.v[evnt[1]] = Math.max(40, Math.min(99, S.v[evnt[1]] + evnt[2])); S.mod += evnt[3]; S.out = { roll, p: S.pp[k], ok }; S.ph = 'spin'; setTimeout(() => { S.ph = 'res'; draw(); }, 3500); } 
+      else if (a === 'ch') { const k = +b.dataset.k; const o = S.ev[1 + k]; const roll = R(S.seed + 'x' + S.year + S.ser + k)(); const ok = roll < S.pp[k]; const evnt = ok ? o.slice(2, 6) : o.slice(6, 10); S.v[evnt[1]] = Math.max(40, Math.min(S.god ? 100 : 99, S.v[evnt[1]] + evnt[2])); S.mod += evnt[3]; S.out = { roll, p: S.pp[k], ok }; S.ph = 'spin'; setTimeout(() => { S.ph = 'res'; draw(); }, 3500); } 
       else if (a === 'co') { S.ph = 'mom_pre'; S.mom_idx = 1; } 
       else if (a === 'of') { const o = S.offs[+b.dataset.k]; if (o.cont) pick(o); else { S.neg = { o, yrs: o.ser === 4 ? 2 : 1, w: 0, p: 0, ti: 0, sal: null }; fixNeg(); S.ph = 'neg'; } } 
       else if (a === 'nb') { S.neg = null; S.ph = 'offer'; } else if (a === 'ns') { signC(); } else if (a === 'ny') { S.neg.yrs = +b.dataset.k; fixNeg(); } else if (a === 'fin') { finish(); }
