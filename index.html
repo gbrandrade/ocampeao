@@ -31,7 +31,7 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-* { box-sizing: border-box; }
+- { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin:0; color:var(--tx); font-family:var(--f); font-size:15px; line-height:1.55; background:var(--bg); min-height:100vh; }
 body::before { content:""; position:fixed; inset:0 0 auto; height:4px; background:var(--g); z-index:30; pointer-events:none; }
@@ -86,7 +86,7 @@ td { padding:13px 15px; border-bottom:1px solid #ECEDE7; font-weight:500; vertic
 .lg { display:inline-block; background:var(--accent); color:#fff; font:700 10px var(--f-head); padding:5px 9px; border-radius:3px; letter-spacing:1px; border:1px solid var(--accent); }
 .rtg { font:700 64px/.95 var(--f-head); letter-spacing:-3px; } .rtg.l { color:var(--accent); }
 .bar { height:5px; background:#E6E8E0; border-radius:5px; border:0; overflow:hidden; margin:12px 0; } .bar i { display:block; height:100%; background:var(--g); transition:width .3s; }
-.cg { display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:20px; align-items:start; width:100%; }
+.cg { display:grid; grid-template-columns:minmax(0,380px) minmax(0,1fr); gap:20px; align-items:start; width:100%; } /* Alteração 1: 300px -> 380px */
 .cg > * { min-width:0; }
 .cg .pn, .cg .tw { min-width:0; max-width:100%; }
 .cg .tw { overflow-x:auto; }
@@ -730,17 +730,19 @@ input[type=checkbox] { accent-color:var(--accent); margin-right:12px; width:17px
       if (!S.F.length) { t = '<p class="mut">Aguardando você assinar com a primeira equipe de kart.</p>'; } 
       else if (!S.tab) { 
         const rows = S.ser === 4 ? rk : rk.slice(0, 10); if (pos > 10 && S.ser < 4) rows.push(me); 
-        t = '<table><thead><tr><th>#</th><th>PILOTO</th><th>OVR</th><th>CARRO</th><th>PTS</th></tr></thead>' + rows.map(d => {
+        /* Alteração: Envolvido o table com div.tw para forçar o rolamento lateral */
+        t = '<div class="tw"><table><thead><tr><th>#</th><th>PILOTO</th><th>OVR</th><th>CARRO</th><th>PTS</th></tr></thead>' + rows.map(d => {
           const o = d.p ? ovr() : Math.round(d.r);
           const cInfo = getCarRankInfo(S.ser, d.t);
           return `<tr class="${d.p ? 'me' : ''}"><td><span class="ps">${rk.indexOf(d) + 1}</span></td><td><i class="dt" style="background:${tcl(d.t)}"></i><b style="font-family: var(--f-head); font-size:16px;">${d.n}</b><br><small class="mut" style="font-weight:600;">${S.T[d.t].n} (${cInfo.rank}º)</small></td><td><span class="ov ${oc(o)}">${o}</span></td><td><span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:4px">${cInfo.ovr}</span></td><td class="pp">${d.pts}</td></tr>`;
-        }).join('') + '</table>'; 
+        }).join('') + '</table></div>'; 
       } else { 
         const sortedTeams = [...S.T].sort((a, b) => b.pts - a.pts);
-        t = '<table><thead><tr><th>#</th><th>EQUIPE</th><th>CARRO</th><th>STATUS</th><th>PTS</th></tr></thead>' + sortedTeams.map((x, i) => {
+        /* Alteração: Envolvido o table com div.tw para forçar o rolamento lateral */
+        t = '<div class="tw"><table><thead><tr><th>#</th><th>EQUIPE</th><th>CARRO</th><th>STATUS</th><th>PTS</th></tr></thead>' + sortedTeams.map((x, i) => {
           const tIdx = S.T.indexOf(x), info = getCarRankInfo(S.ser, tIdx);
           return `<tr class="${x.n === S.tn ? 'me' : ''}"><td><span class="ps">${i + 1}</span></td><td><i class="dt" style="background:${tcl(tIdx)}"></i><b style="font-family: var(--f-head); font-size:16px;">${x.n}</b><br><small class="mut" style="font-weight:600;">${S.F.filter(d => d.t === tIdx).map(d => d.n.split(' ').pop()).join(' / ')}</small></td><td><span class="ov ${oc(info.ovr)}">${info.ovr}</span></td><td><small class="mut" style="font-weight:700;"><b style="color:var(--tx)">${info.rank}º</b> / ${info.total}<br>${info.label}</small></td><td class="pp">${x.pts}</td></tr>`;
-        }).join('') + '</table>'; 
+        }).join('') + '</table></div>'; 
       }
       
       const myCar = S.F.length ? getCarRankInfo(S.ser, S.team) : null;
