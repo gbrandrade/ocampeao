@@ -32,7 +32,7 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-- { box-sizing: border-box; }
+* { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin:0; color:var(--tx); font-family:var(--f); font-size:15px; line-height:1.55; background:var(--bg); min-height:100vh; }
 body::before { content:""; position:fixed; inset:0 0 auto; height:4px; background:var(--g); z-index:30; pointer-events:none; }
@@ -46,7 +46,7 @@ body::before { content:""; position:fixed; inset:0 0 auto; height:4px; backgroun
 .hd span { color:var(--accent); }
 .hd i { font:700 10px var(--f-head); color:var(--accent); font-style:normal; position:absolute; right:max(24px, calc((100vw - 1240px)/2)); top:50%; transform:translateY(-50%); border:1px solid #B8C4B7; background:#E8EDE4; padding:6px 10px; border-radius:3px; letter-spacing:1.2px; }
 
-/* Novo Ticker */
+/* Ticker */
 .mq { display:block; overflow:hidden; white-space:nowrap; margin:0; border:0; border-radius:0; padding:0; background:#D61F2C; color:#fff; } 
 .ticker-track { display:flex; width:max-content; animation:mq 32s linear infinite; } 
 .ticker-group { display:flex; flex-shrink:0; } 
@@ -55,7 +55,7 @@ body::before { content:""; position:fixed; inset:0 0 auto; height:4px; backgroun
 main { max-width:1240px; margin:0 auto; padding:42px 28px 96px; }
 .hide { display:none !important; } .mut { color:var(--m); } .gd { color:var(--tx); background:var(--g); padding:0 4px; font-weight:700; }
 h1 { font:700 clamp(52px, 7.5vw, 96px)/.94 var(--f-head); text-transform:uppercase; margin:16px 0 24px; letter-spacing:-5px; }
-h1 em { background:transparent; color:var(--accent); font-style:normal; display:inline-block; padding:0; transform:none; border:0; box-shadow:none; text-decoration:underline; text-decoration-color:var(--g); text-decoration-thickness:.16em; text-underline-offset:.06em; }
+h1 em { background:transparent; color:var(--accent); font-style:normal; display:inline-block; padding:0; text-decoration:underline; text-decoration-color:var(--g); text-decoration-thickness:.16em; text-underline-offset:.06em; }
 h2 { display:flex; align-items:center; gap:14px; width:100%; font:700 13px var(--f-head); letter-spacing:1.8px; color:var(--tx); margin:54px 0 18px; text-transform:uppercase; border-bottom:1px solid var(--l); padding-bottom:14px; }
 h2::before { content:""; display:inline-block; width:8px; height:8px; background:var(--g); border-radius:50%; }
 h3 { margin:0 0 8px; font:700 25px/1.1 var(--f-head); text-transform:uppercase; letter-spacing:-.8px; }
@@ -63,15 +63,18 @@ h3.big { font-size:clamp(32px,5vw,48px); line-height:1.1; margin:10px 0 16px; }
 h4 { margin:0; font:700 21px/1.15 var(--f-head); text-transform:uppercase; letter-spacing:-.5px; }
 .tag { background:var(--accent); color:#fff; font:700 10px var(--f-head); letter-spacing:1.8px; padding:7px 11px; display:inline-block; text-transform:uppercase; margin-bottom:12px; border-radius:2px; }
 .sub { color:var(--m); font-size:17px; max-width:560px; line-height:1.8; margin-bottom:28px; }
-button,input,select { font:inherit; } button { cursor:pointer; border:1px solid var(--l); border-radius:5px; padding:13px 20px; font:700 12px var(--f-head); letter-spacing:1px; text-transform:uppercase; background:#fff; color:var(--tx); box-shadow:none; transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease; }
-button:hover:not(:disabled) { transform:translateY(-2px); border-color:var(--accent); background:#EDF0E9; box-shadow:none; }
-button:active:not(:disabled) { transform:translateY(0); } button.g { background:transparent; color:var(--m); border-color:var(--l); box-shadow:none; }
-button.g:hover:not(:disabled) { background:#E9EAE2; color:var(--tx); border-color:#A9B1A5; box-shadow:none; }
-button.sm { padding:8px 12px; font-size:10px; box-shadow:none; } button:disabled { opacity:.42; cursor:default; box-shadow:none; transform:none; }
-button.cta { background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:none; font-size:13px; padding:16px 24px; }
+button,input,select { font:inherit; transition-timing-function:cubic-bezier(.2,.7,.2,1); }
+button { cursor:pointer; border:1px solid var(--l); border-radius:5px; padding:13px 20px; font:700 12px var(--f-head); letter-spacing:1px; text-transform:uppercase; background:#fff; color:var(--tx); transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease; }
+button:hover:not(:disabled) { transform:translateY(-2px); border-color:var(--accent); background:#EDF0E9; }
+button:active:not(:disabled) { transform:translateY(0); }
+button.g { background:transparent; color:var(--m); border-color:var(--l); }
+button.g:hover:not(:disabled) { background:#E9EAE2; color:var(--tx); border-color:#A9B1A5; }
+button.sm { padding:8px 12px; font-size:10px; }
+button:disabled { opacity:.42; cursor:default; transform:none; }
+button.cta { background:var(--accent); color:#fff; border-color:var(--accent); font-size:13px; padding:16px 24px; }
 button.cta:hover:not(:disabled) { background:#1D5941; color:#fff; border-color:#1D5941; }
-input,select { background:#fff; border:1px solid var(--l); color:var(--tx); padding:13px 14px; border-radius:5px; font-weight:500; font-family:var(--f); outline:none; box-shadow:none; transition:border-color .2s,box-shadow .2s; }
-input:focus,select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(18,60,45,.09); transform:none; }
+input,select { background:#fff; border:1px solid var(--l); color:var(--tx); padding:13px 14px; border-radius:5px; font-weight:500; font-family:var(--f); outline:none; transition:border-color .2s,box-shadow .2s; }
+input:focus,select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(18,60,45,.09); }
 .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:20px 0; }
 .pn { background:var(--c); border:1px solid var(--l); border-radius:9px; padding:24px; margin-bottom:18px; box-shadow:0 8px 28px rgba(32,35,31,.035); position:relative; }
 .form { display:flex; gap:10px; flex-wrap:wrap; max-width:700px; padding:14px; border-radius:8px; background:#fff; border:1px solid var(--l); box-shadow:none!important; }
@@ -82,16 +85,16 @@ input:focus,select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba
 table { width:100%; border-collapse:separate; border-spacing:0; font-size:13px; border:1px solid var(--l); border-radius:7px; overflow:hidden; background:#fff; }
 th { color:#fff; background:var(--accent); font:600 10px var(--f-head); letter-spacing:1px; text-align:left; padding:13px 15px; text-transform:uppercase; }
 td { padding:13px 15px; border-bottom:1px solid #ECEDE7; font-weight:500; vertical-align:middle; } tr:last-child td { border-bottom:none; } tr.me td { background:#F0F6D9; color:var(--tx); font-weight:700; }
-.tw { overflow-x:auto; box-shadow:none; border-radius:8px; border:0; padding:0; } .pp { font:700 17px var(--f-head); text-align:right; }
+.tw { overflow-x:auto; border-radius:8px; border:0; padding:0; } .pp { font:700 17px var(--f-head); text-align:right; }
 .ps { display:inline-grid; place-items:center; width:28px; height:28px; border-radius:5px; background:var(--accent); color:#fff; font:700 12px var(--f-head); }
 .dt { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:8px; border:1px solid rgba(0,0,0,.15); }
 .ov { display:inline-block; min-width:36px; text-align:center; padding:4px 8px; border-radius:4px; font:700 12px var(--f-head); background:#ECEDE7; border:1px solid #DADDD3; }
 .ov.g { background:var(--g); color:var(--tx); border-color:var(--g); } .ov.h { background:var(--gr); color:#fff; border-color:var(--gr); } .ov.m { background:#F4F4EF; color:var(--tx); } .ov.l { background:var(--r); color:#fff; border-color:var(--r); }
 .slots { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:16px; }
-.slot { position:relative; overflow:hidden; background:#fff; border:1px solid var(--l); border-radius:7px; padding:17px 8px 20px; text-align:center; font-size:10px; font-weight:700; color:var(--m); text-transform:uppercase; box-shadow:none; letter-spacing:.5px; }
+.slot { position:relative; overflow:hidden; background:#fff; border:1px solid var(--l); border-radius:7px; padding:17px 8px 20px; text-align:center; font-size:10px; font-weight:700; color:var(--m); text-transform:uppercase; letter-spacing:.5px; }
 .slot b { display:block; font:700 34px var(--f-head); color:var(--tx); margin-top:5px; } .slot.ok { border-color:#A9C49B; background:#F2F7E8; } .slot i { position:absolute; left:0; bottom:0; height:4px; background:var(--accent); }
 .at { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px; }
-.at button { position:relative; overflow:hidden; display:flex; justify-content:space-between; align-items:center; background:#fff; color:var(--tx); border:1px solid var(--l); border-radius:6px; padding:15px; font:600 12px var(--f-head); box-shadow:none; letter-spacing:.2px; text-transform:none; }
+.at button { position:relative; overflow:hidden; display:flex; justify-content:space-between; align-items:center; background:#fff; color:var(--tx); border:1px solid var(--l); border-radius:6px; padding:15px; font:600 12px var(--f-head); letter-spacing:.2px; text-transform:none; }
 .at button:hover:not(:disabled) { background:#F2F5EC; border-color:#A8BDA6; } .at button span+span { font-size:20px; font-weight:700; color:var(--accent); }
 .at u { position:absolute; left:0; bottom:0; height:3px; background:var(--g); transition:width .3s ease; }
 .lg { display:inline-block; background:var(--accent); color:#fff; font:700 10px var(--f-head); padding:5px 9px; border-radius:3px; letter-spacing:1px; border:1px solid var(--accent); }
@@ -115,32 +118,31 @@ td { padding:13px 15px; border-bottom:1px solid #ECEDE7; font-weight:500; vertic
 #stn td b { font-size:14px !important; line-height:1.25; }
 #stn .pp { font-size:15px; }
 
-.tabs { display:flex; gap:6px; margin-bottom:16px; } .tabs button { flex:1; padding:10px; background:#F7F7F2; color:var(--m); font-size:10px; border-radius:5px; box-shadow:none; border-color:var(--l); }
-.tabs .on { background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:none; transform:none; }
-.pf { display:flex; gap:24px; align-items:center; flex-wrap:wrap; } .ring { width:120px; height:120px; border-radius:50%; background:conic-gradient(var(--accent) calc(var(--p)*1%), #E6E8E0 0); display:grid; place-items:center; position:relative; border:0; box-shadow:none; }
-.ring:before { content:""; position:absolute; inset:8px; background:#fff; border-radius:50%; border:0; } .ring b,.ring small { position:relative; grid-area:1/1; }
+.tabs { display:flex; gap:6px; margin-bottom:16px; } .tabs button { flex:1; padding:10px; background:#F7F7F2; color:var(--m); font-size:10px; border-radius:5px; border-color:var(--l); }
+.tabs .on { background:var(--accent); color:#fff; border-color:var(--accent); transform:none; }
+.pf { display:flex; gap:24px; align-items:center; flex-wrap:wrap; } .ring { width:120px; height:120px; border-radius:50%; background:conic-gradient(var(--accent) calc(var(--p)*1%), #E6E8E0 0); display:grid; place-items:center; position:relative; }
+.ring:before { content:""; position:absolute; inset:8px; background:#fff; border-radius:50%; } .ring b,.ring small { position:relative; grid-area:1/1; }
 .ring b { font:700 44px/1 var(--f-head); margin-top:-16px; color:var(--tx); } 
 .ring small { margin-top:56px; font:700 9px var(--f-head); letter-spacing:1px; color:var(--accent); background:#fff; padding:2px 6px; border:1px solid var(--l); border-radius:10px; }
 .chips { display:flex; gap:7px; flex-wrap:wrap; margin-top:12px; } .chips span { background:#F1F2EC; border:1px solid var(--l); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:600; font-family:var(--f-head); }
-.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:22px; } .stats div { background:#fff; border:1px solid var(--l); border-radius:7px; padding:15px 8px; text-align:center; font:600 10px var(--f-head); color:var(--m); box-shadow:none; }
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:22px; } .stats div { background:#fff; border:1px solid var(--l); border-radius:7px; padding:15px 8px; text-align:center; font:600 10px var(--f-head); color:var(--m); }
 .stats b { display:block; font:700 31px/1.1 var(--f-head); color:var(--tx); margin-top:5px; }
 .ys { display:flex; gap:7px; flex-wrap:wrap; } .ys span { background:#F8F8F3; border:1px solid var(--l); border-radius:5px; padding:7px 11px; font-size:11px; font-weight:600; }
-.ys .t { background:var(--g); border-color:var(--g); color:var(--tx); box-shadow:none; font-weight:700; }
-.bdg { display:inline-block; background:var(--accent); color:#fff; font:700 10px var(--f-head); letter-spacing:1px; padding:5px 9px; border-radius:3px; margin-bottom:12px; text-transform:uppercase; }
-.op { display:block; width:100%; text-align:left; margin:10px 0; background:#fff; border:1px solid var(--l); border-radius:7px; padding:19px 20px; color:var(--tx); font:700 19px var(--f-head); text-transform:uppercase; box-shadow:none; transition:.18s; }
+.ys .t { background:var(--g); border-color:var(--g); color:var(--tx); font-weight:700; }
+.op { display:block; width:100%; text-align:left; margin:10px 0; background:#fff; border:1px solid var(--l); border-radius:7px; padding:19px 20px; color:var(--tx); font:700 19px var(--f-head); text-transform:uppercase; transition:.18s; }
 .op:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(32,35,31,.07); border-color:#9DAE9D; background:#FDFDF9; } .op small { display:block; color:var(--m); font:400 13px/1.6 var(--f); text-transform:none; margin-top:6px; }
 .ph { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid var(--l); padding-bottom:12px; }
 .nw { border-bottom:1px solid #ECEDE7; cursor:pointer; } .nw:last-child { border-bottom:none; } .nh { display:flex; gap:12px; align-items:center; padding:14px 0; }
 .nh span { background:#EAF0DF; color:var(--accent); font:700 10px var(--f-head); padding:5px 8px; border-radius:3px; } .nh b { flex:1; font-weight:650; font-size:14px; }
 .nh em { color:var(--tx); font-style:normal; font-weight:700; transition:.2s; } .nw p { display:none; margin:0 0 16px; color:var(--m); line-height:1.7; padding-left:56px; font-size:13px; }
 .nw.o p { display:block; } .nw.o em { transform:rotate(90deg); } .nw:hover b { color:var(--accent); }
-.wh { position:relative; width:220px; height:220px; margin:30px auto; } .wl { width:100%; height:100%; border-radius:50%; border:5px solid var(--accent); box-shadow:none; transition:transform 3.2s cubic-bezier(.12,.6,.15,1); }
+.wh { position:relative; width:220px; height:220px; margin:30px auto; } .wl { width:100%; height:100%; border-radius:50%; border:5px solid var(--accent); transition:transform 3.2s cubic-bezier(.12,.6,.15,1); }
 .pt { position:absolute; top:-24px; left:50%; transform:translateX(-50%); font-size:36px; z-index:2; color:var(--accent); } .ok { color:var(--gr); } .ko { color:var(--r); }
 .fifa { background:var(--accent); border:0; border-radius:10px; padding:32px; max-width:380px; margin:24px auto; color:#fff; box-shadow:0 18px 40px rgba(18,60,45,.18); text-align:center; }
 .fifa .o { font:700 100px/.9 var(--f-head); letter-spacing:-5px; margin-bottom:12px; color:var(--g); } .fifa .n { font:700 27px var(--f-head); margin:12px 0; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.25); padding-bottom:12px; }
 .fifa .gr { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; font-weight:600; text-align:left; background:rgba(255,255,255,.08); padding:16px; border-radius:6px; border:1px solid rgba(255,255,255,.13); }
 .lad { display:flex; flex-direction:column-reverse; gap:7px; } .lad div { padding:12px 16px; border:1px solid var(--l); border-radius:5px; background:#fff; color:var(--m); font-weight:500; font-family:var(--f-head); }
-.lad .on { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700; font-size:15px; box-shadow:none; } .lad .p { color:var(--accent); border-color:#B8CDB9; background:#F0F5E9; }
+.lad .on { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700; font-size:15px; } .lad .p { color:var(--accent); border-color:#B8CDB9; background:#F0F5E9; }
 .hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:48px; align-items:center; padding:26px 0 28px; }
 .eye { display:inline-flex; align-items:center; gap:10px; color:var(--accent); background:#E9EEE3; padding:7px 11px; border-radius:3px; font:700 10px var(--f-head); letter-spacing:1.6px; margin-bottom:16px; }
 .eye::before { content:""; width:7px; height:7px; border-radius:50%; background:#8CA65D; }
@@ -152,8 +154,8 @@ td { padding:13px 15px; border-bottom:1px solid #ECEDE7; font-weight:500; vertic
 .rv-track svg { display:block; width:100%; height:auto; max-height:245px; overflow:visible; animation:track-arrive .9s cubic-bezier(.2,.7,.2,1) both; }
 .track-shadow { fill:none; stroke:#DCE2D5; stroke-width:28; stroke-linecap:round; stroke-linejoin:round; }
 .track-line { fill:none; stroke:var(--accent); stroke-width:18; stroke-linecap:round; stroke-linejoin:round; }
-.track-dash { fill:none; stroke:#D7F36A; stroke-width:2; stroke-dasharray:5 9; stroke-linecap:round; }
-.rv-caption { position:relative; left:auto; bottom:auto; display:block; margin: -2px 0 18px 8%; color:var(--m); font:700 10px/1.8 var(--f-head); letter-spacing:1.3px; }
+.track-dash { fill:none; stroke:#D7F36A; stroke-width:2; stroke-dasharray:5 9; stroke-linecap:round; animation:dash-flow 8s linear infinite; }
+.rv-caption { position:relative; display:block; margin: -2px 0 18px 8%; color:var(--m); font:700 10px/1.8 var(--f-head); letter-spacing:1.3px; }
 .rv-caption b { color:var(--accent); font-size:clamp(12px,1.5vw,17px); }
 .rv-bottom { padding-top:14px; border-top:1px solid var(--l); font-size:8px; letter-spacing:1px; }
 .rv-line { flex:1; height:1px; background:#C9D0C2; }
@@ -162,13 +164,10 @@ td { padding:13px 15px; border-bottom:1px solid #ECEDE7; font-weight:500; vertic
 @keyframes track-arrive { from { opacity:0; transform:translateY(10px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
 @keyframes soft-in { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
 @keyframes dash-flow { to { stroke-dashoffset:-56; } }
-.track-dash { animation:dash-flow 8s linear infinite; }
 .pn,.sc,.race-visual,.tw { transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
 .sc:hover { transform:translateY(-3px); border-color:#B9C5B4; }
 .reveal-ready .reveal { opacity:0; transform:translateY(14px); }
 .reveal-ready .reveal.is-visible { animation:soft-in .55s cubic-bezier(.2,.7,.2,1) both; }
-button,input,select { transition-timing-function:cubic-bezier(.2,.7,.2,1); }
-@media (prefers-reduced-motion:reduce) { .track-dash { animation:none!important; } .reveal-ready .reveal,.reveal-ready .reveal.is-visible { opacity:1!important; transform:none!important; animation:none!important; } }
 
 /* LENDA — dourado */
 .gcard { background:linear-gradient(145deg,#FFF7DA,#F6E2A0)!important; border:1px solid #D4A017!important; box-shadow:0 10px 30px rgba(212,160,23,.28)!important; } 
@@ -195,11 +194,10 @@ button,input,select { transition-timing-function:cubic-bezier(.2,.7,.2,1); }
 
 .rg { background:#F0F1EA; border:1px dashed #B7BDB0; border-radius:6px; padding:15px; margin:12px 0; color:var(--tx); font-family:var(--f-head); font-weight:600; }
 .rg b { color:var(--accent); font:700 25px var(--f-head); margin-left:12px; } .nl { font:700 11px var(--f-head); letter-spacing:1px; color:var(--tx); margin:24px 0 8px; text-transform:uppercase; }
-.nl small { letter-spacing:0; font:400 12px var(--f); text-transform:none; color:var(--m); }
-.bx label { display:block; margin:10px 0; background:#fff; border:1px solid var(--l); border-radius:6px; padding:15px; font-weight:500; box-shadow:none; }
-.bx label b { color:var(--accent); font-family:var(--f-head); font-size:16px; } input[type=range] { width:100%; accent-color:var(--accent); padding:0; background:none; border:0; margin-top:12px; box-shadow:none; }
+.bx label { display:block; margin:10px 0; background:#fff; border:1px solid var(--l); border-radius:6px; padding:15px; font-weight:500; }
+.bx label b { color:var(--accent); font-family:var(--f-head); font-size:16px; } input[type=range] { width:100%; accent-color:var(--accent); padding:0; background:none; border:0; margin-top:12px; }
 input[type=checkbox] { accent-color:var(--accent); margin-right:12px; width:17px; height:17px; }
-.yb { display:flex; gap:10px; } .yb button { flex:1; background:#fff; color:var(--tx); border:1px solid var(--l); box-shadow:none; } .yb .on { background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:none; transform:none; }
+.yb { display:flex; gap:10px; } .yb button { flex:1; background:#fff; color:var(--tx); border:1px solid var(--l); } .yb .on { background:var(--accent); color:#fff; border-color:var(--accent); transform:none; }
 .ct { margin-top:16px; background:#EDF2E5; border:1px solid #C8D7B8; border-radius:5px; padding:12px 15px; font-size:12px; font-weight:600; color:var(--tx); display:inline-block; }
 .log { background:#fff; border-left:3px solid var(--g); border-radius:0 8px 8px 0; } .log ul { margin:0; padding-left:20px; line-height:1.8; color:var(--m); font-weight:400; font-size:13px; } .log li { margin-bottom:8px; }
 :focus-visible { outline:3px solid #9DBA68; outline-offset:3px; }
@@ -211,10 +209,9 @@ input[type=checkbox] { accent-color:var(--accent); margin-right:12px; width:17px
 .modal-box p { color:var(--m); margin:0 0 24px; line-height:1.7; } 
 input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
-@media(max-width:900px) { main {padding:30px 20px 72px;} .cg {grid-template-columns:1fr;} .st3,.tiers {grid-template-columns:1fr 1fr;} .hero {grid-template-columns:1fr; gap:24px;} .race-visual {max-width:650px;width:100%;margin:0 auto;} h1 {font-size:clamp(52px,10vw,76px); letter-spacing:-3px;} .hd {padding:17px 20px;} .hd i {right:20px;} }
+@media(max-width:900px) { main {padding:30px 20px 72px;} .cg {grid-template-columns:1fr;} .st3 {grid-template-columns:1fr 1fr;} .hero {grid-template-columns:1fr; gap:24px;} .race-visual {max-width:650px;width:100%;margin:0 auto;} h1 {font-size:clamp(52px,10vw,76px); letter-spacing:-3px;} .hd {padding:17px 20px;} .hd i {right:20px;} }
 @media(max-width:600px) { .hd {min-height:68px;} .hd b {font-size:19px;} .hd::after {display:none;} .hd i {font-size:9px;right:16px;} main {padding:22px 15px 60px;} .hero {padding-top:16px;} h1 {font-size:clamp(46px,13vw,64px);letter-spacing:-2.8px;} .sub {font-size:15px;} .race-visual {padding:14px 12px;} .rv-bottom {font-size:7px;} .rv-caption {margin:0 0 14px 5%;} .slots,.at,.stats {grid-template-columns:1fr 1fr;} .cg {grid-template-columns:minmax(0,1fr);gap:14px;} #stn table { table-layout:auto; min-width:420px; } .st3 {grid-template-columns:1fr;} .fifa {padding:24px 16px;} .pn {padding:18px;} .rtg {font-size:54px;} .form {padding:10px;} .row {gap:9px;} button.cta {padding:14px 17px;} .ph {gap:10px;} .nh {align-items:flex-start;} .nh b {font-size:13px;} }
-@media(prefers-reduced-motion:reduce) { *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;} }
-
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;} .track-dash { animation:none!important; } .reveal-ready .reveal,.reveal-ready .reveal.is-visible { opacity:1!important; transform:none!important; animation:none!important; } }
   </style>
 </head>
 <body>
@@ -251,8 +248,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
           <p class="sub">Roube atributos dos pilotos do grid atual ou de Lendas históricas. Prove seu valor nas categorias de base e descubra se você consegue chegar ao topo da Fórmula 1.</p>
           <div class="pn form" style="box-shadow: 4px 4px 0 #000; border-radius: 8px;">
             <input id="nm" maxlength="18" placeholder="Nome do piloto" style="flex: 1 1 180px;">
-            <!-- Permitimos digitar números longos para não mostrar o contorno vermelho nativo -->
-            <input id="nu" type="number" min="1" max="99999999" placeholder="Nº" style="width:80px; flex: 0 0 80px;">
+            <input id="nu" type="text" inputmode="numeric" maxlength="8" placeholder="Nº" style="width:80px; flex: 0 0 80px;">
             <select id="na" style="flex: 1 1 150px;"></select>
           </div>
           <div class="row">
@@ -287,14 +283,14 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       <h2>NOTAS DA ATUALIZAÇÃO</h2>
       <div class="pn log">
         <div class="ph" style="justify-content: flex-start; gap: 12px; border: none; padding: 0; margin-bottom: 16px;">
-          <span class="tag" style="margin:0; background: var(--accent);">PATCH v9.0</span>
-          <b style="font-family: var(--f-head); font-size: 18px;">Lógica Avançada de Carreira</b>
+          <span class="tag" style="margin:0; background: var(--accent);">PATCH v9.1</span>
+          <b style="font-family: var(--f-head); font-size: 18px;">Lógica Avançada de Carreira & Refinamentos</b>
         </div>
-        <p class="mut" style="margin: 0 0 16px; font-size: 15px;">A inteligência por trás do mercado de pilotos e do comportamento dos carros foi totalmente reescrita para criar o ecossistema mais realista e dinâmico já visto no jogo.</p>
+        <p class="mut" style="margin: 0 0 16px; font-size: 15px;">A inteligência por trás do mercado de pilotos e do comportamento dos carros foi reescrita para criar o ecossistema mais realista e dinâmico do jogo.</p>
         <ul>
-          <li><b style="color:var(--tx)">Física & Abandono:</b> O carro agora tem um peso maior nas corridas (50%) e falhas mecânicas/batidas foram implementadas, podendo custar corridas essenciais. Bônus de habilidade foram reajustados para serem menos "OP".</li>
-          <li><b style="color:var(--tx)">Mercado de Pilotos Dinâmico:</b> Pilotos controlados pela CPU evoluem de acordo com um "teto de potencial", sentem a idade, assinam contratos e até anunciam aposentadorias. Nomes estrelados agora exigem um nível mínimo para ceder suas vagas!</li>
-          <li><b style="color:var(--tx)">Idades Realistas da FIA:</b> O jogo aplica rigidamente as regras de idade mínima da FIA. Ganhou no Kart aos 13? Ficará lá até completar a idade de promoção para subir até a F4, F3, F2 e, finalmente, chegar na F1!</li>
+          <li><b style="color:var(--tx)">Física & Abandono:</b> O carro tem peso decisivo nas corridas (50%) e falhas mecânicas/batidas podem custar pontos essenciais. Modificadores de eventos agora afetam exclusivamente o jogador.</li>
+          <li><b style="color:var(--tx)">Mercado de Pilotos Dinâmico:</b> Pilotos controlados pela CPU evoluem até seu teto de potencial, sentem o peso da idade, assinam contratos e anunciam aposentadorias.</li>
+          <li><b style="color:var(--tx)">Idades Realistas da FIA:</b> O jogo aplica rigidamente as regras de idade mínima da FIA em cada degrau do automobilismo rumo à F1.</li>
         </ul>
       </div>
 
@@ -357,6 +353,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
   <script>
     const $ = s => document.querySelector(s);
+    const esc = s => String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
     
     const show = id => {
       ['home', 'draft', 'car', 'res'].forEach(x => $('#' + x).classList.toggle('hide', x !== id));
@@ -437,11 +434,11 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       ['Schumacher (2002)', '🇩🇪', [96, 99, 95, 94, 98, 93, 99, 99]],
       ['Senna (1988)', '🇧🇷', [99, 98, 93, 97, 99, 87, 92, 98]],     
       ['Senna (1991)', '🇧🇷', [98, 97, 94, 96, 99, 90, 95, 99]],     
-      ['Hamilton (2020)', '🇬🇧', [99, 98, 94, 95, 99, 98, 99, 99]],    
-      ['Hamilton (2018)', '🇬🇧', [98, 97, 93, 96, 98, 96, 98, 98]],    
+      ['Hamilton (2020)', '🇬🇧', [99, 98, 94, 95, 99, 98, 99, 99]],   
+      ['Hamilton (2018)', '🇬🇧', [98, 97, 93, 96, 98, 96, 98, 98]],   
       ['Prost (1986)', '🇫🇷', [92, 98, 91, 93, 89, 99, 99, 99]],     
       ['Prost (1989)', '🇫🇷', [93, 98, 90, 92, 90, 98, 99, 98]],     
-      ['Fangio (1957)', '🇦🇷', [96, 98, 90, 99, 95, 93, 96, 99]],    
+      ['Fangio (1957)', '🇦🇷', [96, 98, 90, 99, 95, 93, 96, 99]],   
       ['Fangio (1955)', '🇦🇷', [95, 97, 91, 94, 93, 96, 97, 98]]       
     ];
 
@@ -478,23 +475,42 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     const LN = ['Silva', 'Moretti', 'Weber', 'Hansen', 'Garcia', 'Tanaka', 'Dubois', 'Keller', 'Novak', 'Ricci', 'Costa', 'Bianchi', 'Fischer', 'Rossi', 'Lopes', 'Meyer'];
     const TN = ['Piloto comum', 'Sensação de uma temporada', 'Piloto de ponta', 'Vencedor de GPs', 'Campeão do mundo', 'Bicampeão', 'Tricampeão', 'Lenda do grid', 'Top 5 de todos os tempos', 'Sempre citado no debate GOAT', 'O CAMPEÃO'];
 
-    let mode = 'pro', G = null, S = null;
+    let G = null, S = null, spinTimer = null;
 
     const rn = r => FN[Math.floor(r() * 16)] + ' ' + LN[Math.floor(r() * 16)];
     const rf = r => NA[Math.floor(r() * 16)].split(' ')[0];
     const seed = () => Math.random().toString(36).slice(2, 8).toUpperCase();
 
-    let saved = localStorage.getItem('tc_save');
-    if (saved) {
-      $('#load_btn').classList.remove('hide');
-      $('#load_btn').onclick = () => {
-        let d = JSON.parse(saved);
-        G = d.G; S = d.S;
-        if(S) { show('car'); draw(); } else { show('draft'); dr(); }
+    function checkSavedGame() {
+      const saved = localStorage.getItem('tc_save');
+      if (saved) {
+        $('#load_btn').classList.remove('hide');
+        $('#load_btn').onclick = () => {
+          try {
+            const d = JSON.parse(saved);
+            G = d.G; S = d.S;
+            if (S) {
+              if (S.ph === 'spin') S.ph = 'res'; // Evita travamento se recarregou durante a roleta
+              show('car'); draw();
+            } else if (G) {
+              show('draft'); dr();
+            }
+          } catch (e) {
+            localStorage.removeItem('tc_save');
+            $('#load_btn').classList.add('hide');
+          }
+        };
+      } else {
+        $('#load_btn').classList.add('hide');
       }
     }
+    checkSavedGame();
 
-    function save() { if(G) localStorage.setItem('tc_save', JSON.stringify({G, S})); }
+    function save() {
+      if (G && (!S || S.ph !== 'spin')) {
+        localStorage.setItem('tc_save', JSON.stringify({ G, S }));
+      }
+    }
 
     // Modal Logic & Input Validation
     const warn = (msg, el) => { 
@@ -515,31 +531,29 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     ['#nm', '#nu'].forEach(s => $(s).addEventListener('input', () => $(s).classList.remove('err'))); 
     
     $('#go').onclick = () => { 
-      const n = $('#nm').value.trim(), uStr = $('#nu').value.trim(), u = +uStr; 
+      const rawName = $('#nm').value.replace(/[<>]/g, '').trim();
+      const uStr = $('#nu').value.trim(), u = +uStr; 
       const isEgg = uStr === '19022006';
-      const badNum = !uStr || (!isEgg && (u < 1 || u > 99)); 
+      const badNum = !uStr || isNaN(u) || (!isEgg && (u < 1 || u > 99)); 
       
-      $('#nm').classList.toggle('err', !n); 
+      $('#nm').classList.toggle('err', !rawName); 
       $('#nu').classList.toggle('err', badNum); 
       
-      if (!n && badNum) return warn('Dê um nome ao seu piloto e escolha um número entre 1 e 99 para largar.', '#nm'); 
-      if (!n) return warn('Dê um nome ao seu piloto para largar.', '#nm'); 
+      if (!rawName && badNum) return warn('Dê um nome ao seu piloto e escolha um número entre 1 e 99 para largar.', '#nm'); 
+      if (!rawName) return warn('Dê um nome ao seu piloto para largar.', '#nm'); 
       if (badNum) return warn('Escolha um número entre 1 e 99 para o seu carro.', '#nu'); 
-      start(seed()); 
+      start(seed(), rawName, uStr, isEgg); 
     };
     
-    $('#re').onclick = () => { show('home'); lb(); };
+    $('#re').onclick = () => { checkSavedGame(); show('home'); lb(); };
 
-    function start(sd) {
+    function start(sd, cleanName, uStr, isEgg) {
       const n = NA[$('#na').selectedIndex];
-      const uStr = $('#nu').value.trim();
-      const isEgg = uStr === '19022006';
       
       G = { 
         seed: sd, 
-        mode: G ? G.mode : mode, 
-        name: isEgg ? 'MAX VERSTAPPEN' : ($('#nm').value.trim() || 'SEU PILOTO').toUpperCase(), 
-        num: isEgg ? 1 : Math.max(1, Math.min(99, +uStr || 7)), 
+        name: isEgg ? 'MAX VERSTAPPEN' : (cleanName || 'SEU PILOTO').toUpperCase(), 
+        num: isEgg ? 1 : clamp(+uStr || 7, 1, 99), 
         flag: isEgg ? '🇳🇱' : n.split(' ')[0], 
         v: isEgg ? Array(8).fill(100) : Array(8).fill(null), 
         used: [], 
@@ -570,7 +584,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     function dr() {
       const done = G.v.every(x => x !== null);
-      $('#dc').textContent = `DRAFT · GIRO ${Math.min(G.spin + 1, 8)}/8 · MODO ${G.mode.toUpperCase()}`;
+      $('#dc').textContent = `DRAFT · GIRO ${Math.min(G.spin + 1, 8)}/8`;
       $('#db').style.width = (G.spin / 8 * 100) + '%';
       $('#sl').innerHTML = AT.map((a, i) => `<div class="slot ${G.v[i] !== null ? 'ok' : ''}">${a}<b>${G.v[i] ?? '—'}</b><i style="width:${G.v[i] ?? 0}%"></i></div>`).join('');
       $('#st').classList.toggle('hide', !done);
@@ -579,7 +593,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         if (G.god) {
           const c = G.cur;
           const bage = '<span class="lg lg-red">CARTA PRIME</span>';
-          $('#lgd').innerHTML = `<div class="pn pcard" style="margin-top:24px"><div class="row" style="margin:0"><span class="rtg l">${c.rtg}</span><div><h3>${c.f} ${c.n}</h3>${bage}</div></div><div class="at">${AT.map((a, i) => `<button disabled><span>${a}</span><span>100</span><u style="width:100%"></u></button>`).join('')}</div><p style="margin-top:20px; font-weight:800; color:var(--g); border-top: 1px solid #4A3A3A; padding-top: 16px; margin-bottom: 0; text-align: center;">EASTER EGG ATIVADO: Feliz aniversário, Gabriel! 🎂<br>Modo Deus habilitado (OVR 100 absoluto).</p></div>`;
+          $('#lgd').innerHTML = `<div class="pn pcard" style="margin-top:24px"><div class="row" style="margin:0"><span class="rtg l">${c.rtg}</span><div><h3>${c.f} ${c.n}</h3>${bage}</div></div><div class="at">${AT.map(a => `<button disabled><span>${a}</span><span>100</span><u style="width:100%"></u></button>`).join('')}</div><p style="margin-top:20px; font-weight:800; color:var(--g); border-top: 1px solid #4A3A3A; padding-top: 16px; margin-bottom: 0; text-align: center;">EASTER EGG ATIVADO: Feliz aniversário, Gabriel! 🎂<br>Modo Deus habilitado (OVR 100 absoluto).</p></div>`;
         } else {
           $('#lgd').innerHTML = `<p class="mut" style="font-weight:600; background: #fff; padding: 16px; border: 2px solid var(--tx); border-radius: 8px;">Perfil completo! Potencial calculado: ${Math.round(G.v.reduce((a, b) => a + b) / 8)}. As propostas para o Kart dependerão do seu nível!</p>`;
         }
@@ -597,7 +611,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         $('#rrl').onclick = () => { G.rr--; G.k++; spin(); };
         $('#lgd').querySelectorAll('.at button').forEach(b => b.onclick = () => {
           const i = +b.dataset.i;
-          G.v[i] = Math.min(99, G.cur.a[i] + (G.mode === 'amador' ? 2 : 0));
+          G.v[i] = Math.min(99, G.cur.a[i]);
           G.used.push(G.cur.n);
           G.spin++; G.k = 0; spin();
         });
@@ -628,7 +642,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     const tnOf = o => o.ser === 4 ? (S && S.f1t && S.f1t.length ? S.f1t[o.t].n : F1T[o.t][0]) : SR[o.ser].T[o.t][0];
 
     $('#st').onclick = () => {
-      S = { seed: G.seed, mode: G.mode, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null, god: G.god };
+      S = { seed: G.seed, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null, god: G.god, brk: 0 };
       
       eg();
       nw('Um novo talento no kartismo: ' + S.name, 'O caminho até a F1 começa agora. Os scouts das grandes equipes já estão de olho nas categorias de base.');
@@ -651,15 +665,16 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     function init() {
       const y = S.year, sr = SR[S.ser], r = R(S.seed + 'i' + y + S.ser);
       S.me.pts = S.me.w = S.me.pd = 0; S.me.p = 1; S.me.n = S.name; S.me.f = S.flag; S.me.t = S.team;
-      const fm = d => { d.form = d.p ? 0 : (r() - .5) * 8 + (r() < .12 ? 5 : 0) + Math.min(5, (S.streak || 0) * 1.5); };
+      const streakBonus = S.ser === 4 ? Math.min(5, (S.streak || 0) * 1.5) : 0;
+      const fm = d => { d.form = d.p ? 0 : (r() - .5) * 8 + (r() < .12 ? 5 : 0) + streakBonus; };
       
       if (S.ser < 4) {
         S.T = sr.T.map(([nome], i) => ({ n: nome, c: carBase(S.ser, i, y), pts: 0 }));
         S.F = [];
-        sr.T.forEach((_, i) => { for (let k = 0; k < 2; k++) { S.F.push({ n: rn(r), f: rf(r), t: i, r: sr.lv[0] + r() * (sr.lv[1] - sr.lv[0]) + (5 - i) * .7, pts: 0, w: 0, pd: 0, out: 0 }); } });
+        sr.T.forEach((_, i) => { for (let k = 0; k < 2; k++) { S.F.push({ n: rn(r), f: rf(r), t: i, r: sr.lv[0] + r() * (sr.lv[1] - sr.lv[0]) + (5 - i) * .7, pts: 0, w: 0, pd: 0 }); } });
         S.F[2 * S.team + 1] = S.me; S.F.forEach(fm); S.tn = S.T[S.team].n; S.sess = Array(sr.R).fill('gp');
       } else {
-        S.F = S.grid; S.T = S.f1t; S.F.forEach(d => { d.pts = d.w = d.pd = d.out = 0; fm(d); });
+        S.F = S.grid; S.T = S.f1t; S.F.forEach(d => { d.pts = d.w = d.pd = 0; fm(d); });
         S.T.forEach(t => t.pts = 0); S.tn = S.T[S.team].n; S.sess = [];
         for (let i = 0; i < 24; i++) { if ([1, 4, 8, 12, 16, 20].includes(i)) S.sess.push('sp'); S.sess.push('gp'); }
       }
@@ -673,18 +688,15 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         const sp = S.sess[i] === 'sp', wet = rr() < .18, P = sp ? SPT : PTS;
 
         let qs = S.F.map(d => {
-          if (d.out > 0) return {d, q: -999};
           let q_sk = d.p ? S.v[0]*gF(S.age) : d.r + (d.form||0);
           return {d, q: q_sk*0.40 + S.T[d.t].c*0.60 + (rr()-0.5)*12};
         }).sort((x,y) => y.q - x.q);
         qs.forEach((item, idx) => item.grid = idx + 1);
 
         let rs = qs.map(item => {
-          if (item.q === -999) return {d: item.d, s: -999};
           let d = item.d;
-          
           const car = S.T[d.t].c;
-          if (rr() < clamp(.02 + (82 - car) * .002, .015, .10)) return {d, s: -999, grid: item.grid};   // quebra/acidente
+          if (rr() < clamp(.02 + (82 - car) * .002, .015, .10)) return {d, s: -999, grid: item.grid}; // quebra/acidente
           
           let r_sk = d.p ? S.v[1]*gF(S.age) : d.r + (d.form||0);
           let start_bonus = d.p ? (S.v[2]-70)*0.08 : 0;
@@ -692,35 +704,36 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
           let rain_bonus  = (wet && d.p) ? (S.v[4]-70)*0.25 : 0;
           let tire_bonus  = (!sp && d.p) ? (S.v[5]-70)*0.10 : 0;
           let ment_bonus  = (d.p && i >= S.sess.length - 2) ? (S.v[7]-70)*0.15 : 0;
-          let rng_spread = d.p ? Math.max(4, 15 - (S.v[6]-70)*0.15) : 14;
+          let player_mod  = d.p ? S.mod : 0;
+          let rng_spread  = d.p ? Math.max(4, 15 - (S.v[6]-70)*0.15) : 14;
           let roll = (rr() + rr() + rr() - 1.5) * rng_spread;
 
-          let s = r_sk*0.30 + car*0.50 + item.q*0.15 + start_bonus + overt_bonus + rain_bonus + tire_bonus + ment_bonus + roll + S.mod;
-          s -= item.grid * 0.5;      // era 1.3
+          let s = r_sk*0.30 + car*0.50 + item.q*0.15 + start_bonus + overt_bonus + rain_bonus + tire_bonus + ment_bonus + player_mod + roll;
+          s -= item.grid * 0.5;
           return {d, s, grid: item.grid};
         }).sort((x,y) => y.s - x.s);
 
         rs.forEach((item, j) => {
           const d = item.d;
           if (item.s < -50) {
-            if (d.p && item.grid) res = { grid: item.grid, pos: j + 1, pts: 0, wet, sp, dnf: 1 };
+            if (d.p) res = { grid: item.grid, pos: j + 1, pts: 0, wet, sp, dnf: 1 };
             return;
           }
           const pts = P[j] || 0;
           d.pts += pts; S.T[d.t].pts += pts;
           if (!sp) { if (j === 0) d.w++; if (j < 3) d.pd++; }
-          if (d.p) res = { grid: item.grid, pos: j + 1, pts, wet, sp };
+          if (d.p) res = { grid: item.grid, pos: j + 1, pts, wet, sp, dnf: 0 };
         });
       }
       return res;
     }
 
-    function rookie(t) { S.nid++; const r = R(S.seed + 'rk' + S.year + t + S.nid); return { n: rn(r), f: rf(r), t, r: 68 + r() * 8, pk: Math.round(74 + Math.pow(r(), 2.2) * 24), age: 19 + Math.floor(r() * 3), ct: 2, pts: 0, w: 0, pd: 0, out: 0 }; }
+    function rookie(t) { S.nid++; const r = R(S.seed + 'rk' + S.year + t + S.nid); return { n: rn(r), f: rf(r), t, r: 68 + r() * 8, pk: Math.round(74 + Math.pow(r(), 2.2) * 24), age: 19 + Math.floor(r() * 3), ct: 2, pts: 0, w: 0, pd: 0 }; }
 
     function carsStep() {
       const r = R(S.seed + 'cs' + S.year), T = S.f1t, old = T.map(t => t.c);
-      const rk = [...T].sort((a, b) => b.pts - a.pts);                // construtores da temporada que acabou
-      if (S.nx) {                                                     // novo regulamento, ancorado no histórico
+      const rk = [...T].sort((a, b) => b.pts - a.pts);
+      if (S.nx) {
         T.forEach((t, i) => {
           t.b = Math.round(.5 * (t.b ?? t.c) + .5 * S.nx[i]);
           t.c = clamp(Math.round(.4 * t.c + .6 * t.b + (r() - .5) * 6), old[i] - 14, old[i] + 14);
@@ -736,8 +749,8 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       } else {
         T.forEach(t => {
           t.b ??= t.c;
-          const pos = rk.indexOf(t), atr = pos < 3 ? -1.5 : pos >= T.length - 3 ? 2 : 0;   // limite de testes aerodinâmicos (ATR)
-          const step = (t.b + atr - t.c) * .3 + (r() + r() - 1) * 7;                       // volta à média + ruído
+          const pos = rk.indexOf(t), atr = pos < 3 ? -1.5 : pos >= T.length - 3 ? 2 : 0;
+          const step = (t.b + atr - t.c) * .3 + (r() + r() - 1) * 7;
           t.c = clamp(Math.round(t.c + clamp(step, -9, 9)), Math.max(50, t.b - 12), Math.min(97, t.b + 9));
         });
         const d = T.map((t, i) => t.c - old[i]), up = d.indexOf(Math.max(...d)), dn = d.indexOf(Math.min(...d));
@@ -772,9 +785,9 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       for (let k = 0, x = 0; k < 80 && x < 2 && open.length > 1; k++) {
         const a = open[Math.floor(r() * open.length)], b = open[Math.floor(r() * open.length)];
         if (a.t === b.t || a.ct > 0 || b.ct > 0) continue;
-        if (T[b.t].c < T[a.t].c + 6) continue;                 // a só sobe para equipe claramente melhor
-        if (a.r < b.r + 2) continue;                           // e precisa ser melhor que quem cede a vaga
-        if (b.r >= 86 && b.age < 35) continue;                 // astro nunca é rebaixado
+        if (T[b.t].c < T[a.t].c + 6) continue;
+        if (a.r < b.r + 2) continue;
+        if (b.r >= 86 && b.age < 35) continue;
         const from = cn(a), to = cn(b);
         [a.t, b.t] = [b.t, a.t];
         a.ct = 2 + Math.floor(r() * 2);
@@ -799,7 +812,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       S.me.t = t;
     }
 
-    function eg() { if (!S.grid) { S.grid = CUR.map(d => ({ n: d[0], f: d[1], r: d[2], age: d[7], t: d[8], pts: 0, w: 0, pd: 0, out: 0 })); S.f1t = F1T.map(([n, c]) => ({ n, c, b: c, pts: 0 })); } }
+    function eg() { if (!S.grid) { S.grid = CUR.map(d => ({ n: d[0], f: d[1], r: d[2], age: d[7], t: d[8], pts: 0, w: 0, pd: 0 })); S.f1t = F1T.map(([n, c]) => ({ n, c, b: c, pts: 0 })); } }
 
     function offers() {
       eg();
@@ -846,7 +859,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       
       carsStep();
       
-      S.streak = pos === 1 ? (S.streak || 0) + 1 : 0;
+      S.streak = (F1 && pos === 1) ? (S.streak || 0) + 1 : 0;
       
       S.f1n = (S.f1n || 0) + 1;
       if (S.f1n % 4 === 3) {
@@ -873,6 +886,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         const a = Math.floor(r() * 8), b = (a + 1 + Math.floor(r() * 7)) % 8; 
         S.v[a] = Math.min(S.god ? 100 : 99, S.v[a] + 4); 
         S.v[b] = Math.min(S.god ? 100 : 99, S.v[b] + 3); 
+        S.brk = 1;
         S.msg += ` 🚀 BREAKOUT: ${AT[a]} +4, ${AT[b]} +3!`; 
       }
       if (pos <= 8 && !S.spons && r() < .28) { S.spons = 2; S.msg += ' 💼 Você conseguiu um novo patrocínio.'; } else if (!F1 && S.ser >= 1 && pos > 3 && !S.spons && r() < .25) { S.paid = 1; S.msg += ' 💸 Um piloto pagante assumiu sua vaga! Fique esperto.'; }
@@ -904,25 +918,23 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     function sbase(o) { const O = ovr(), P = pot(), c = carOf(o); if (o.ser === 4) return Math.min(60, .5 * Math.exp((O - 62) / 7) * Math.max(.55, Math.min(1.25, .55 + (c - 50) / 40 * .6)) * (1 + Math.max(0, P - O) * .008)); const k = [[.001, 40], [.004, 48], [.01, 55], [.02, 60]][o.ser]; return Math.min(60, k[0] * Math.exp((O - k[1]) / 9) * (1.2 - o.t * .07) * (1 + Math.max(0, P - O) * .008)); }
     
+    const maxSal = n => sbase(n.o) * (1.1 + nb(n));
+
     function fixNeg() { 
       const n = S.neg, b = sbase(n.o); 
       const totalRaces = (n.o.ser === 4 ? 24 : SR[n.o.ser].R) * n.yrs;
       
-      n.w = Math.min(Math.max(0, n.w), totalRaces); 
-      n.p = Math.min(Math.max(0, n.p), totalRaces); 
+      n.w = clamp(n.w, 0, totalRaces); 
+      n.p = clamp(n.p, 0, totalRaces); 
       
-      const wBonus = (n.w / totalRaces) * 0.40; 
-      const pBonus = (n.p / totalRaces) * 0.20; 
-      const tiBonus = n.ti ? 0.15 : 0; 
-
-      const mx = b * (1.1 + wBonus + pBonus + tiBonus); 
+      const mx = maxSal(n); 
       if (n.sal == null) n.sal = b; 
-      n.sal = Math.min(mx, Math.max(b * .5, n.sal)); 
+      n.sal = clamp(n.sal, b * .5, mx); 
     }
     
     function signC() { fixNeg(); S.con = { yrs: S.neg.yrs, left: S.neg.yrs, sal: S.neg.sal, w: S.neg.w, p: S.neg.p, ti: S.neg.ti, gw: 0, gp: 0, gt: 0 }; if (S.neg.o.poach) { S.rep -= 2; } const o = S.neg.o; S.neg = null; pick(o); }
     
-    function evalCon() { const c = S.con, g = []; if (c.w) g.push(c.gw >= c.w); if (c.p) g.push(c.gp >= c.p); if (c.ti) g.push(c.gt > 0); S.con = null; if (!g.length) return; const r = g.filter(x => x).length / g.length, cl = () => S.rep = Math.max(-6, Math.min(8, S.rep)); if (r >= 1) { S.rep += 3; S.msg += ' 👀 Metas batidas com sucesso!'; } else if (r >= .5) { S.rep += 1; } else { S.rep -= 2; S.msg += ' ⚠️ Falhou nas metas exigidas pelo chefe.'; } cl(); }
+    function evalCon() { const c = S.con, g = []; if (c.w) g.push(c.gw >= c.w); if (c.p) g.push(c.gp >= c.p); if (c.ti) g.push(c.gt > 0); S.con = null; if (!g.length) return; const r = g.filter(x => x).length / g.length, cl = () => S.rep = clamp(S.rep, -6, 8); if (r >= 1) { S.rep += 3; S.msg += ' 👀 Metas batidas com sucesso!'; } else if (r >= .5) { S.rep += 1; } else { S.rep -= 2; S.msg += ' ⚠️ Falhou nas metas exigidas pelo chefe.'; } cl(); }
     
     const F1C = ['#27f4d2', '#e8002d', '#ff8000', '#1e41ff', '#229971', '#64c4ff', '#6692ff', '#ff87bc', '#c0c0c0', '#b6babd', '#f50537'];
     const oc = v => v >= 88 ? 'g' : v >= 78 ? 'h' : v >= 68 ? 'm' : 'l';
@@ -938,28 +950,35 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         t = '<div class="tw"><table><thead><tr><th>#</th><th>PILOTO</th><th>OVR</th><th>CARRO</th><th>PTS</th></tr></thead>' + rows.map(d => {
           const o = d.p ? ovr() : Math.round(d.r);
           const cInfo = getCarRankInfo(S.ser, d.t);
-          return `<tr class="${d.p ? 'me' : ''}"><td><span class="ps">${rk.indexOf(d) + 1}</span></td><td><i class="dt" style="background:${tcl(d.t)}"></i><b style="font-family: var(--f-head); font-size:16px;">${d.n}</b><br><small class="mut" style="font-weight:600;">${S.T[d.t].n} (${cInfo.rank}º)</small></td><td><span class="ov ${oc(o)}">${o}</span></td><td><span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:4px">${cInfo.ovr}</span></td><td class="pp">${d.pts}</td></tr>`;
+          return `<tr class="${d.p ? 'me' : ''}"><td><span class="ps">${rk.indexOf(d) + 1}</span></td><td><i class="dt" style="background:${tcl(d.t)}"></i><b style="font-family: var(--f-head); font-size:16px;">${esc(d.n)}</b><br><small class="mut" style="font-weight:600;">${S.T[d.t].n} (${cInfo.rank}º)</small></td><td><span class="ov ${oc(o)}">${o}</span></td><td><span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:4px">${cInfo.ovr}</span></td><td class="pp">${d.pts}</td></tr>`;
         }).join('') + '</table></div>'; 
       } else { 
         const sortedTeams = [...S.T].sort((a, b) => b.pts - a.pts);
         t = '<div class="tw"><table><thead><tr><th>#</th><th>EQUIPE</th><th>CARRO</th><th>STATUS</th><th>PTS</th></tr></thead>' + sortedTeams.map((x, i) => {
           const tIdx = S.T.indexOf(x), info = getCarRankInfo(S.ser, tIdx);
-          return `<tr class="${x.n === S.tn ? 'me' : ''}"><td><span class="ps">${i + 1}</span></td><td><i class="dt" style="background:${tcl(tIdx)}"></i><b style="font-family: var(--f-head); font-size:16px;">${x.n}</b><br><small class="mut" style="font-weight:600;">${S.F.filter(d => d.t === tIdx).map(d => d.n.split(' ').pop()).join(' / ')}</small></td><td><span class="ov ${oc(info.ovr)}">${info.ovr}</span></td><td><small class="mut" style="font-weight:700;"><b style="color:var(--tx)">${info.rank}º</b> / ${info.total}<br>${info.label}</small></td><td class="pp">${x.pts}</td></tr>`;
+          return `<tr class="${x.n === S.tn ? 'me' : ''}"><td><span class="ps">${i + 1}</span></td><td><i class="dt" style="background:${tcl(tIdx)}"></i><b style="font-family: var(--f-head); font-size:16px;">${x.n}</b><br><small class="mut" style="font-weight:600;">${S.F.filter(d => d.t === tIdx).map(d => esc(d.n.split(' ').pop())).join(' / ')}</small></td><td><span class="ov ${oc(info.ovr)}">${info.ovr}</span></td><td><small class="mut" style="font-weight:700;"><b style="color:var(--tx)">${info.rank}º</b> / ${info.total}<br>${info.label}</small></td><td class="pp">${x.pts}</td></tr>`;
         }).join('') + '</table></div>'; 
       }
       
       const myCar = S.F.length ? getCarRankInfo(S.ser, S.team) : null;
       $('#stn').innerHTML = '<div class="tag" style="margin-bottom:12px">' + (S.F.length ? sr.n + ' · ' + S.year : 'GRID') + '</div>' + t;
-      $('#pf').innerHTML = `<div class="pf"><div class="ring" style="--p:${ovr()}"><b>${ovr()}</b><small>OVR ATUAL</small></div><div style="flex:1;min-width:180px"><h3 style="font-size:32px; letter-spacing:-1px;">${S.flag} ${S.name} <span class="gd" style="padding: 2px 8px; border-radius: 4px;">#${S.num}</span></h3><div class="chips"><span><i class="dt" style="background:${S.F.length ? tcl(S.team) : '#555'}; border: 2px solid var(--tx);"></i>${S.tn} ${myCar ? `· Carro ${myCar.ovr} (${myCar.rank}º)` : ''}</span><span>${sr.n}</span><span>${S.year}</span><span>${S.age} anos</span><span style="background:var(--g); color:var(--tx); border-color:var(--tx);">POT ${Math.round(pot())}</span><span>💰 ${fmt(S.cash)}</span>${S.rep >= 2 ? '<span style="background:var(--tx); color:#fff;">Em alta</span>' : S.rep <= -2 ? '<span style="background:var(--r); color:#fff;">Manchado</span>' : ''}</div>${S.con ? `<div class="ct">📄 Contrato: ${S.con.left} ano(s) restante(s)</div>` : ''}</div></div><div class="stats"><div>POSIÇÃO ATUAL<b>${S.F.length ? pos + 'º' : '—'}</b></div><div>PONTOS<b>${me.pts}</b></div><div>VITÓRIAS<b>${me.w}</b></div><div>PÓDIOS<b>${me.pd}</b></div></div>`;
+      $('#pf').innerHTML = `<div class="pf"><div class="ring" style="--p:${ovr()}"><b>${ovr()}</b><small>OVR ATUAL</small></div><div style="flex:1;min-width:180px"><h3 style="font-size:32px; letter-spacing:-1px;">${S.flag} ${esc(S.name)} <span class="gd" style="padding: 2px 8px; border-radius: 4px;">#${S.num}</span></h3><div class="chips"><span><i class="dt" style="background:${S.F.length ? tcl(S.team) : '#555'}; border: 2px solid var(--tx);"></i>${S.tn} ${myCar ? `· Carro ${myCar.ovr} (${myCar.rank}º)` : ''}</span><span>${sr.n}</span><span>${S.year}</span><span>${S.age} anos</span><span style="background:var(--g); color:var(--tx); border-color:var(--tx);">POT ${Math.round(pot())}</span><span>💰 ${fmt(S.cash)}</span>${S.rep >= 2 ? '<span style="background:var(--tx); color:#fff;">Em alta</span>' : S.rep <= -2 ? '<span style="background:var(--r); color:#fff;">Manchado</span>' : ''}</div>${S.con ? `<div class="ct">📄 Contrato: ${S.con.left} ano(s) restante(s)</div>` : ''}</div></div><div class="stats"><div>POSIÇÃO ATUAL<b>${S.F.length ? pos + 'º' : '—'}</b></div><div>PONTOS<b>${me.pts}</b></div><div>VITÓRIAS<b>${me.w}</b></div><div>PÓDIOS<b>${me.pd}</b></div></div>`;
       $('#ys').innerHTML = S.rows.map(r => `<span class="${r.pos === 1 ? 't' : ''}">${r.y} · ${r.s} · ${r.tm} · P${r.pos}${r.pos === 1 ? ' 🏆' : ''}</span>`).join('') || '<span class="mut" style="border:none;">Sua carreira está apenas começando...</span>';
       
       let b = ''; const ph = S.ph;
       if (ph === 'start') { b = `<h3>${S.year} · ${sr.n} · ${S.tn}</h3><p class="mut" style="font-size:16px;">O calendário tem ${S.sess.length} corridas na temporada. Seu carro é o ${myCar ? myCar.rank + 'º' : ''} do grid.</p><button data-a="go" class="cta">LARGAR TEMPORADA</button>`; }
       if (ph === 'mom_pre') { const m = S.mom_idx, tit = m === 0 ? 'ABERTURA DA TEMPORADA' : m === 1 ? 'METADE DO CAMPEONATO' : 'DECISÃO DO TÍTULO', sub = m === 0 ? 'Sua estreia no ano. Concentração total no box.' : m === 1 ? `Etapa ${S.stops[1]+1}. Você está em P${pos} com ${S.me.pts} pts.` : `Última corrida! Você tem ${S.me.pts} pts e está em P${pos}.`; b = `<span class="tag">CORRIDA EM DESTAQUE</span><h3 class="big">${tit}</h3><p class="mut" style="font-size:18px; font-weight:500;">${sub}</p><div class="row"><button data-a="race_mom" class="cta" style="background: var(--tx); color: #fff;">IR PARA A PISTA</button></div>`; }
-      if (ph === 'mom_pos') { const r = S.last_res; b = `<span class="tag">RESULTADO DO GP</span><h3 class="big ${r.pos===1?'gd':''}">${r.pos}º LUGAR</h3><p class="mut" style="font-size:18px;">Largou em P${r.grid} e cruzou a linha de chegada em P${r.pos}. ${r.wet ? '⛈️ Pista muito molhada!' : ''} <b style="color:var(--tx);">(+${r.pts} pts)</b> ${r.dnf ? '💥 Abandonou a prova!' : ''}</p><div class="row"><button data-a="cont_mom" class="cta">CONTINUAR CAMPEONATO</button></div>`; }
+      if (ph === 'mom_pos') { 
+        const r = S.last_res; 
+        const headline = r.dnf ? 'ABANDONOU (DNF)' : `${r.pos}º LUGAR`;
+        const desc = r.dnf 
+          ? `Largou em P${r.grid}, mas sofreu um abandono por incidente ou falha mecânica! ${r.wet ? '⛈️ Pista muito molhada!' : ''} <b style="color:var(--r);">(+0 pts)</b>`
+          : `Largou em P${r.grid} e cruzou a linha de chegada em P${r.pos}. ${r.wet ? '⛈️ Pista muito molhada!' : ''} <b style="color:var(--tx);">(+${r.pts} pts)</b>`;
+        b = `<span class="tag">RESULTADO DO GP</span><h3 class="big ${!r.dnf && r.pos===1?'gd':r.dnf?'ko':''}">${headline}</h3><p class="mut" style="font-size:18px;">${desc}</p><div class="row"><button data-a="cont_mom" class="cta">CONTINUAR CAMPEONATO</button></div>`; 
+      }
       if (ph === 'event') { b = `<span class="tag">DECISÃO DA EQUIPE</span><h3 class="big">${S.ev[0]}</h3>` + [1, 2].map((i, k) => `<button class="op" data-a="ch" data-k="${k}"><b>${S.ev[i][0]}</b><small style="color:var(--tx); font-weight:700;">${Math.round(S.pp[k] * 100)}% DE CHANCE DE DAR CERTO</small></button>`).join(''); }
-      if (ph === 'spin') { const o = S.out; b = `<div class="tag" style="display:block; text-align:center">SORTEIO</div><div class="wh"><div class="pt">▼</div><div class="wl" id="wl" style="background:conic-gradient(var(--tx) 0 ${o.p * 100}%,#e4e4e7 0)"></div></div>`; setTimeout(() => { const w = $('#wl'); if (w) w.style.transform = `rotate(${1800 - o.roll * 360}deg)`; }, 80); }
-      if (ph === 'res') { const o = S.out; b = `<h3 class="${o.ok ? 'ok' : 'ko'}" style="font-size:40px;text-align:center;text-transform:uppercase;">${o.ok ? 'DEU CERTO!' : 'DEU ERRADO!'}</h3><div class="row" style="justify-content:center"><button data-a="co" class="cta">VOLTAR PARA A TEMPORADA</button></div>`; }
+      if (ph === 'spin') { const o = S.out; b = `<div class="tag" style="display:block; text-align:center">SORTEIO</div><div class="wh"><div class="pt">▼</div><div class="wl" id="wl" style="background:conic-gradient(var(--tx) 0 ${o.p * 100}%,#e4e4e7 0)"></div></div><div class="row" style="justify-content:center"><button class="g sm" data-a="skip_spin">PULAR ANIMAÇÃO</button></div>`; setTimeout(() => { const w = $('#wl'); if (w) w.style.transform = `rotate(${1800 - o.roll * 360}deg)`; }, 80); }
+      if (ph === 'res') { const o = S.out; b = `<h3 class="${o.ok ? 'ok' : 'ko'}" style="font-size:40px;text-align:center;text-transform:uppercase;">${o.ok ? 'DEU CERTO!' : 'DEU ERRADO!'}</h3><p class="mut" style="text-align:center;font-weight:600;font-size:16px;">${o.txt || ''}</p><div class="row" style="justify-content:center"><button data-a="co" class="cta">VOLTAR PARA A TEMPORADA</button></div>`; }
       if (ph === 'offer') { 
         b = `<p style="font-size: 16px; border-left: 4px solid var(--accent); padding-left: 12px; font-weight: 600;">${S.msg}</p><div class="tag">${S.first ? 'ESCOLHA SUA EQUIPE INICIAL' : 'MERCADO DE PILOTOS'}</div>` + S.offs.map((o, k) => {
           const cInfo = getCarRankInfo(o.ser, o.t, true), tName = tnOf(o);
@@ -978,10 +997,11 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       if (ph === 'neg') { 
         const cInfo = getCarRankInfo(S.neg.o.ser, S.neg.o.t, true);
         const maxRaces = (S.neg.o.ser === 4 ? 24 : SR[S.neg.o.ser].R) * S.neg.yrs;
-        b = `<span class="tag">CONTRATO</span><h3 class="big">${SR[S.neg.o.ser].n} · ${tnOf(S.neg.o)}</h3><p class="mut" style="font-size:16px;">Força do Carro: <b style="color:var(--tx)">OVR ${cInfo.ovr}</b> (${cInfo.rank}º do grid · ${cInfo.label})</p><div class="rg">SALÁRIO BASE ESTIMADO: <b>${fmt(sbase(S.neg.o))}</b></div><div class="nl">ANOS DE CONTRATO</div><div class="yb">${[...Array(S.neg.o.ser === 4 ? 4 : 2)].map((_, i) => `<button data-a="ny" data-k="${i + 1}" class="${S.neg.yrs === i + 1 ? 'on' : ''}">${i + 1} ANO${i ? 'S' : ''}</button>`).join('')}</div><div class="nl">OBJETIVOS OBRIGATÓRIOS (Máx: ${maxRaces} corridas)</div><label>Vitórias Exigidas: <b id="nwv">${S.neg.w}</b><input type="range" id="rw" min="0" max="${maxRaces}" value="${S.neg.w}"></label><label>Pódios Exigidos: <b id="npv">${S.neg.p}</b><input type="range" id="rp" min="0" max="${maxRaces}" value="${S.neg.p}"></label><label><input type="checkbox" id="rt" ${S.neg.ti ? 'checked' : ''}>Obrigação de Ser Campeão</label><div class="nl">SUA EXIGÊNCIA SALARIAL: <b class="gd" id="nsv" style="font-size:24px; display:inline-block; margin-left: 8px;">${fmt(S.neg.sal)}</b></div><input type="range" id="rs" min="${sbase(S.neg.o) * .5}" max="${sbase(S.neg.o) * 1.2 * (1 + nb(S.neg))}" step="${sbase(S.neg.o) * 1.2 * (1 + nb(S.neg)) / 300}" value="${S.neg.sal}"><div class="row"><button data-a="ns" class="cta" style="background:var(--gr)">ASSINAR CONTRATO</button><button class="g" data-a="nb">VOLTAR</button></div>`; 
+        const mxSal = maxSal(S.neg);
+        b = `<span class="tag">CONTRATO</span><h3 class="big">${SR[S.neg.o.ser].n} · ${tnOf(S.neg.o)}</h3><p class="mut" style="font-size:16px;">Força do Carro: <b style="color:var(--tx)">OVR ${cInfo.ovr}</b> (${cInfo.rank}º do grid · ${cInfo.label})</p><div class="rg">SALÁRIO BASE ESTIMADO: <b>${fmt(sbase(S.neg.o))}</b></div><div class="nl">ANOS DE CONTRATO</div><div class="yb">${[...Array(S.neg.o.ser === 4 ? 4 : 2)].map((_, i) => `<button data-a="ny" data-k="${i + 1}" class="${S.neg.yrs === i + 1 ? 'on' : ''}">${i + 1} ANO${i ? 'S' : ''}</button>`).join('')}</div><div class="nl">OBJETIVOS OBRIGATÓRIOS (Máx: ${maxRaces} corridas)</div><label>Vitórias Exigidas: <b id="nwv">${S.neg.w}</b><input type="range" id="rw" min="0" max="${maxRaces}" value="${S.neg.w}"></label><label>Pódios Exigidos: <b id="npv">${S.neg.p}</b><input type="range" id="rp" min="0" max="${maxRaces}" value="${S.neg.p}"></label><label><input type="checkbox" id="rt" ${S.neg.ti ? 'checked' : ''}>Obrigação de Ser Campeão</label><div class="nl">SUA EXIGÊNCIA SALARIAL: <b class="gd" id="nsv" style="font-size:24px; display:inline-block; margin-left: 8px;">${fmt(S.neg.sal)}</b></div><input type="range" id="rs" min="${sbase(S.neg.o) * .5}" max="${mxSal}" step="${mxSal / 300}" value="${S.neg.sal}"><div class="row"><button data-a="ns" class="cta" style="background:var(--gr)">ASSINAR CONTRATO</button><button class="g" data-a="nb">VOLTAR</button></div>`; 
       }
       if (ph === 'end') { b = `<p style="font-size:18px;"><b>${S.msg}</b></p><h3 style="font-size:36px; border-top:4px solid var(--tx); padding-top:16px; margin-top:24px;">Fim da Carreira.</h3><button data-a="fin" class="cta">VER RESULTADO FINAL</button>`; }
-      $('#bx').innerHTML = b; $('#pe').textContent = S.pe ? 'RECOLHER PAINEL' : 'VER MANCHETES'; $('#pr').innerHTML = S.news.slice(0, S.pe ? 30 : 6).map(n => `<div class="nw ${S.op[n.i] ? 'o' : ''}" data-i="${n.i}"><div class="nh"><span>${n.y}</span><b style="font-family:var(--f-head);">${n.t}</b><em>+</em></div><p>${n.d || ''}</p></div>`).join(''); save();
+      $('#bx').innerHTML = b; $('#pe').textContent = S.pe ? 'RECOLHER PAINEL' : 'VER MANCHETES'; $('#pr').innerHTML = S.news.slice(0, S.pe ? 30 : 6).map(n => `<div class="nw ${S.op[n.i] ? 'o' : ''}" data-i="${n.i}"><div class="nh"><span>${n.y}</span><b style="font-family:var(--f-head);">${esc(n.t)}</b><em>+</em></div><p>${esc(n.d || '')}</p></div>`).join(''); save();
     }
 
     $('#bx').onclick = e => {
@@ -992,11 +1012,20 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       if (a === 'go') { S.stops = [0, Math.floor(S.sess.length / 2), S.sess.length - 1]; S.next_race = 0; S.ph = 'mom_pre'; S.mom_idx = 0; } 
       else if (a === 'race_mom') { S.last_res = sim_races(S.stops[S.mom_idx], S.stops[S.mom_idx] + 1); S.next_race = S.stops[S.mom_idx] + 1; S.ph = 'mom_pos'; } 
       else if (a === 'cont_mom') {
-        if (S.mom_idx === 0) { sim_races(S.next_race, S.stops[1]); S.ph = 'event'; S.pp = [1, 2].map(i => { const o = S.ev[i]; const p = o[1] + (ovr() - 72) * .006 + (S.v[o[3]] - pot()) * .004 + (R(S.seed + 'pj' + S.year + S.ser + i)() - .5) * .18; return Math.round(Math.max(.12, Math.min(.9, p)) * 100) / 100; }); } 
+        if (S.mom_idx === 0) { sim_races(S.next_race, S.stops[1]); S.ph = 'event'; S.pp = [1, 2].map(i => { const o = S.ev[i]; const p = o[1] + (ovr() - 72) * .006 + (S.v[o[3]] - pot()) * .004 + (R(S.seed + 'pj' + S.year + S.ser + i)() - .5) * .18; return Math.round(clamp(p, .12, .9) * 100) / 100; }); } 
         else if (S.mom_idx === 1) { sim_races(S.next_race, S.stops[2]); S.ph = 'mom_pre'; S.mom_idx = 2; } 
         else if (S.mom_idx === 2) { sim_races(S.next_race, S.sess.length); seasonEnd(); }
       } 
-      else if (a === 'ch') { const k = +b.dataset.k; const o = S.ev[1 + k]; const roll = R(S.seed + 'x' + S.year + S.ser + k)(); const ok = roll < S.pp[k]; const evnt = ok ? o.slice(2, 6) : o.slice(6, 10); S.v[evnt[1]] = Math.max(40, Math.min(S.god ? 100 : 99, S.v[evnt[1]] + evnt[2])); S.mod += evnt[3]; S.out = { roll, p: S.pp[k], ok }; S.ph = 'spin'; setTimeout(() => { S.ph = 'res'; draw(); }, 3500); } 
+      else if (a === 'ch') { 
+        const k = +b.dataset.k; const o = S.ev[1 + k]; const roll = R(S.seed + 'x' + S.year + S.ser + k)(); const ok = roll < S.pp[k]; const evnt = ok ? o.slice(2, 6) : o.slice(6, 10); 
+        S.v[evnt[1]] = clamp(S.v[evnt[1]] + evnt[2], 40, S.god ? 100 : 99); 
+        S.mod += evnt[3]; 
+        S.out = { roll, p: S.pp[k], ok, txt: evnt[0] }; 
+        S.ph = 'spin'; 
+        clearTimeout(spinTimer);
+        spinTimer = setTimeout(() => { if (S && S.ph === 'spin') { S.ph = 'res'; draw(); } }, 3400); 
+      } 
+      else if (a === 'skip_spin') { clearTimeout(spinTimer); S.ph = 'res'; }
       else if (a === 'co') { S.ph = 'mom_pre'; S.mom_idx = 1; } 
       else if (a === 'of') { const o = S.offs[+b.dataset.k]; if (o.cont) pick(o); else { S.neg = { o, yrs: o.ser === 4 ? 2 : 1, w: 0, p: 0, ti: 0, sal: null }; fixNeg(); S.ph = 'neg'; } } 
       else if (a === 'nb') { S.neg = null; S.ph = 'offer'; } else if (a === 'ns') { signC(); } else if (a === 'ny') { S.neg.yrs = +b.dataset.k; fixNeg(); } else if (a === 'fin') { finish(); }
@@ -1023,63 +1052,80 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     const tier = () => { const { t, w, pd } = S.tot, b = S.rows.some(r => r.s === 'F1' && r.pos <= 5); return t >= 8 && w >= 100 ? 11 : t >= 7 ? 10 : t >= 5 ? 9 : t >= 4 ? 8 : t >= 3 ? 7 : t >= 2 ? 6 : t >= 1 ? 5 : w >= 10 ? 4 : (w >= 3 || pd >= 10) ? 3 : (pd >= 1 || b) ? 2 : 1; };
 
     function finish() {
-      const ti = tier(), T = S.tot; show('res');
-      $('#fc').innerHTML = `<div class="o">${S.peak}</div><b style="font-size:24px; background:var(--tx); color:#fff; padding:4px 12px; border-radius:4px;">${S.flag} #${S.num}</b><div class="n">${S.name}</div><div class="gr"><span>🏆 ${T.t} TÍTULOS F1</span><span>🏁 ${T.w} VIT.</span><span>🥇 ${T.pd} PÓDIOS</span><span>⭐ ${T.pts} PONTOS</span><span>💰 ${fmt(S.cash)}</span></div><p style="font-weight:800; font-family:var(--f-head); font-size:18px; margin:16px 0 0; color:var(--accent);">NÍVEL ${ti} · ${TN[ti - 1].toUpperCase()}</p>`;
+      const ti = tier(), T = S.tot;
+      localStorage.removeItem('tc_save');
+      G = null;
+      show('res');
+      $('#fc').innerHTML = `<div class="o">${S.peak}</div><b style="font-size:24px; background:var(--tx); color:#fff; padding:4px 12px; border-radius:4px;">${S.flag} #${S.num}</b><div class="n">${esc(S.name)}</div><div class="gr"><span>🏆 ${T.t} TÍTULOS F1</span><span>🏁 ${T.w} VIT.</span><span>🥇 ${T.pd} PÓDIOS</span><span>⭐ ${T.pts} PONTOS</span><span>💰 ${fmt(S.cash)}</span></div><p style="font-weight:800; font-family:var(--f-head); font-size:18px; margin:16px 0 0; color:var(--g);">NÍVEL ${ti} · ${TN[ti - 1].toUpperCase()}</p>`;
       $('#ld').innerHTML = TN.map((n, i) => `<div class="${i + 1 === ti ? 'on' : i + 1 < ti ? 'p' : ''}">${i + 1}. ${n}</div>`).join('');
-      try { const a = JSON.parse(localStorage.getItem('tc_best') || '[]'); a.push({ n: S.name, s: T.t * 100 + T.w * 2 + T.pd, t: ti, ti: T.t, w: T.w, o: S.peak, m: S.mode }); a.sort((x, y) => y.s - x.s); localStorage.setItem('tc_best', JSON.stringify(a.slice(0, 10))); } catch (e) {}
+      try { const a = JSON.parse(localStorage.getItem('tc_best') || '[]'); a.push({ n: S.name, s: T.t * 100 + T.w * 2 + T.pd, t: ti, ti: T.t, w: T.w, o: S.peak }); a.sort((x, y) => y.s - x.s); localStorage.setItem('tc_best', JSON.stringify(a.slice(0, 10))); } catch (e) {}
     }
 
     $('#sh').onclick = () => {
       document.fonts.ready.then(() => {
         const c = document.createElement('canvas'); c.width = 600; c.height = 800; const ctx = c.getContext('2d');
-        ctx.fillStyle = '#FAFAFA'; ctx.fillRect(0,0,600,800);
         
-        ctx.fillStyle = '#d4d4d8';
-        for(let x=0; x<600; x+=24) { for(let y=0; y<800; y+=24) { ctx.beginPath(); ctx.arc(x, y, 1, 0, Math.PI*2); ctx.fill(); } }
+        // Fundo Verde Escuro (Identidade do Jogo)
+        ctx.fillStyle = '#123C2D'; ctx.fillRect(0, 0, 600, 800);
+        
+        // Barra Superior Verde-Lima
+        ctx.fillStyle = '#D7F36A'; ctx.fillRect(0, 0, 600, 12);
 
-        ctx.strokeStyle = '#09090B'; ctx.lineWidth = 12; ctx.strokeRect(6,6,588,788);
+        // Moldura Interna Sutil
+        ctx.strokeStyle = 'rgba(255,255,255,0.18)'; ctx.lineWidth = 2; ctx.strokeRect(28, 28, 544, 744);
         
-        ctx.fillStyle = '#FACC15'; ctx.fillRect(40, 80, 240, 100);
-        ctx.strokeStyle = '#09090B'; ctx.lineWidth = 6; ctx.strokeRect(40, 80, 240, 100);
+        // OVR Peak em destaque
+        ctx.fillStyle = '#D7F36A'; ctx.font = '700 120px "Space Grotesk"'; ctx.fillText(S.peak, 48, 160);
+        ctx.fillStyle = '#FFFFFF'; ctx.font = '700 16px "Space Grotesk"'; ctx.fillText('OVR MÁXIMO', 52, 190);
         
-        ctx.fillStyle = '#09090B'; ctx.font = '900 100px "Space Grotesk"'; ctx.fillText(S.peak, 55, 165);
-        ctx.fillStyle = '#09090B'; ctx.font = '900 40px "Space Grotesk"'; ctx.fillText(S.flag + ' ' + S.name.toUpperCase(), 40, 240);
+        // Nome e Número do Piloto
+        ctx.fillStyle = '#FFFFFF'; ctx.font = '700 38px "Space Grotesk"'; ctx.fillText(`${S.flag} ${S.name.toUpperCase()} #${S.num}`, 48, 265);
         
+        // Linha divisória
+        ctx.fillStyle = 'rgba(255,255,255,0.2)'; ctx.fillRect(48, 290, 504, 2);
+
+        // Nível alcançado
         const ti = tier(); 
-        ctx.fillStyle = '#2563EB'; ctx.font = '900 24px "Space Grotesk"'; ctx.fillText('NÍVEL ' + ti + ' · ' + TN[ti-1].toUpperCase(), 40, 290);
+        ctx.fillStyle = '#D7F36A'; ctx.font = '700 22px "Space Grotesk"'; ctx.fillText(`NÍVEL ${ti} · ${TN[ti-1].toUpperCase()}`, 48, 335);
         
-        ctx.fillStyle = '#09090B'; ctx.font = '800 24px "Inter"'; 
-        ctx.fillText(S.tot.t + ' TÍTULOS F1', 40, 400); 
-        ctx.fillText(S.tot.w + ' VITÓRIAS', 40, 460); 
-        ctx.fillText(S.tot.pd + ' PÓDIOS', 40, 520); 
-        ctx.fillText(S.tot.pts + ' PONTOS', 40, 580);
+        // Caixa de Estatísticas
+        ctx.fillStyle = 'rgba(255,255,255,0.07)'; ctx.fillRect(48, 370, 504, 270);
+        ctx.strokeStyle = 'rgba(255,255,255,0.14)'; ctx.strokeRect(48, 370, 504, 270);
+
+        ctx.fillStyle = '#FFFFFF'; ctx.font = '700 24px "Inter"'; 
+        ctx.fillText(`🏆  ${S.tot.t} TÍTULOS MUNDIAIS F1`, 76, 425); 
+        ctx.fillText(`🏁  ${S.tot.w} VITÓRIAS NA F1`, 76, 478); 
+        ctx.fillText(`🥇  ${S.tot.pd} PÓDIOS NA F1`, 76, 531); 
+        ctx.fillText(`⭐  ${S.tot.pts} PONTOS NA CARREIRA`, 76, 584);
+        ctx.fillStyle = '#D7F36A'; ctx.font = '700 20px "Space Grotesk"';
+        ctx.fillText(`💰  PATRIMÔNIO: ${fmt(S.cash)}`, 76, 622);
         
-        ctx.fillStyle = '#FFFFFF'; ctx.fillRect(40, 710, 260, 50);
-        ctx.strokeRect(40, 710, 260, 50);
-        ctx.fillStyle = '#09090B'; ctx.font = '700 20px "Space Grotesk"'; ctx.fillText('JOGUE O CAMPEÃO', 55, 743);
+        // Rodapé
+        ctx.fillStyle = '#D7F36A'; ctx.fillRect(48, 690, 270, 48);
+        ctx.fillStyle = '#20231F'; ctx.font = '700 18px "Space Grotesk"'; ctx.fillText('O CAMPEÃO · F1 SIMULATOR', 66, 720);
         
-        const img = c.toDataURL('image/png'); const a = document.createElement('a'); a.href = img; a.download = 'THE_CAMPEAO_' + S.name.replace(/\s/g,'_') + '.png'; a.click();
+        const img = c.toDataURL('image/png'); const a = document.createElement('a'); a.href = img; a.download = 'O_CAMPEAO_' + S.name.replace(/\s+/g,'_') + '.png'; a.click();
       });
     };
 
-    function lb() { let a = []; try { a = JSON.parse(localStorage.getItem('tc_best') || '[]'); } catch (e) {} $('#lb').innerHTML = a.length ? '<table><thead><tr><th>#</th><th>PILOTO</th><th>NÍVEL</th><th>TÍTULOS</th><th>VIT</th><th>OVR</th></tr></thead>' + a.map((r, i) => `<tr><td>${i + 1}</td><td><b>${r.n}</b></td><td>${r.t}</td><td>${r.ti}</td><td>${r.w}</td><td><b>${r.o}</b></td></tr>`).join('') + '</table>' : '<p class="mut" style="background:#fff; border:2px solid var(--tx); padding: 16px; border-radius:8px;">Nenhuma carreira jogada ainda.</p>'; } lb();
+    function lb() { let a = []; try { a = JSON.parse(localStorage.getItem('tc_best') || '[]'); } catch (e) {} $('#lb').innerHTML = a.length ? '<table><thead><tr><th>#</th><th>PILOTO</th><th>NÍVEL</th><th>TÍTULOS</th><th>VIT</th><th>OVR</th></tr></thead>' + a.map((r, i) => `<tr><td>${i + 1}</td><td><b>${esc(r.n)}</b></td><td>${r.t}</td><td>${r.ti}</td><td>${r.w}</td><td><b>${r.o}</b></td></tr>`).join('') + '</table>' : '<p class="mut" style="background:#fff; border:2px solid var(--tx); padding: 16px; border-radius:8px;">Nenhuma carreira jogada ainda.</p>'; } lb();
   </script>
 
-<script>
-(() => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion || !('IntersectionObserver' in window)) return;
-  const selectors = ['.race-visual', '.mq', '.sc', 'main h2', '.pn', '.tw'];
-  const nodes = [...new Set(selectors.flatMap(selector => [...document.querySelectorAll(selector)]))];
-  nodes.forEach((node, index) => { node.classList.add('reveal'); node.style.animationDelay = `${Math.min(index % 4, 3) * 65}ms`; });
-  document.documentElement.classList.add('reveal-ready');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-  nodes.forEach(node => observer.observe(node));
-})();
-</script>
+  <script>
+  (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    const selectors = ['.race-visual', '.mq', '.sc', 'main h2', '.pn', '.tw'];
+    const nodes = [...new Set(selectors.flatMap(selector => [...document.querySelectorAll(selector)]))];
+    nodes.forEach((node, index) => { node.classList.add('reveal'); node.style.animationDelay = `${Math.min(index % 4, 3) * 65}ms`; });
+    document.documentElement.classList.add('reveal-ready');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    nodes.forEach(node => observer.observe(node));
+  })();
+  </script>
 </body>
 </html>
