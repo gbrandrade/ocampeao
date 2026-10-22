@@ -387,7 +387,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     // Helpers
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-    const MINAGE = [0, 14, 16, 17, 18]; // Kart, F4, F3, F2, F1
+    const MINAGE = [0, 15, 16, 17, 18]; // Kart, F4, F3, F2, F1
     const canGo = s => S.age + 1 >= MINAGE[s];
     const carBase = (ser, t, y) => {
       const [n, b] = SR[ser].T[t], q = R(S.seed + 'cj' + ser + n + y);
@@ -395,7 +395,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     };
 
     const AT = ['Qualificação', 'Ritmo de corrida', 'Largada', 'Ultrapassagem', 'Chuva', 'Gestão de pneus', 'Consistência', 'Mentalidade'];
-    const CIRCUITS = ['Bahrain International Circuit', 'Jeddah Corniche Circuit', 'Albert Park', 'Suzuka', 'Shanghai International Circuit', 'Miami International Autodrome', 'Imola', 'Monaco', 'Circuit de Barcelona-Catalunya', 'Circuit Gilles-Villeneuve', 'Red Bull Ring', 'Silverstone', 'Spa-Francorchamps', 'Hungaroring', 'Zandvoort', 'Monza', 'Baku City Circuit', 'Marina Bay', 'Circuit of the Americas', 'Autódromo Hermanos Rodríguez', 'Interlagos', 'Las Vegas Strip Circuit', 'Lusail International Circuit', 'Yas Marina'];
     const NA = ['🇧🇷 Brasil', '🇦🇷 Argentina', '🇬🇧 Reino Unido', '🇩🇪 Alemanha', '🇫🇷 França', '🇪🇸 Espanha', '🇮🇹 Itália', '🇳🇱 Holanda', '🇲🇽 México', '🇺🇸 EUA', '🇯🇵 Japão', '🇦🇺 Austrália', '🇨🇦 Canadá', '🇫🇮 Finlândia', '🇵🇹 Portugal', '🇨🇴 Colômbia'];
     
     $('#na').innerHTML = NA.map(n => `<option>${n}</option>`).join('');
@@ -562,82 +561,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       { n: 'F2', R: 14, lv: [70, 86], T: [['Prema', 89], ['Invicta', 88], ['ART Grand Prix', 86], ['Campos', 85], ['MP Motorsport', 84], ['Hitech', 83], ['DAMS', 81], ['Trident', 80], ['Van Amersfoort', 78], ['Rodin', 76]] },
       { n: 'F1' }
     ];
-
-
-    // Campeonatos disponíveis por etapa da carreira. Calendários simplificados para o simulador:
-    // número de eventos/rodadas alinhado ao formato típico; resultados e contratos continuam fictícios.
-    const CHAMPIONSHIPS = {
-      0: [
-        {id:'kart_reg', name:'Kart Regional / Estadual', level:'Regional · Brasil', rounds:10, cost:0, minAge:12, minOvr:0, minPos:99,
-         detail:'8–10 etapas ao longo do ano. Melhor caminho para ganhar quilometragem com logística controlada.',
-         tracks:['Granja Viana','Interlagos','Kartódromo de Lages','Velopark','Kartódromo de Nova Santa Rita','Aldeia da Serra','Beto Carrero','Kartódromo de Itu','Granja Viana','Interlagos']},
-        {id:'kart_brasil', name:'Campeonato Brasileiro de Kart', level:'Nacional · CBA/CNK', rounds:3, cost:0.12, minAge:13, minOvr:58, minPos:8,
-         detail:'Evento nacional intensivo em sede rotativa. O simulador representa classificatórias, bateria decisiva e final em 3 sessões. Exige resultado regional e orçamento para viagem/equipe.',
-         tracks:['Kartódromo sede do Brasileiro']},
-        {id:'kart_copa', name:'Copa Brasil de Kart', level:'Nacional · CBA/CNK', rounds:3, cost:0.10, minAge:13, minOvr:56, minPos:10,
-         detail:'Evento nacional de tiro curto; classificação, baterias e final representadas em 3 sessões no fim de semana.',
-         tracks:['Kartódromo sede da Copa Brasil']},
-        {id:'kart_euro', name:'FIA Karting European Championship · OK-Junior', level:'Internacional · FIA', rounds:4, cost:1.8, minAge:13, minOvr:72, minPos:3,
-         detail:'4 rodadas europeias com heats, Super Heats e Final. Requer equipe internacional, viagem e desempenho de elite.',
-         tracks:['Muro Leccese · Itália','Chiva-Valencia · Espanha','Mülsen · Alemanha','Kristianstad · Suécia']},
-        {id:'kart_world', name:'FIA Karting World Championship · OK-Junior', level:'Mundial · FIA', rounds:3, cost:2.4, minAge:13, minOvr:78, minPos:2,
-         detail:'Etapa única que decide o campeão mundial; 3 sessões representam heats, fase decisiva e final. Convite/equipe de fábrica e orçamento muito elevados.',
-         tracks:['Bahrain · Mundial FIA Karting']}
-      ],
-      1: [
-        {id:'formula_delta', name:'Fórmula Delta / Fórmula Vee', level:'Base · Brasil', rounds:10, cost:0, minAge:14, minOvr:0, minPos:99,
-         detail:'Monopostos de iniciação e custo relativamente menor para aprender corrida de carros antes de migrar para uma F4 homologada.',
-         tracks:['Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Interlagos']},
-        {id:'f4_br', name:'Fórmula 4 Brasil', level:'Nacional · Brasil', rounds:18, cost:0.20, minAge:15, minOvr:52, minPos:99,
-         detail:'Calendário brasileiro de referência: 6 etapas em 2026, representadas por 18 corridas/sessões no simulador. Bom caminho para adaptação aos monopostos.',
-         tracks:['Interlagos','Velocitta','Brasília (calendário variável)','Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Velocitta','Interlagos','Interlagos']},
-        {id:'f4_italy', name:'F4 Italiana', level:'Nacional · Itália', rounds:21, cost:1.6, minAge:15, minOvr:65, minPos:5,
-         detail:'Calendário europeu de alto nível, com equipes profissionais e logística internacional.',
-         tracks:['Misano','Imola','Vallelunga','Mugello','Monza','Paul Ricard','Mugello']},
-        {id:'f4_europe', name:'F4 Espanhola / Britânica', level:'Nacional · Europa', rounds:18, cost:1.2, minAge:15, minOvr:61, minPos:6,
-         detail:'Alternativa europeia competitiva; calendário e número de corridas variam por campeonato/temporada.',
-         tracks:['Barcelona','MotorLand Aragón','Navarra','Jerez','Silverstone','Brands Hatch','Donington Park']}
-      ],
-      2: [
-        {id:'fr_europe', name:'FRECA · Formula Regional European Championship', level:'Continental · Europa', rounds:20, cost:2.4, minAge:16, minOvr:66, minPos:5,
-         detail:'Degrau regional europeu com grid profissional e fins de semana com múltiplas corridas.',
-         tracks:['Hockenheim','Spa-Francorchamps','Zandvoort','Paul Ricard','Mugello','Red Bull Ring','Barcelona','Monza','Imola','Mugello']},
-        {id:'fr_americas', name:'Formula Regional Americas', level:'Continental · Américas', rounds:14, cost:1.4, minAge:16, minOvr:61, minPos:8,
-         detail:'Alternativa continental nas Américas, sujeita a calendário e equipes disponíveis.',
-         tracks:['Road America','Mid-Ohio','Virginia International Raceway','Sebring','COTA','Road Atlanta','Indianapolis']},
-        {id:'fr_oceania', name:'Formula Regional Oceania', level:'Regional · Nova Zelândia', rounds:15, cost:1.5, minAge:16, minOvr:62, minPos:8,
-         detail:'Campeonato de verão no hemisfério sul, usado por jovens como preparação de pré-temporada.',
-         tracks:['Taupō','Hampton Downs','Teretonga','Timaru','Manfeild']}
-      ],
-      3: [
-        {id:'fia_f3', name:'FIA Formula 3 Championship', level:'Internacional · suporte à F1', rounds:20, cost:3.0, minAge:17, minOvr:70, minPos:3,
-         detail:'Calendário FIA F3 2026: 10 rodadas e 20 corridas, em apoio aos GPs da F1. Acesso normalmente depende de resultados e orçamento/academia.',
-         tracks:['Albert Park','Sakhir','Monte Carlo','Barcelona-Catalunya','Spielberg','Silverstone','Spa-Francorchamps','Hungaroring','Monza','Madrid']},
-        {id:'f3_regional', name:'Fórmula 3 Regional / campeonato alternativo', level:'Regional · transição', rounds:16, cost:1.8, minAge:16, minOvr:63, minPos:8,
-         detail:'Opção intermediária para ganhar experiência antes de disputar um assento na FIA F3.',
-         tracks:['Imola','Red Bull Ring','Barcelona','Paul Ricard','Mugello','Monza','Spa-Francorchamps','Hockenheim']}
-      ],
-      4: [
-        {id:'fia_f2', name:'FIA Formula 2 Championship', level:'Internacional · suporte à F1', rounds:28, cost:4.5, minAge:18, minOvr:75, minPos:2,
-         detail:'Último degrau antes da F1, com fins de semana de Sprint e Feature Race nos GPs selecionados.',
-         tracks:['Melbourne','Miami','Montréal','Monte Carlo','Barcelona-Catalunya','Spielberg','Silverstone','Spa-Francorchamps','Hungaroring','Monza','Madrid','Baku','Lusail','Yas Marina']}
-      ]
-    };
-    const getChampionships = ser => (CHAMPIONSHIPS[ser] || []).filter(c =>
-      S.age >= c.minAge && ovr() >= c.minOvr && S.cash >= c.cost &&
-      (c.minPos >= 99 || !S.last || S.last.pos <= c.minPos)
-    );
-    const defaultChampionship = ser => {
-      const available = getChampionships(ser);
-      return available[0] || (CHAMPIONSHIPS[ser] || []).find(c => c.cost === 0) || (CHAMPIONSHIPS[ser] || [])[0];
-    };
-    const applyChampionship = () => {
-      const c = CHAMPIONSHIPS[S.ser]?.find(x => x.id === S.champ) || defaultChampionship(S.ser);
-      if (!c) return;
-      S.champ = c.id;
-      S.sess = Array(c.rounds).fill('gp');
-      S.tracks = Array.from({length:c.rounds}, (_,i) => c.tracks[i % c.tracks.length]);
-    };
 
     const att = d => { const [e, r, a, p] = [d[3], d[4], d[5], d[6]]; return [p, (r + p) / 2, (r + a) / 2, r, a, e, (a + e) / 2, (e * 2 + a) / 3].map(Math.round); };
 
@@ -831,7 +754,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     const getTeammate = () => S.F ? S.F.find(d => d.t === S.team && !d.p) : null;
 
     $('#st').onclick = () => {
-      S = { seed: G.seed, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], raceLog: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null, god: G.god, brk: 0, f1Init: 0, acad: null, h2h: { qW: 0, qL: 0, rW: 0, rL: 0 }, trDone: 0, champ: 'kart_reg', champPaidYear: null };
+      S = { seed: G.seed, name: G.name, flag: G.flag, num: G.num, v: G.v.slice(), ser: 0, year: 2018, age: 12, sy: 1, team: 0, tn: '—', rows: [], news: [], tot: { t: 0, w: 0, pd: 0, pts: 0 }, peak: 0, bad: 0, tab: 0, F: [], T: [], me: { pts: 0, w: 0, pd: 0 }, first: 1, msg: '', op: {}, pe: 0, nid: 0, rep: 0, cash: 0, con: null, neg: null, god: G.god, brk: 0, f1Init: 0, acad: null, h2h: { qW: 0, qL: 0, rW: 0, rL: 0 }, trDone: 0 };
       
       nw('Temporada 2018: Um novo talento surge no Kartismo: ' + S.name, 'Aos 12 anos, começa a sua caminhada rumo à Fórmula 1 enquanto Hamilton e Vettel duelam pelo título mundial na categoria principal.');
       
@@ -852,7 +775,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     function init() {
       const y = S.year, sr = SR[S.ser], r = R(S.seed + 'i' + y + S.ser);
-      S.me.pts = S.me.w = S.me.pd = 0; S.raceLog = []; S.me.p = 1; S.me.n = S.name; S.me.f = S.flag; S.me.t = S.team;
+      S.me.pts = S.me.w = S.me.pd = 0; S.me.p = 1; S.me.n = S.name; S.me.f = S.flag; S.me.t = S.team;
       S.h2h = { qW: 0, qL: 0, rW: 0, rL: 0 };
       S.trDone = 0;
       const streakBonus = S.ser === 4 ? Math.min(5, (S.streak || 0) * 1.5) : 0;
@@ -861,13 +784,8 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       if (S.ser < 4) {
         S.T = sr.T.map(([nome], i) => ({ n: nome, c: carBase(S.ser, i, y), pts: 0 }));
         S.F = [];
-        sr.T.forEach((_, i) => { for (let k = 0; k < 2; k++) {
-          const age = Math.max(S.age, 15 + Math.floor(r() * 8));
-          S.F.push({ n: rn(r), f: rf(r), t: i,
-            r: Math.round(clamp(ovr() + (r() + r() - 1) * 13 + (carBase(S.ser, i, y) - 65) * .12, 42, 96)),
-            age, by: y - age, pts: 0, w: 0, pd: 0 });
-        } });
-        S.F[2 * S.team + 1] = S.me; S.F.forEach(fm); S.tn = S.T[S.team].n; S.sess = Array(sr.R).fill('gp'); S.champ = S.champ || (S.ser === 0 ? 'kart_reg' : null); applyChampionship();
+        sr.T.forEach((_, i) => { for (let k = 0; k < 2; k++) { S.F.push({ n: rn(r), f: rf(r), t: i, r: Math.round(sr.lv[0] + r() * (sr.lv[1] - sr.lv[0]) + (5 - i) * .7), pts: 0, w: 0, pd: 0 }); } });
+        S.F[2 * S.team + 1] = S.me; S.F.forEach(fm); S.tn = S.T[S.team].n; S.sess = Array(sr.R).fill('gp');
       } else {
         S.F = S.grid; S.T = S.f1t; S.F.forEach(d => { d.pts = d.w = d.pd = 0; fm(d); });
         S.T.forEach(t => t.pts = 0); S.tn = S.T[S.team].n; S.sess = [];
@@ -929,13 +847,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
           if (d.p) res = { grid: item.grid, pos: j + 1, pts, wet, sp, dnf: 0, tmPos };
         });
         if (res && tm) res.tmPos = tmPos;
-        const playerResult = rs.find(item => item.d.p);
-        if (playerResult) {
-          const playerIndex = rs.indexOf(playerResult);
-          S.raceLog.push({ round: i + 1, type: sp ? 'Sprint' : 'Race', track: (S.tracks && S.tracks[i]) || CIRCUITS[i % CIRCUITS.length],
-            pos: playerIndex + 1, grid: playerResult.grid, pts: playerResult.s < -50 ? 0 : (P[playerIndex] || 0),
-            dnf: playerResult.s < -50, wet });
-        }
         if (!sp && tm) {
           if (mePos < tmPos) S.h2h.rW++; else S.h2h.rL++;
         }
@@ -1094,7 +1005,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
     function seasonEnd() {
       const rk = rank(), pos = rk.indexOf(S.me) + 1, me = S.me, F1 = S.ser === 4, N = SR[S.ser].n, r = R(S.seed + 'se' + S.year + S.ser);
-      S.last = { pos, pts: me.pts }; S.rows.push({ y: S.year, age: S.age, s: N, tm: S.tn, pos, ovr: ovr(), races: (S.raceLog || []).map(x => ({...x})) }); S.peak = Math.max(S.peak, ovr());
+      S.last = { pos, pts: me.pts }; S.rows.push({ y: S.year, age: S.age, s: N, tm: S.tn, pos, ovr: ovr() }); S.peak = Math.max(S.peak, ovr());
       
       // Notícias Reais da F1 (2018-2025) enquanto o jogador está nas categorias de base
       if (!F1) {
@@ -1208,7 +1119,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       return (n.w / t) * 0.4 + (n.p / t) * 0.2 + (n.ti ? 0.15 : 0); 
     };
 
-    function sbase(o) { const O = ovr(), P = pot(), c = carOf(o); if (o.ser === 4) return clamp(.5 * Math.exp((O - 62) / 7) * Math.max(.55, Math.min(1.25, .55 + (c - 50) / 40 * .6)) * (1 + Math.max(0, P - O) * .008), .15, 60); const k = [[.004, 40], [.012, 48], [.025, 55], [.05, 60]][o.ser]; return clamp(k[0] * Math.exp((O - k[1]) / 9) * (1.2 - o.t * .07) * (1 + Math.max(0, P - O) * .008), .002, 60); }
+    function sbase(o) { const O = ovr(), P = pot(), c = carOf(o); if (o.ser === 4) return Math.min(60, .5 * Math.exp((O - 62) / 7) * Math.max(.55, Math.min(1.25, .55 + (c - 50) / 40 * .6)) * (1 + Math.max(0, P - O) * .008)); const k = [[.001, 40], [.004, 48], [.01, 55], [.02, 60]][o.ser]; return Math.min(60, k[0] * Math.exp((O - k[1]) / 9) * (1.2 - o.t * .07) * (1 + Math.max(0, P - O) * .008)); }
     
     const maxSal = n => sbase(n.o) * (1.1 + nb(n));
 
@@ -1230,20 +1141,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     
     const F1C = ['#27f4d2', '#ff8000', '#e8002d', '#1e41ff', '#229971', '#64c4ff', '#ff87bc', '#b6babd', '#6692ff', '#52e252', '#f50537'];
     const oc = v => v >= 88 ? 'g' : v >= 78 ? 'h' : v >= 68 ? 'm' : 'l';
-    function tcl(t) {
-      if (S.ser === 4 && S.T && S.T[t]) {
-        const name = S.T[t].n.toLowerCase();
-        const teamColors = {
-          mercedes: '#27f4d2', mclaren: '#ff8000', ferrari: '#e8002d',
-          'red bull': '#3671c6', 'racing bulls': '#6692ff', rb: '#6692ff',
-          'aston martin': '#229971', williams: '#64c4ff', alpine: '#ff87bc',
-          haas: '#b6babd', sauber: '#52e252', audi: '#f50537', cadillac: '#d6d6d6'
-        };
-        const key = Object.keys(teamColors).find(k => name.includes(k));
-        if (key) return teamColors[key];
-      }
-      return `hsl(${t * 36} 60% 55%)`;
-    }
+    function tcl(t) { return S.ser === 4 ? F1C[t % F1C.length] : `hsl(${t * 36} 60% 55%)`; }
 
     function draw() {
       const sr = SR[S.ser], rk = rank(), pos = rk.indexOf(S.me) + 1, me = S.me, tm = getTeammate();
@@ -1255,7 +1153,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         t = '<div class="tw"><table><thead><tr><th>#</th><th>PILOTO</th><th>OVR</th><th>CARRO</th><th>PTS</th></tr></thead>' + rows.map(d => {
           const o = d.p ? ovr() : Math.round(d.r);
           const cInfo = getCarRankInfo(S.ser, d.t);
-          const ageTxt = d.p ? S.age : (d.age || (d.by ? S.year - d.by : ''));
+          const ageTxt = d.p ? S.age : (d.age || '');
           return `<tr class="${d.p ? 'me' : ''}"><td><span class="ps">${rk.indexOf(d) + 1}</span></td><td><i class="dt" style="background:${tcl(d.t)}"></i><b style="font-family: var(--f-head); font-size:16px;">${esc(d.n)}</b><br><small class="mut" style="font-weight:600;">${S.T[d.t].n} (${cInfo.rank}º)${ageTxt ? ` · ${ageTxt}a` : ''}</small></td><td><span class="ov ${oc(o)}">${o}</span></td><td><span class="ov ${oc(cInfo.ovr)}" style="font-size:12px;padding:4px">${cInfo.ovr}</span></td><td class="pp">${d.pts}</td></tr>`;
         }).join('') + '</table></div>'; 
       } else { 
@@ -1268,17 +1166,14 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       
       const myCar = S.F.length ? getCarRankInfo(S.ser, S.team) : null;
       const acObj = S.acad ? ACAD.find(a => a.id === S.acad) : null;
-      $('#stn').innerHTML = '<div class="tag" style="margin-bottom:12px">' + (S.F.length ? sr.n + (S.champ && S.ser < 4 ? ' · ' + ((CHAMPIONSHIPS[S.ser] || []).find(c => c.id === S.champ)?.name || '') : '') + ' · ' + S.year : 'GRID') + '</div>' + t;
+      $('#stn').innerHTML = '<div class="tag" style="margin-bottom:12px">' + (S.F.length ? sr.n + ' · ' + S.year : 'GRID') + '</div>' + t;
       $('#pf').innerHTML = `<div class="pf"><div class="ring" style="--p:${ovr()}"><b>${ovr()}</b><small>OVR ATUAL</small></div><div style="flex:1;min-width:180px"><h3 style="font-size:32px; letter-spacing:-1px;">${S.flag} ${esc(S.name)} <span class="gd" style="padding: 2px 8px; border-radius: 4px;">#${S.num}</span></h3><div class="chips"><span><i class="dt" style="background:${S.F.length ? tcl(S.team) : '#555'}; border: 2px solid var(--tx);"></i>${S.tn} ${myCar ? `· Carro ${myCar.ovr} (${myCar.rank}º)` : ''}</span><span>${sr.n}</span><span>${S.year}</span><span>${S.age} anos</span><span style="background:var(--g); color:var(--tx); border-color:var(--tx);">POT ${Math.round(pot())}</span><span>💰 ${fmt(S.cash)}</span>${acObj ? `<span style="background:${acObj.c}; color:#fff; border-color:#000;">🎓 ${acObj.n}</span>` : ''}${S.rep >= 2 ? '<span style="background:var(--tx); color:#fff;">Reputação Alta</span>' : S.rep <= -2 ? '<span style="background:var(--r); color:#fff;">Sob Pressão</span>' : ''}</div>${S.con ? `<div class="ct">📄 Contrato: ${S.con.left} ano(s) restante(s) · Salário: ${fmt(S.con.sal)}/ano</div>` : ''}</div></div>${tm ? `<div class="h2h-bar"><span>⚔️ DUELO INTERNO VS <b>${esc(tm.n.toUpperCase())}</b> (OVR ${Math.round(tm.r)})</span><span>QUALI <b class="h2h-score">${S.h2h.qW} x ${S.h2h.qL}</b></span><span>CORRIDA <b class="h2h-score">${S.h2h.rW} x ${S.h2h.rL}</b></span></div>` : ''}<div class="stats"><div>POSIÇÃO ATUAL<b>${S.F.length ? pos + 'º' : '—'}</b></div><div>PONTOS<b>${me.pts}</b></div><div>VITÓRIAS<b>${me.w}</b></div><div>PÓDIOS<b>${me.pd}</b></div></div>`;
-      $('#ys').innerHTML = S.rows.map((r, idx) => `<details style="width:100%;margin:6px 0;border:1px solid var(--l);border-radius:6px;background:#fff;padding:10px 12px"><summary style="cursor:pointer;font-weight:700">${r.y} · ${r.s} · ${r.tm} · P${r.pos}${r.pos === 1 ? ' 🏆' : ''} · ${r.races ? r.races.length : 0} sessões</summary><div class="tw" style="margin-top:10px"><table><thead><tr><th>ETAPA</th><th>PISTA</th><th>TIPO</th><th>GRID</th><th>RESULTADO</th><th>PTS</th></tr></thead><tbody>${(r.races || []).map(x => `<tr><td>${x.round}</td><td>${esc(x.track)}</td><td>${x.type}</td><td>${x.grid}º</td><td>${x.dnf ? 'DNF' : x.pos + 'º'}</td><td>${x.pts}</td></tr>`).join('')}</tbody></table></div></details>`).join('') || '<span class="mut" style="border:none;">Sua carreira está apenas começando em 2018...</span>';
+      $('#ys').innerHTML = S.rows.map(r => `<span class="${r.pos === 1 ? 't' : ''}">${r.y} · ${r.s} · ${r.tm} · P${r.pos}${r.pos === 1 ? ' 🏆' : ''}</span>`).join('') || '<span class="mut" style="border:none;">Sua carreira está apenas começando em 2018...</span>';
       
       let b = ''; const ph = S.ph;
       if (ph === 'start') {
         const trainCost = S.ser === 4 ? 1.5 : 0.08;
-        const champOptions = getChampionships(S.ser);
-        const activeChamp = (CHAMPIONSHIPS[S.ser] || []).find(c => c.id === S.champ) || defaultChampionship(S.ser);
-        b = `<h3>${S.year} · ${sr.n} · ${S.tn}</h3><p class="mut" style="font-size:16px;">Calendário: <b>${activeChamp ? activeChamp.name : sr.n}</b> · ${S.sess.length} corrida(s)/sessão(ões) simulada(s). Seu carro é o ${myCar ? myCar.rank + 'º' : ''} mais rápido do grid e seu companheiro de equipe é <b>${tm ? esc(tm.n) : '—'}</b>.</p>
-        ${S.ser < 4 ? `<div class="nl">ESCOLHA O CAMPEONATO DA TEMPORADA</div><label for="champ-select" style="display:block;font-weight:700;margin:8px 0;">Categoria / campeonato</label><select id="champ-select" style="width:100%;max-width:100%;">${(champOptions.length ? champOptions : [activeChamp].filter(Boolean)).map(c => `<option value="${c.id}" ${c.id === S.champ ? 'selected' : ''}>${c.name} · ${c.level} · ${c.cost ? fmt(c.cost) : 'custo-base'}</option>`).join('')}</select><div class="rg" style="margin-top:10px;"><b style="display:block;margin:0 0 6px;">${activeChamp ? activeChamp.level : ''}</b>${activeChamp ? activeChamp.detail : ''}<br><small>Corridas/sessões simuladas: ${activeChamp ? activeChamp.rounds : S.sess.length} · Investimento estimado: ${activeChamp ? fmt(activeChamp.cost) : '—'} · Disponibilidade depende de idade, habilidade, resultados e caixa.</small></div>` : ''}
+        b = `<h3>${S.year} · ${sr.n} · ${S.tn}</h3><p class="mut" style="font-size:16px;">O calendário tem ${S.sess.length} etapas. Seu carro é o ${myCar ? myCar.rank + 'º' : ''} mais rápido do grid e seu companheiro de equipe é <b>${tm ? esc(tm.n) : '—'}</b>.</p>
         ${!S.trDone ? `<div class="nl">CENTRO DE PERFORMANCE E PREPARAÇÃO DE INVERNO</div>
         <div class="train-grid">
           <div class="train-card"><div><b>🏎️ Simulador Avançado</b><br><small>+2 em Qualificação e Ritmo de Corrida</small></div><button class="sm" data-a="tr" data-t="0" ${S.cash < trainCost ? 'disabled' : ''}>INVESTIR (${fmt(trainCost)})</button></div>
@@ -1335,17 +1230,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       $('#bx').innerHTML = b; $('#pe').textContent = S.pe ? 'RECOLHER PAINEL' : 'VER MANCHETES'; $('#pr').innerHTML = S.news.slice(0, S.pe ? 30 : 6).map(n => `<div class="nw ${S.op[n.i] ? 'o' : ''}" data-i="${n.i}"><div class="nh"><span>${n.y}</span><b style="font-family:var(--f-head);">${esc(n.t)}</b><em>+</em></div><p>${esc(n.d || '')}</p></div>`).join(''); save();
     }
 
-    $('#bx').addEventListener('change', e => {
-      if (e.target.id === 'champ-select') {
-        const selected = e.target.value;
-        const available = getChampionships(S.ser);
-        if (!available.some(c => c.id === selected)) return;
-        S.champ = selected;
-        applyChampionship();
-        draw();
-      }
-    });
-
     $('#bx').onclick = e => {
       const b = e.target.closest('button');
       if (!b) return;
@@ -1361,14 +1245,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
           if (type === 2) { S.v[6] = clamp(S.v[6] + 2, 40, cap); S.v[7] = clamp(S.v[7] + 2, 40, cap); S.rep = clamp(S.rep + 1, -6, 8); }
         }
       }
-      else if (a === 'go') {
-        if (S.ser < 4) {
-          const chosen = (CHAMPIONSHIPS[S.ser] || []).find(c => c.id === S.champ);
-          if (chosen && S.cash < chosen.cost) { S.champ = defaultChampionship(S.ser)?.id || 'kart_reg'; applyChampionship(); }
-          const finalChamp = (CHAMPIONSHIPS[S.ser] || []).find(c => c.id === S.champ);
-          if (finalChamp && S.champPaidYear !== S.year) { S.cash = Math.max(0, S.cash - finalChamp.cost); S.champPaidYear = S.year; }
-        }
-        S.stops = [0, Math.floor(S.sess.length / 2), S.sess.length - 1]; S.next_race = 0; S.ph = 'mom_pre'; S.mom_idx = 0; } 
+      else if (a === 'go') { S.stops = [0, Math.floor(S.sess.length / 2), S.sess.length - 1]; S.next_race = 0; S.ph = 'mom_pre'; S.mom_idx = 0; } 
       else if (a === 'race_mom') { S.last_res = sim_races(S.stops[S.mom_idx], S.stops[S.mom_idx] + 1); S.next_race = S.stops[S.mom_idx] + 1; S.ph = 'mom_pos'; } 
       else if (a === 'cont_mom') {
         if (S.mom_idx === 0) { sim_races(S.next_race, S.stops[1]); S.ph = 'event'; S.pp = [1, 2].map(i => { const o = S.ev[i]; const p = o[1] + (ovr() - 72) * .006 + (S.v[o[3]] - pot()) * .004 + (R(S.seed + 'pj' + S.year + S.ser + i)() - .5) * .18; return Math.round(clamp(p, .12, .92) * 100) / 100; }); } 
