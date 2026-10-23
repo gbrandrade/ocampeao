@@ -52,6 +52,133 @@ body::before { content:""; position:fixed; inset:0 0 auto; height:4px; backgroun
 .ticker-group { display:flex; flex-shrink:0; } 
 .ticker-group span { font:700 11px var(--f-head); letter-spacing:1.4px; color:#fff; padding:11px 0; margin-right:64px; }
 
+/* Banners Laterais Verticais (Anuncie Aqui) */
+.side-ad {
+  position: fixed;
+  top: 54%;
+  transform: translateY(-50%);
+  width: 148px;
+  height: 460px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0F2EA 100%);
+  border: 1.5px dashed #A5B2A3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 14px;
+  text-decoration: none;
+  color: var(--tx);
+  z-index: 9;
+  box-shadow: 0 10px 28px rgba(18, 60, 45, 0.05);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+  text-align: center;
+}
+.side-ad:hover {
+  transform: translateY(-50%) scale(1.025);
+  border-style: solid;
+  border-color: var(--accent);
+  box-shadow: 0 16px 36px rgba(18, 60, 45, 0.13);
+}
+.side-ad.left { left: max(14px, calc((100vw - 1240px) / 2 - 166px)); }
+.side-ad.right { right: max(14px, calc((100vw - 1240px) / 2 - 166px)); }
+.side-ad-badge {
+  background: var(--accent);
+  color: var(--g);
+  font: 700 9px var(--f-head);
+  letter-spacing: 1.5px;
+  padding: 5px 9px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  width: 100%;
+}
+.side-ad-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.side-ad-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #E8EDE4;
+  border: 1px solid #C5D1C3;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+.side-ad-title {
+  font: 900 18px/1.1 var(--f-head);
+  letter-spacing: -0.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.side-ad-sub {
+  font: 500 11.5px/1.45 var(--f);
+  color: var(--m);
+}
+.side-ad-cta {
+  width: 100%;
+  background: #25D366;
+  color: #fff;
+  font: 700 10px var(--f-head);
+  letter-spacing: 1px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+/* Seção Pix / Apoie o Projeto */
+.pix-box {
+  margin-top: 42px;
+  background: linear-gradient(135deg, #123C2D 0%, #1B523E 100%);
+  color: #fff;
+  border-radius: 10px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border: 1px solid var(--accent);
+  box-shadow: 0 14px 34px rgba(18, 60, 45, 0.14);
+}
+.pix-info { flex: 1 1 320px; }
+.pix-info .tag { background: var(--g); color: var(--tx); margin-bottom: 8px; }
+.pix-info h3 { color: #fff; margin: 0 0 6px; font-size: 22px; }
+.pix-info p { margin: 0; color: #D5E2DA; font-size: 13.5px; line-height: 1.6; }
+.pix-act {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 10px 12px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.pix-key {
+  font: 700 12px var(--f-head);
+  color: var(--g);
+  letter-spacing: 0.4px;
+  user-select: all;
+  word-break: break-all;
+}
+.pix-btn {
+  background: var(--g);
+  color: var(--tx);
+  border-color: var(--g);
+  padding: 10px 15px;
+  font-size: 11px;
+}
+.pix-btn:hover:not(:disabled) {
+  background: #fff;
+  color: var(--tx);
+  border-color: #fff;
+}
+
 main { max-width:1240px; margin:0 auto; padding:42px 28px 96px; }
 .hide { display:none !important; } .mut { color:var(--m); } .gd { color:var(--tx); background:var(--g); padding:0 4px; font-weight:700; }
 h1 { font:700 clamp(52px, 7.5vw, 96px)/.94 var(--f-head); text-transform:uppercase; margin:16px 0 24px; letter-spacing:-5px; }
@@ -226,12 +353,34 @@ input[type=checkbox] { accent-color:var(--accent); margin-right:12px; width:17px
 .modal-box p { color:var(--m); margin:0 0 24px; line-height:1.7; } 
 input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
+@media(max-width:1560px) { .side-ad { display:none; } }
 @media(max-width:900px) { main {padding:30px 20px 72px;} .cg {grid-template-columns:1fr;} .st3 {grid-template-columns:1fr 1fr;} .hero {grid-template-columns:1fr; gap:24px;} .race-visual {max-width:650px;width:100%;margin:0 auto;} h1 {font-size:clamp(52px,10vw,76px); letter-spacing:-3px;} .hd {padding:17px 20px;} .hd i {right:20px;} }
-@media(max-width:600px) { .hd {min-height:68px;} .hd b {font-size:19px;} .hd::after {display:none;} .hd i {font-size:9px;right:16px;} main {padding:22px 15px 60px;} .hero {padding-top:16px;} h1 {font-size:clamp(46px,13vw,64px);letter-spacing:-2.8px;} .sub {font-size:15px;} .race-visual {padding:14px 12px;} .rv-bottom {font-size:7px;} .rv-caption {margin:0 0 14px 5%;} .slots,.at,.stats {grid-template-columns:1fr 1fr;} .cg {grid-template-columns:minmax(0,1fr);gap:14px;} #stn table { table-layout:auto; min-width:390px; } .st3 {grid-template-columns:1fr;} .fifa {padding:24px 16px;} .pn {padding:18px;} .rtg {font-size:54px;} .form {padding:10px;} .row {gap:9px;} button.cta {padding:14px 17px;} .ph {gap:10px;} .nh {align-items:flex-start;} .nh b {font-size:13px;} }
+@media(max-width:600px) { .hd {min-height:68px;} .hd b {font-size:19px;} .hd::after {display:none;} .hd i {font-size:9px;right:16px;} main {padding:22px 15px 60px;} .hero {padding-top:16px;} h1 {font-size:clamp(46px,13vw,64px);letter-spacing:-2.8px;} .sub {font-size:15px;} .race-visual {padding:14px 12px;} .rv-bottom {font-size:7px;} .rv-caption {margin:0 0 14px 5%;} .slots,.at,.stats {grid-template-columns:1fr 1fr;} .cg {grid-template-columns:minmax(0,1fr);gap:14px;} #stn table { table-layout:auto; min-width:390px; } .st3 {grid-template-columns:1fr;} .fifa {padding:24px 16px;} .pn {padding:18px;} .rtg {font-size:54px;} .form {padding:10px;} .row {gap:9px;} button.cta {padding:14px 17px;} .ph {gap:10px;} .nh {align-items:flex-start;} .nh b {font-size:13px;} .pix-box {padding:20px 18px;} .pix-act {width:100%; justify-content:space-between;} }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;} .reveal-ready .reveal,.reveal-ready .reveal.is-visible { opacity:1!important; transform:none!important; animation:none!important; } }
   </style>
 </head>
 <body>
+
+  <!-- Banners Verticais Laterais (Anuncie Aqui -> WhatsApp) -->
+  <a class="side-ad left" href="https://wa.me/5549989139808?text=Ol%C3%A1!%20Quero%20anunciar%20no%20jogo%20O%20Campe%C3%A3o." target="_blank" rel="noopener noreferrer" aria-label="Anuncie aqui via WhatsApp">
+    <span class="side-ad-badge">PATROCÍNIO</span>
+    <div class="side-ad-body">
+      <div class="side-ad-ico">📢</div>
+      <div class="side-ad-title">ANUNCIE<br>AQUI</div>
+      <div class="side-ad-sub">Destaque sua marca para fãs de F1 e automobilismo.</div>
+    </div>
+    <span class="side-ad-cta">CHAMAR NO WHATSAPP ↗</span>
+  </a>
+
+  <a class="side-ad right" href="https://wa.me/5549989139808?text=Ol%C3%A1!%20Quero%20anunciar%20no%20jogo%20O%20Campe%C3%A3o." target="_blank" rel="noopener noreferrer" aria-label="Anuncie aqui via WhatsApp">
+    <span class="side-ad-badge">PATROCÍNIO</span>
+    <div class="side-ad-body">
+      <div class="side-ad-ico">🏎️</div>
+      <div class="side-ad-title">ANUNCIE<br>AQUI</div>
+      <div class="side-ad-sub">Seu banner fixo no grid do simulador.</div>
+    </div>
+    <span class="side-ad-cta">CHAMAR NO WHATSAPP ↗</span>
+  </a>
 
   <div class="top">
     <header class="hd">
@@ -302,6 +451,19 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       
       <h2>MELHORES CARREIRAS (LOCAL)</h2>
       <div id="lb" class="tw pn"></div>
+
+      <!-- Card de Apoio via Pix e Anúncio -->
+      <div class="pix-box">
+        <div class="pix-info">
+          <span class="tag">☕ APOIE O PROJETO</span>
+          <h3>CURTIU O SIMULADOR? AJUDE COM UM PIX!</h3>
+          <p>Sua contribuição ajuda a manter o jogo online, livre de paywall e trazendo novas atualizações. Quer anunciar sua marca? <a href="https://wa.me/5549989139808?text=Ol%C3%A1!%20Quero%20anunciar%20no%20jogo%20O%20Campe%C3%A3o." target="_blank" rel="noopener noreferrer" style="color:var(--g);font-weight:700;text-decoration:underline;">Fale no WhatsApp</a>.</p>
+        </div>
+        <div class="pix-act">
+          <code class="pix-key" id="pix_key">1abb0f52-4642-4310-afdb-95ee6c09f030</code>
+          <button type="button" class="pix-btn" id="copy_pix">COPIAR CHAVE PIX</button>
+        </div>
+      </div>
     </section>
 
     <section id="draft" class="hide">
@@ -364,6 +526,24 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     const $ = s => document.querySelector(s);
     const esc = s => String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
     
+    // Botão Copiar Chave Pix
+    $('#copy_pix').onclick = () => {
+      const key = '1abb0f52-4642-4310-afdb-95ee6c09f030';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(key);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = key;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      const btn = $('#copy_pix');
+      btn.textContent = '✓ CHAVE COPIADA!';
+      setTimeout(() => { btn.textContent = 'COPIAR CHAVE PIX'; }, 2500);
+    };
+
     const show = id => {
       ['home', 'draft', 'car', 'res'].forEach(x => $('#' + x).classList.toggle('hide', x !== id));
       document.querySelector('.mq').classList.toggle('hide', id !== 'home');
@@ -957,7 +1137,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
           if (rr() < clamp(.02 + (82 - car) * .002, .015, .10)) return {d, s: -999, grid: item.grid};
           
           let r_sk = d.p ? S.v[1]*gF(S.age) : d.r + (d.form||0);
-          // Escalonamento fino contra os bônus de atributos para manter corridas disputadas
           let start_bonus = d.p ? (S.v[2]-playerOvr)*0.07 : (rr()-0.45)*1.5;
           let overt_bonus = (d.p && item.grid > 6) ? (S.v[3]-playerOvr)*0.12 : 0;
           let rain_bonus  = wet ? (d.p ? (S.v[4]-playerOvr)*0.20 : (rr()-0.45)*3) : 0;
@@ -991,7 +1170,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
         if (!sp && tm) {
           if (mePos < tmPos) S.h2h.rW++; else S.h2h.rL++;
         }
-        // Salva no Histórico Detalhado de Corridas
         if (res) {
           S.rlog.unshift({
             y: S.year,
@@ -1115,7 +1293,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       const hasOvrNext = ovr() >= MINOVR[Math.min(6, ser + 1)] - (wonBase ? 4 : 0);
 
       let pro = ser < 6 && canGo(ser + 1) && hasOvrNext && (P <= 3 || (S.sy >= 2 && ser < 5 && P <= 7) || wonBase);
-      // Para entrar na F1 (ser 6), exige os 40 pontos de Superlicença da FIA!
       if (ser === 5 && pro && S.sl < 40) {
         pro = false;
         S.msg += ` ⚠️ Você tem ${S.sl}/40 pontos de Superlicença FIA. Precisa acumular 40 pts para estrear na F1!`;
@@ -1127,7 +1304,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       let tgt;
       if (ser === 6) tgt = 6;
       else if (wonBase && ser === 5) {
-        // Campeão da F2 é proibido de correr na F2 novamente; sobe pra F1 se tiver Superlicença e idade
         tgt = (S.sl >= 40 && canGo(6)) ? 6 : 5;
       } else if (wonBase && canGo(ser + 1)) {
         tgt = ser + 1;
@@ -1169,7 +1345,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
       const rk = rank(), pos = rk.indexOf(S.me) + 1, me = S.me, F1 = S.ser === 6, N = SR[S.ser].n, r = R(S.seed + 'se' + S.year + S.ser);
       S.last = { pos, pts: me.pts }; S.rows.push({ y: S.year, age: S.age, s: N, tm: S.tn, pos, ovr: ovr() }); S.peak = Math.max(S.peak, ovr());
       
-      // Pontos de Superlicença FIA ganhos na temporada
       const slEarned = (SL_PTS[S.ser] && SL_PTS[S.ser][pos - 1]) || 0;
       if (slEarned > 0 && !F1) {
         S.sl = Math.min(40, (S.sl || 0) + slEarned);
@@ -1203,7 +1378,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
       if (slEarned > 0 && !F1) S.msg += `🪪 +${slEarned} pts de Superlicença (Total: ${S.sl}/40). `;
 
-      // Custos de manutenção anual dos itens de Estilo de Vida
       const maintCost = (S.items || []).reduce((acc, id) => {
         const it = LIFE_ITEMS.find(x => x.id === id);
         return acc + (it ? it.maint : 0);
@@ -1325,7 +1499,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
     
     const oc = v => v >= 88 ? 'g' : v >= 78 ? 'h' : v >= 68 ? 'm' : 'l';
 
-    // Cor dinâmica baseada estritamente na equipe atual do piloto (tanto no grid atual quanto em ofertas futuras)
     function tcl(tIdx, serOverride) {
       const s = serOverride ?? S.ser;
       let tName = '';
@@ -1348,7 +1521,6 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
 
       let t = '';
       if (S.tab === 2) {
-        // Aba de Histórico Detalhado de Corridas por Circuito
         if (!S.rlog || !S.rlog.length) {
           t = '<p class="mut">Nenhuma corrida disputada ainda. Largue na temporada para registrar seu histórico pista a pista.</p>';
         } else {
@@ -1583,7 +1755,7 @@ input.err { border-color:var(--r); box-shadow:0 0 0 3px rgba(201,77,59,.15); }
   (() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion || !('IntersectionObserver' in window)) return;
-    const selectors = ['.race-visual', '.mq', '.sc', 'main h2', '.pn', '.tw'];
+    const selectors = ['.race-visual', '.mq', '.sc', 'main h2', '.pn', '.tw', '.pix-box'];
     const nodes = [...new Set(selectors.flatMap(selector => [...document.querySelectorAll(selector)]))];
     nodes.forEach((node, index) => { node.classList.add('reveal'); node.style.animationDelay = `${Math.min(index % 4, 3) * 65}ms`; });
     document.documentElement.classList.add('reveal-ready');
